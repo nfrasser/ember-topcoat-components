@@ -1,0 +1,11 @@
+{
+  "name": "ember-topcoat-components",
+  "version": "0.0.0",
+  "dependencies": {
+    "ember": ">=1.0.0",
+    "topcoat": ">=0.7.0"
+  },
+  "devDependencies": {
+    "ember-mocha-adapter": "0.1.2"
+  }
+}
