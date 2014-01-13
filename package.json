@@ -1,6 +1,9 @@
 {
   "name": "ember-topcoat-components",
   "version": "0.0.0",
+  "description": "A collection of Ember Components for Adobe's Topcoat CSS framework",
+  "author": "Nick Frasser <nfrasser@gmail.com>",
+  "homepage": "https://github.com/nfrasser/ember-topcoat-components",
   "dependencies": {},
   "devDependencies": {
     "grunt": "~0.4.1",
@@ -24,7 +27,7 @@
     "grunt-concurrent": "~0.3.0",
     "load-grunt-tasks": "~0.1.0",
     "connect-livereload": "~0.2.0",
-    "grunt-ember-templates": "0.4.14",
+    "grunt-ember-templates": "0.4.18",
     "time-grunt": "~0.1.1",
     "grunt-replace": "~0.4.4",
     "jshint-stylish": "~0.1.3",

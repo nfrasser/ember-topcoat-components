@@ -4,3 +4,4 @@ dist
 .sass-cache
 .tmp
 *bower_components
+app/vendor
