@@ -9,23 +9,24 @@
 		<link rel="stylesheet" href="styles/style.css">
 		<!-- endbuild -->
 </head>
-	<body>
+<body>
 	<h2>Hello World</h2>
 
-		<!-- build:js scripts/components.js -->
-		<script src="vendor/jquery/jquery.js"></script>
-		<script src="vendor/handlebars/handlebars.runtime.js"></script>
-		<script src="@@ember"></script>
-		<!-- endbuild -->
+	<!-- build:js scripts/vendor.js -->
+	<script src="vendor/jquery/jquery.js"></script>
+	<script src="vendor/handlebars/handlebars.runtime.js"></script>
+	<script src="@@ember"></script>
+	<!-- endbuild -->
 
-		<!-- build:js(.tmp) scripts/templates.js -->
-		<script src="scripts/app-templates.js"></script>
-		<script src="scripts/demo-templates.js"></script>
-		<!-- endbuild -->
+	<!-- build:js(.tmp) scripts/components.js -->
+	<script src="scripts/app-templates.js"></script>
+	<script src="scripts/app-scripts.js"></script>
+	<!-- endbuild -->
 
-		<!-- build:js(.tmp) scripts/main.js -->
-		<script src="scripts/app-scripts.js"></script>
-		<script src="scripts/demo-scripts.js"></script>
-		<!-- endbuild -->
+	<!-- build:js(.tmp) scripts/demo.js -->
+	<script src="scripts/demo-templates.js"></script>
+	<script src="scripts/demo-scripts.js"></script>
+	<!-- endbuild -->
+
 </body>
 </html>

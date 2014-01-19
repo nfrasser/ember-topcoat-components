@@ -27,7 +27,7 @@ module.exports = function (grunt) {
 		demo: 'demo',
 		docs: 'docs',
 		dist: 'dist',
-		site: 'dist/demo'
+		site: '.tmp/dist'
 	};
 
 	grunt.initConfig({
@@ -93,7 +93,7 @@ module.exports = function (grunt) {
 						return [
 							lrSnippet,
 							mountFolder(connect, '.tmp'),
-							mountFolder(connect, appConfig.app)
+							mountFolder(connect, appConfig.demo)
 						];
 					}
 				}
@@ -104,12 +104,25 @@ module.exports = function (grunt) {
 					port: 9001,
 					middleware: function (connect) {
 						return [
-							mountFolder(connect, '.tmp'),
-							mountFolder(connect, 'test')
+							mountFolder(connect, 'test'),
+							mountFolder(connect, '.tmp')
 						];
 					}
 				}
-			}
+			},
+
+			site: {
+				options: {
+					port: 9002,
+					middleware: function (connect) {
+						return [
+							mountFolder(connect, appConfig.site)
+						];
+					}
+				}
+			},
+
+
 		},
 
 		open: {
@@ -144,9 +157,10 @@ module.exports = function (grunt) {
 			},
 			test: {
 				src: 'vendor',
-				dest: 'tests/vendor'
+				dest: 'test/vendor'
 			}
 		},
+
 
 		jshint: {
 			options: {
@@ -206,8 +220,8 @@ module.exports = function (grunt) {
 				},
 				files: {
 					'<%= config.dist %>/scripts/ember-topcoat-components.min.js': [
-						'.tmp/scripts/compiled-templates.js',
-						'.tmp/scripts/combined-scripts.js'
+						'.tmp/scripts/app-templates.js',
+						'.tmp/scripts/app-scripts.js'
 					]
 				}
 			},
@@ -218,8 +232,8 @@ module.exports = function (grunt) {
 				},
 				files: {
 					'<%= config.dist %>/scripts/ember-topcoat-components.js': [
-						'.tmp/scripts/compiled-templates.js',
-						'.tmp/scripts/combined-scripts.js'
+						'.tmp/scripts/app-templates.js',
+						'.tmp/scripts/app-scripts.js'
 					]
 				}
 			}
@@ -249,7 +263,12 @@ module.exports = function (grunt) {
 			html: ['<%= config.site %>/{,*/}*.html'],
 			css: ['<%= config.site %>/styles/{,*/}*.css'],
 			options: {
-				dirs: ['<%= config.site %>']
+				dirs: [
+					'<%= config.site %>'
+				],
+				assetDirs: [
+					'vendor'
+				]
 			}
 		},
 
@@ -332,21 +351,6 @@ module.exports = function (grunt) {
 
 		// Put files not handled in other tasks here
 		copy: {
-			demo: {
-				files: [{
-					expand: true,
-					dot: true,
-					cwd: '<%= config.demo %>/',
-					dest: '.tmp/',
-					src: [
-						'*.{ico,txt}',
-						'.htaccess',
-						'styles/{,*/}*.css',
-						'images/{,*/}*.{webp,gif}',
-						'styles/fonts/*'
-					]
-				}]
-			},
 			dist: {
 				files: [{
 					expand: true,
@@ -382,7 +386,7 @@ module.exports = function (grunt) {
 			options: {
 				templateName: function (sourceFile) {
 					// Get rid of '{subfolder}/templates/' at the beginning
-					return sourceFile.replace(/[^\.]*\/templates/, '');
+					return sourceFile.replace(/[^\.]*\/templates\//, '');
 				},
 				templateRegistration: function (name, contents) {
 					contents = contents.replace(/[\t]+/g, ' ');
@@ -438,7 +442,7 @@ module.exports = function (grunt) {
 		);
 
 		if (target === 'demo') {
-			tasks.push('neuter:demo', 'copy:demo');
+			tasks.push('neuter:demo');
 		}
 
 		tasks.push(
@@ -463,6 +467,7 @@ module.exports = function (grunt) {
 
 	grunt.registerTask('build', [
 		'clean:main',
+		'symlink:demo',
 		'replace',
 		'useminPrepare',
 		'concurrent:dist',
