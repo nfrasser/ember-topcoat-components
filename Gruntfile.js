@@ -15,6 +15,7 @@ var mountFolder = function (connect, dir) {
 // 'test/spec/**/*.js'
 
 module.exports = function (grunt) {
+
 	// show elapsed time at the end
 	require('time-grunt')(grunt);
 	// load all grunt tasks
@@ -22,10 +23,11 @@ module.exports = function (grunt) {
 
 	// configurable paths
 	var appConfig = {
-		app: 'app',
-		demo: '.tmp/demo',
+		app: 'src',
+		demo: 'demo',
 		docs: 'docs',
-		dist: 'dist'
+		dist: 'dist',
+		site: 'dist/demo'
 	};
 
 	grunt.initConfig({
@@ -41,21 +43,29 @@ module.exports = function (grunt) {
 		].join('\n'),
 
 		watch: {
-			emberTemplates: {
+			templates: {
 				files: '<%= config.app %>/templates/**/*.hbs',
-				tasks: ['emberTemplates']
+				tasks: ['emberTemplates:app']
 			},
-			compass: {
-				files: ['<%= config.app %>/styles/{,*/}*.{scss,sass}'],
-				tasks: ['compass:server']
-			},
-			neuter: {
+			scripts: {
 				files: ['<%= config.app %>/scripts/{,*/}*.js'],
 				tasks: ['neuter:app']
 			},
-			replace: {
-				files: ['<%= config.app %>/*.html'],
-				tasks: ['replace:app']
+			demoTemplates: {
+				files: '<%= config.demo %>/templates/**/*.hbs',
+				tasks: ['emberTemplates:demo']
+			},
+			demoStyles: {
+				files: ['<%= config.demo %>/styles/{,*/}*.{scss,sass}'],
+				tasks: ['compass:demo']
+			},
+			demoScripts: {
+				files: ['<%= config.demo %>/scripts/{,*/}*.js'],
+				tasks: ['neuter:demo']
+			},
+			demoReplace: {
+				files: ['<%= config.demo %>/*.html'],
+				tasks: ['replace:demo']
 			},
 			livereload: {
 				options: {
@@ -69,13 +79,15 @@ module.exports = function (grunt) {
 				]
 			}
 		},
+
 		connect: {
 			options: {
 				port: 9000,
 				// change this to '0.0.0.0' to access the server from outside
 				hostname: 'localhost'
 			},
-			livereload: {
+
+			demo: {
 				options: {
 					middleware: function (connect) {
 						return [
@@ -86,8 +98,10 @@ module.exports = function (grunt) {
 					}
 				}
 			},
+
 			test: {
 				options: {
+					port: 9001,
 					middleware: function (connect) {
 						return [
 							mountFolder(connect, '.tmp'),
@@ -95,21 +109,16 @@ module.exports = function (grunt) {
 						];
 					}
 				}
-			},
-			demo: {
-				options: {
-					middleware: function (connect) {
-						return [
-							mountFolder(connect, appConfig.demo)
-						];
-					}
-				}
 			}
 		},
 
 		open: {
-			server: {
-				path: 'http://localhost:<%= connect.options.port %>',
+			demo: {
+				path: 'http://localhost:<%= connect.demo.options.port %>',
+				 app: 'Google Chrome'
+			},
+			test: {
+				path: 'http://localhost:<%= connect.test.options.port %>',
 				 app: 'Google Chrome'
 			}
 		},
@@ -120,13 +129,25 @@ module.exports = function (grunt) {
 					dot: true,
 					src: [
 						'.tmp',
-						'!<%= config.dist %>/.git*',
+						//'!<%= config.dist %>/.git*',
 						'!<%= config.demo %>/.git*'
 					]
 				}]
 			},
 			server: '.tmp'
 		},
+
+		symlink: {
+			demo: {
+				src: 'vendor',
+				dest: '.tmp/vendor'
+			},
+			test: {
+				src: 'vendor',
+				dest: 'tests/vendor'
+			}
+		},
+
 		jshint: {
 			options: {
 				jshintrc: '.jshintrc',
@@ -134,35 +155,38 @@ module.exports = function (grunt) {
 			},
 			all: [
 				'Gruntfile.js',
-				'<%= config.app %>/scripts/{,*/}*.js',
-				'!<%= config.app %>/scripts/vendor/*',
+				'{<%= config.app %>,<%= config.demo %>}/scripts/{,*/}*.js',
+				'!{<%= config.app %>,<%= config.demo %>}/scripts/vendor/*',
 				'test/spec/{,*/}*.js'
 			]
 		},
-		mocha: {
+
+		qunit: {
 			all: {
 				options: {
-					run: true,
-					urls: ['http://localhost:<%= connect.options.port %>/index.html']
+					urls: [
+						'http://localhost:<%= connect.test.options.port %>/index.html'
+					]
 				}
 			}
 		},
+
 		compass: {
 			options: {
-				sassDir: '<%= config.app %>/styles',
+				sassDir: '<%= config.demo %>/styles',
 				cssDir: '.tmp/styles',
 				generatedImagesDir: '.tmp/images/generated',
-				imagesDir: '<%= config.app %>/images',
-				javascriptsDir: '<%= config.app %>/scripts',
-				fontsDir: '<%= config.app %>/styles/fonts',
-				importPath: 'app/vendor',
+				imagesDir: '<%= config.demo %>/images',
+				javascriptsDir: '<%= config.demo %>/scripts',
+				fontsDir: '<%= config.demo %>/styles/fonts',
+				importPath: 'vendor',
 				httpImagesPath: '/images',
 				httpGeneratedImagesPath: '/images/generated',
 				httpFontsPath: '/styles/fonts',
 				relativeAssets: false
 			},
 			dist: {},
-			server: {
+			demo: {
 				options: {
 					debugInfo: true
 				}
@@ -181,7 +205,7 @@ module.exports = function (grunt) {
 					banner: '<%= banner %>'
 				},
 				files: {
-					'<%= config.dist %>/ember-topcoat-components.min.js': [
+					'<%= config.dist %>/scripts/ember-topcoat-components.min.js': [
 						'.tmp/scripts/compiled-templates.js',
 						'.tmp/scripts/combined-scripts.js'
 					]
@@ -193,7 +217,7 @@ module.exports = function (grunt) {
 					beautify: true
 				},
 				files: {
-					'<%= config.dist %>/ember-topcoat-components.js': [
+					'<%= config.dist %>/scripts/ember-topcoat-components.js': [
 						'.tmp/scripts/compiled-templates.js',
 						'.tmp/scripts/combined-scripts.js'
 					]
@@ -202,37 +226,40 @@ module.exports = function (grunt) {
 		},
 
 		rev: {
-			dist: {
+			site: {
 				files: {
 					src: [
-						'<%= config.dist %>/scripts/{,*/}*.js',
-						'<%= config.dist %>/styles/{,*/}*.css',
-						'<%= config.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp}',
-						'<%= config.dist %>/styles/fonts/*'
+						'<%= config.site %>/scripts/{,*/}*.js',
+						'<%= config.site %>/styles/{,*/}*.css',
+						'<%= config.site %>/images/{,*/}*.{png,jpg,jpeg,gif,webp}',
+						'<%= config.site %>/styles/fonts/*'
 					]
 				}
 			}
 		},
+
 		useminPrepare: {
 			html: '.tmp/index.html',
 			options: {
-				dest: '<%= config.demo %>'
+				dest: '<%= config.site %>'
 			}
 		},
+
 		usemin: {
-			html: ['<%= config.demo %>/{,*/}*.html'],
-			css: ['<%= config.demo %>/styles/{,*/}*.css'],
+			html: ['<%= config.site %>/{,*/}*.html'],
+			css: ['<%= config.site %>/styles/{,*/}*.css'],
 			options: {
-				dirs: ['<%= config.demo %>']
+				dirs: ['<%= config.site %>']
 			}
 		},
+
 		imagemin: {
 			dist: {
 				files: [{
 					expand: true,
-					cwd: '<%= config.app %>/images',
+					cwd: '<%= config.demo %>/images',
 					src: '{,*/}*.{png,jpg,jpeg}',
-					dest: '<%= config.demo %>/images'
+					dest: '<%= config.site %>/images'
 				}]
 			}
 		},
@@ -240,16 +267,16 @@ module.exports = function (grunt) {
 			dist: {
 				files: [{
 					expand: true,
-					cwd: '<%= config.app %>/images',
+					cwd: '<%= config.demo %>/images',
 					src: '{,*/}*.svg',
-					dest: '<%= config.demo %>/images'
+					dest: '<%= config.site %>/images'
 				}]
 			}
 		},
 		cssmin: {
 			dist: {
 				files: {
-					'<%= config.dist %>/styles/main.css': [
+					'<%= config.site %>/styles/main.css': [
 						'.tmp/styles/{,*/}*.css',
 						'<%= config.demo %>/styles/{,*/}*.css'
 					]
@@ -271,35 +298,33 @@ module.exports = function (grunt) {
 				},
 				files: [{
 					expand: true,
-					cwd: '<%= config.app %>',
+					cwd: '<%= config.demo %>',
 					src: '*.html',
-					dest: '<%= config.demo %>'
+					dest: '<%= config.site %>'
 				}]
 			}
 		},
 
 		replace: {
-			app: {
+			demo: {
 				options: {
 					variables: {
-						ember: 'vendor/ember/ember.js',
-						ember_data: 'vendor/ember-data-shim/ember-data.js'
+						ember: 'vendor/ember/ember.js'
 					}
 				},
 				files: [{
-					src: '<%= config.app %>/index.html',
+					src: '<%= config.demo %>/index.html',
 					dest: '.tmp/index.html'
 				}]
 			},
-			dist: {
+			site: {
 				options: {
 					variables: {
-						ember: 'vendor/ember/ember.prod.js',
-						ember_data: 'vendor/ember-data-shim/ember-data.prod.js'
+						ember: 'vendor/ember/ember.prod.js'
 					}
 				},
 				files: [{
-					src: '<%= config.app %>/index.html',
+					src: '<%= config.demo %>/index.html',
 					dest: '.tmp/index.html'
 				}]
 			}
@@ -307,12 +332,27 @@ module.exports = function (grunt) {
 
 		// Put files not handled in other tasks here
 		copy: {
+			demo: {
+				files: [{
+					expand: true,
+					dot: true,
+					cwd: '<%= config.demo %>/',
+					dest: '.tmp/',
+					src: [
+						'*.{ico,txt}',
+						'.htaccess',
+						'styles/{,*/}*.css',
+						'images/{,*/}*.{webp,gif}',
+						'styles/fonts/*'
+					]
+				}]
+			},
 			dist: {
 				files: [{
 					expand: true,
 					dot: true,
-					cwd: '<%= config.app %>',
-					dest: '<%= config.dist %>',
+					cwd: '<%= config.demo %>',
+					dest: '<%= config.site %>',
 					src: [
 						'*.{ico,txt}',
 						'.htaccess',
@@ -323,13 +363,12 @@ module.exports = function (grunt) {
 			}
 		},
 		concurrent: {
-			server: [
+			demo: [
 				'emberTemplates',
-				'compass:server'
+				'compass:demo'
 			],
 			test: [
-				'emberTemplates',
-				'compass'
+				'emberTemplates:app'
 			],
 			dist: [
 				'emberTemplates',
@@ -342,17 +381,22 @@ module.exports = function (grunt) {
 		emberTemplates: {
 			options: {
 				templateName: function (sourceFile) {
-					var templatePath = appConfig.app + '/templates/';
-					return sourceFile.replace(templatePath, '');
+					// Get rid of '{subfolder}/templates/' at the beginning
+					return sourceFile.replace(/[^\.]*\/templates/, '');
 				},
 				templateRegistration: function (name, contents) {
 					contents = contents.replace(/[\t]+/g, ' ');
-					return 'Ember.TEMPLATES[\'' + name + '\'] = ' + contents + ';';
+					return 'Em.TEMPLATES[\'' + name + '\'] = ' + contents + ';';
 				},
 			},
-			dist: {
+			app: {
 				files: {
-					'.tmp/scripts/compiled-templates.js': '<%= config.app %>/templates/{,*/}*.hbs'
+					'.tmp/scripts/app-templates.js': '<%= config.app %>/templates/{,*/}*.hbs'
+				}
+			},
+			demo: {
+				files: {
+					'.tmp/scripts/demo-templates.js': '<%= config.demo %>/templates/{,*/}*.hbs'
 				}
 			}
 		},
@@ -360,46 +404,69 @@ module.exports = function (grunt) {
 			app: {
 				options: {
 					filepathTransform: function (filepath) {
-						return 'app/' + filepath;
+						return [appConfig.app, filepath].join('/');
 					}
 				},
 				src: '<%= config.app %>/scripts/tc.js',
-				dest: '.tmp/scripts/combined-scripts.js'
+				dest: '.tmp/scripts/app-scripts.js'
+			},
+
+			demo: {
+				options: {
+					filepathTransform: function (filepath) {
+						return [appConfig.demo, filepath].join('/');
+					}
+				},
+				src: '<%= config.demo %>/scripts/app.js',
+				dest: '.tmp/scripts/demo-scripts.js'
 			}
 		}
 	});
 
+	// Currently only the targets 'demo' and 'test' are supported
 	grunt.registerTask('server', function (target) {
+
+		var tasks = [];
+
+		target = target || 'demo';
+
+		tasks.push(
+			'clean:server',
+			'replace:demo',
+			'concurrent:' + target,
+			'neuter:app'
+		);
+
 		if (target === 'demo') {
-			return grunt.task.run(['build', 'open', 'connect:demo:keepalive']);
+			tasks.push('neuter:demo', 'copy:demo');
 		}
 
-		grunt.task.run([
-			'clean:server',
-			'replace:app',
-			'concurrent:server',
-			'neuter:app',
-			'connect:livereload',
-			'open',
+		tasks.push(
+			'symlink:' + target,
+			'connect:' + target,
+			'open:' + target,
 			'watch'
-		]);
+		);
+
+		grunt.task.run(tasks);
+
 	});
 
 	grunt.registerTask('test', [
 		'clean:server',
 		'replace:app',
 		'concurrent:test',
-		'connect:test',
 		'neuter:app',
-		'mocha'
+		'connect:test',
+		'qunit'
 	]);
 
 	grunt.registerTask('build', [
 		'clean:main',
-		'replace:dist',
+		'replace',
 		'useminPrepare',
 		'concurrent:dist',
-		'neuter:app',
+		'neuter',
 		'concat',
 		'cssmin',
 		'uglify',

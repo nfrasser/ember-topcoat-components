@@ -1,27 +1,31 @@
 <!doctype html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Mocha Spec Runner</title>
-    <link rel="stylesheet" href="bower_components/mocha/mocha.css">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>QUnit Spec Runner for Ember Topcoat Components</title>
+	<link rel="stylesheet" href="vendor/qunit/qunit/qunit.css">
 </head>
 <body>
-    <div id="mocha"></div>
-    <script src="bower_components/mocha/mocha.js"></script>
-    <script>mocha.setup('bdd')</script>
-    <script src="bower_components/chai/chai.js"></script>
-    <script>
-        var assert = chai.assert;
-        var expect = chai.expect;
-        var should = chai.should();
-    </script>
+	<div id="mocha"></div>
+	<script src="vendor/qunit/qunit/qunit.js"></script>
 
-    <!-- include source files here... -->
+	<div id="qunit-test-root"></div>
 
-    <!-- include spec files here... -->
-    <script src="spec/test.js"></script>
+	<!-- include source files here... -->
+	<script src="vendor/jquery/jquery.js"></script>
+	<script src="vendor/handlebars/handlebars.runtime.js"></script>
+	<script src="vendor/ember/ember.js"></script>
+	<script src="spec/app.js"></script>
 
-    <script>mocha.run()</script>
+	<script>
+		App.rootElement = '#qunit-test-root';
+		App.setupForTesting();
+		App.injectTestHelpers();
+	</script>
+
+	<!-- include spec files here... -->
+	<script src="spec/test.js"></script>
+
 </body>
 </html>

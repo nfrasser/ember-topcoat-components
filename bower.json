@@ -6,6 +6,6 @@
     "topcoat": ">=0.7.0"
   },
   "devDependencies": {
-    "ember-mocha-adapter": "0.1.2"
+    "qunit": "1.*"
   }
 }

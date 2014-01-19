@@ -1,13 +1,8 @@
-/* global describe, it */
+/* global test, ok, module */
 
-(function () {
-    'use strict';
+module('Integration Tests');
 
-    describe('Give it some context', function () {
-        describe('maybe a bit more context here', function () {
-            it('should run here few assertions', function () {
-
-            });
-        });
-    });
-})();
+test('Components and namespace exist', function () {
+    ok(true, 'Should run here few assertions');
+    ok(TC, 'TC namespace should exist');
+});

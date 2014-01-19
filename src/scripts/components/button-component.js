@@ -7,7 +7,7 @@
 	@extends	TC.Component
 	@namespace	TC
 */
-TC.TopcoatButtonComponent = TC.Component.extend({
+TC.ButtonComponent = TC.Component.extend({
 
 	/**
 		@property	tagName
@@ -94,3 +94,5 @@ TC.TopcoatButtonComponent = TC.Component.extend({
 	_prefix: 'topcoat-button'
 
 });
+
+//Ember.Handlebars.registerHelper
