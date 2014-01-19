@@ -93,6 +93,7 @@ module.exports = function (grunt) {
 						return [
 							lrSnippet,
 							mountFolder(connect, '.tmp'),
+							mountFolder(connect, '.'),
 							mountFolder(connect, appConfig.demo)
 						];
 					}
@@ -141,13 +142,11 @@ module.exports = function (grunt) {
 				files: [{
 					dot: true,
 					src: [
-						'.tmp',
-						//'!<%= config.dist %>/.git*',
 						'!<%= config.demo %>/.git*'
 					]
 				}]
 			},
-			server: '.tmp'
+			server: '.tmp/demo'
 		},
 
 		symlink: {
@@ -197,9 +196,15 @@ module.exports = function (grunt) {
 				httpImagesPath: '/images',
 				httpGeneratedImagesPath: '/images/generated',
 				httpFontsPath: '/styles/fonts',
-				relativeAssets: false
+				relativeAssets: false,
+				sourcemap: true,
+				require: 'bootstrap-sass'
 			},
-			dist: {},
+			dist: {
+				options: {
+					sourcemap: false
+				}
+			},
 			demo: {
 				options: {
 					debugInfo: true
@@ -366,6 +371,7 @@ module.exports = function (grunt) {
 				}]
 			}
 		},
+
 		concurrent: {
 			demo: [
 				'emberTemplates',
@@ -382,6 +388,7 @@ module.exports = function (grunt) {
 				'htmlmin'
 			]
 		},
+
 		emberTemplates: {
 			options: {
 				templateName: function (sourceFile) {
