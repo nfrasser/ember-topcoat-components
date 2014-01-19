@@ -18,7 +18,9 @@
         "TC": true,
         "jQuery": true,
         "Ember": true,
+        "Em": true,
         "Handlebars": true,
-        "DS": true
+        "DS": true,
+        "App": true
     }
 }

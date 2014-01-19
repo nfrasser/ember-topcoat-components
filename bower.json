@@ -6,6 +6,7 @@
     "topcoat": ">=0.7.0"
   },
   "devDependencies": {
-    "qunit": "1.*"
+    "qunit": "1.*",
+    "bootstrap": "~3.0.3"
   }
 }

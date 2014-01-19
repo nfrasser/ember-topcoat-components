@@ -413,21 +413,11 @@ module.exports = function (grunt) {
 		},
 		neuter: {
 			app: {
-				options: {
-					filepathTransform: function (filepath) {
-						return [appConfig.app, filepath].join('/');
-					}
-				},
 				src: '<%= config.app %>/scripts/tc.js',
 				dest: '.tmp/scripts/app-scripts.js'
 			},
 
 			demo: {
-				options: {
-					filepathTransform: function (filepath) {
-						return [appConfig.demo, filepath].join('/');
-					}
-				},
 				src: '<%= config.demo %>/scripts/app.js',
 				dest: '.tmp/scripts/demo-scripts.js'
 			}
