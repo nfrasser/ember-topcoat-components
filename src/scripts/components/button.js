@@ -7,7 +7,7 @@
 	@extends	TC.Component
 	@namespace	TC
 */
-TC.ButtonComponent = TC.Component.extend({
+TC.TopcoatButtonComponent = TC.TopcoatComponent.extend({
 
 	/**
 		@property	tagName
@@ -35,9 +35,9 @@ TC.ButtonComponent = TC.Component.extend({
 
 		if (type) {
 			classArray.push(type);
-		} else if (this.get('cta')) {
+		} else if (this.get('cta') && this.get('_hasCta')) {
 			classArray.push('cta');
-		} else if (this.get('quiet')) {
+		} else if (this.get('quiet') && this.get('_hasQuiet')) {
 			classArray.push('quiet');
 		}
 
@@ -91,8 +91,26 @@ TC.ButtonComponent = TC.Component.extend({
 		@type		String
 		@default	'topcoat-button'
 	*/
-	_prefix: 'topcoat-button'
+	_prefix: 'topcoat-button',
+
+	/**
+		Can this button be a call to action button?
+		@property	_hasCta
+		@protected
+		@type		Boolean
+		@default	true
+	*/
+	_hasCta: true,
+
+	/**
+		Can this button be a quiet button?
+		@property	_hasQuiet
+		@protected
+		@type		Boolean
+		@default	true
+	*/
+	_hasQuiet: true,
 
 });
 
-//Ember.Handlebars.registerHelper
+Ember.Handlebars.registerHelper('topcoat-button', TC.TopcoatButtonComponent);

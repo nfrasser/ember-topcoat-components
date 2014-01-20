@@ -1,28 +1,46 @@
-<nav class="demo-nav" role="navigation">
+<header class="demo-nav" role="navigation">
 
 	<div class="navbar-header">
-		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#component-list-container">
-			<span class="sr-only">Toggle navigation</span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-			<span class="icon-bar"></span>
-		</button>
-		<a class="navbar-brand" href="#">
+		{{#link-to "index" class="navbar-brand"}}
 			<h1>Topcoat</h1>
 			<small>Components for Ember.js</small>
-		</a>
+		{{/link-to}}
 	</div>
 
-	 <div class="navbar-collapse collapse" id="component-list-container">
-		<ul class="nav navbar-nav">
-		{{#each App.TopcoatComponents}}
-			<li>
-				<a href="#{{unbound name}}">
-					{{unbound title}}
-				</a>
-			</li>
-		{{/each}}
-		</ul>
-	</div>
+</header>
 
-</nav>
+<section>
+	<div class="row">
+		<div class="component-list">
+			<div class="clearfix">
+				<label for="topcoat-theme-selector" class="sr-only">
+					Select a theme
+				</label>
+				{{view Ember.Select
+					id="topcoat-theme-selector"
+					className="topcoat-theme-selector"
+					content=stylesheets
+					value=stylesheets.selected
+					optionLabelPath="content.title"
+					optionValuePath="content.name"
+				}}
+			</div>
+
+			<ul class="component-list__container">
+			{{#each App.TopcoatComponentList}}
+				<li class="component-list__item">
+					{{link-to title name class="component-list__link"}}
+				</li>
+			{{/each}}
+			</ul>
+		</div>
+		<div class="component-demo">
+			{{outlet}}
+		</div>
+	</div>
+</section>
+
+<footer class="text-center">
+	<small>Made by Nick</small>
+</footer>
+

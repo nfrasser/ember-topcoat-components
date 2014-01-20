@@ -8,7 +8,7 @@
 	@extend		Ember.Component
 	@namespace	TC
 */
-TC.Component = Ember.Component.extend({
+TC.TopcoatComponent = Ember.Component.extend({
 
 	classNameBindings: ['topcoatClass'],
 

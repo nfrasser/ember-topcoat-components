@@ -2,38 +2,19 @@
 var App = window.App = Ember.Application.create();
 
 require('demo/scripts/bootstrap');
+require('demo/scripts/objects/topcoat-component-list');
 
-App.TopcoatComponents = Ember.ArrayProxy.create({
-	content: [{
-		name: 'button',
-		title: 'Button'
-	}, {
-		name: 'button-bar',
-		title: 'Button Bar'
-	}, {
-		name: 'checkbox',
-		title: 'Checkbox'
-	}, {
-		name: 'radio-button',
-		title: 'Radio Button'
-	}, {
-		name: 'notification',
-		title: 'Notification'
-	}, {
-		name: 'range',
-		title: 'Range'
-	}, {
-		name: 'switch',
-		title: 'Switch'
-	}, {
-		name: 'text-input',
-		title: 'Text Input'
-	}]
-});
+// Controllers
+require('demo/scripts/controllers/application-controller');
 
-App.Router.reopen({
-	location: 'none'
-});
-
+// Views
 require('views/application-view');
 
+// Controllers
+require('demo/scripts/routes/application-route');
+
+App.Router.map(function () {
+	App.TopcoatComponentList.forEach(function (component) {
+		this.route(component.name);
+	}, this);
+});

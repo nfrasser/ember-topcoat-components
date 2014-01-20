@@ -6,12 +6,76 @@ html, body {
     margin: 0;
 }
 
+.topcoat-desktop-dark,
+.topcoat-mobile-dark {
+	color: #f0f1f1;
+}
+
+.topcoat-desktop-light,
+.topcoat-mobile-light {
+	color: #797b7b;
+}
+
+section {
+	padding: 15px;
+}
+
+#topcoat-theme-selector {
+	@include clearfix();
+}
 .demo-nav {
 	@extend .navbar;
 	@extend .navbar-default;
 }
 
-.component-list-container {
-	@extend .navbar-collapse;
-	@extend .navbar-right;
+.component-list {
+	@extend .col-sm-3;
+}
+
+.component-demo {
+	@extend .col-sm-9;
+}
+
+.component-list__container {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+}
+
+.component-list__item {
+
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+
+	.topcoat-desktop-light &,
+	.topcoat-mobile-light & {
+		border-bottom-color: #d0d0d0;
+	}
+
+	.topcoat-desktop-dark &,
+	.topcoat-mobile-dark & {
+		border-bottom-color: #58595A;
+	}
+}
+
+.component-list__link {
+
+	display: block;
+	padding: 12px 10px;
+	margin: 0;
+	line-height: 20px;
+	font-size: 1.5rem;
+	font-weight: 200;
+
+	color: inherit;
+	opacity: 0.8;
+
+	&:hover,
+	&:active,
+	&:visited {
+		color: inherit;
+		text-decoration: none;
+		opacity: 1;
+	}
+
 }
