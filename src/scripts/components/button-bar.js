@@ -4,8 +4,27 @@
 */
 
 var defaultItemView = Ember.View.extend({
-		classNames: ['topcoat-button-bar__item']
+
+		templateName: 'views/topcoat-button-bar-button-view',
+		classNames: ['topcoat-button-bar__item'],
+		componentBinding: 'parentView.component',
+		largeBinding: 'parentView.large',
+		typeBinding: 'parentView.type',
+		inputTypeBinding: 'parentView.inputType',
+		isFormTypeBinding: 'parentView.isFormType',
+
+		/**
+			Send the `sendAction` event to this view's target object,
+			along with the name of the selected item
+		*/
+		click: function () {
+			this.get('component').send(
+				'sendAction',
+				this.get('content')
+			);
+		}
 	}),
+
 	formItemView = defaultItemView.extend({
 		tagName: 'label'
 	});
@@ -29,19 +48,9 @@ TC.TopcoatButtonBarComponent = TC.TopcoatComponent.extend({
 
 			@event	sendAction
 		*/
-		sendAction: function () {
-			var action = this.get('action'),
-				target = this.get('targetObject'),
-				args;
-
-			if (!action || !target) {
-				return false;
-			}
-
-			args = [action];
-
-			args.push.apply(args, arguments);
-			target.send.apply(target, args);
+		sendAction: function (selected) {
+			//console.log(selected);
+			this.sendAction('action', selected);
 		}
 	},
 
@@ -79,12 +88,13 @@ TC.TopcoatButtonBarComponent = TC.TopcoatComponent.extend({
 	*/
 	large: false,
 
-	/**
-		@property	topcoatClass
-		@type		String
-		@default	'topcoat-button-bar'
-	*/
-	topcoatClass: 'topcoat-button-bar',
+	topcoatClass: 'topcoat-button-bar--container'
+
+});
+
+TC.TopcoatButtonBarView = Ember.CollectionView.extend({
+
+	classNames: ['topcoat-button-bar'],
 
 	/**
 		Is this instance of type 'toggle' or 'select'?
@@ -102,7 +112,7 @@ TC.TopcoatButtonBarComponent = TC.TopcoatComponent.extend({
 		@property	buttonBarItemClass
 		@type		Ember.ComputerProperty|Ember.View
 	*/
-	buttonBarItemClass: function () {
+	itemViewClass: function () {
 		return this.get('isFormType') ? formItemView : defaultItemView;
 	}.property('type'),
 
@@ -121,7 +131,6 @@ TC.TopcoatButtonBarComponent = TC.TopcoatComponent.extend({
 	}.property('type')
 
 });
-
 
 /**
 	@class		TopcoatButtonBarButtonComponent
@@ -149,6 +158,5 @@ TC.TopcoatButtonBarButtonComponent = TC.TopcoatButtonComponent.extend({
 		@protected
 	*/
 	_hasQuiet: false
-});
 
-Ember.Handlebars.registerHelper('topcoat-button-bar-button', TC.TopcoatIconButtonComponent);
+});

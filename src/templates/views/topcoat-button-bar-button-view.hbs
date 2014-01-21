@@ -1,0 +1,6 @@
+{{#unbound if view.isFormType}}
+	<input {{bind-attr type=view.inputType}} "">
+{{/unbound}}
+{{#topcoat-button-bar-button large=view.large content=view.content}}
+	{{view.content}}
+{{/topcoat-button-bar-button}}

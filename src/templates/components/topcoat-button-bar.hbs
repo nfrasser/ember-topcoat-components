@@ -1,8 +1,1 @@
-{{#each item in content itemViewClass="buttonBarItemClass"}}
-	{{#unbound if isFormType}}
-		<input {{bind-attr type=inputType}} "">
-	{{/unbound}}
-	{{#topcoat-button-bar-button large=large}}
-		{{item}}
-	{{/topcoat-button-bar-button}}
-{{/each}}
+{{view TC.TopcoatButtonBarView content=content type=type component=this large=large}}

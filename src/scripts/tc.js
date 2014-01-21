@@ -6,3 +6,6 @@ require('src/scripts/components/button');
 require('src/scripts/components/icon-button');
 require('src/scripts/components/button-bar');
 require('src/scripts/components/checkbox');
+
+require('src/scripts/inject');
+

@@ -6,6 +6,7 @@ require('demo/scripts/objects/topcoat-component-list');
 
 // Controllers
 require('demo/scripts/controllers/application-controller');
+require('demo/scripts/controllers/button-bar-controller');
 
 // Views
 require('views/application-view');
