@@ -1,0 +1,8 @@
+{{#unbound if view.isFormType}}
+	<input type="{{unbound view.inputType}}"
+		{{bind-attr checked=view.selected}}
+		{{bind-attr disabled=view.disabled}}
+		name="{{unbound view.component.name}}"
+	>
+{{/unbound}}
+{{topcoat-button-bar-button large=view.component.large label=view.label}}

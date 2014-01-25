@@ -1,2 +1,11 @@
 
-{{topcoat-button-bar content=items large=true action="alert" type="select"}}
+{{topcoat-button-bar content=items large=true action="alert"}}<br>
+
+{{topcoat-button-bar content=items large=true type="select" selection=selected1 name="firstSelected"}}
+{{selected1}}
+<br>
+{{topcoat-button-bar content=items large=true type="toggle" selection=selected2 name="secondSelected"}}
+
+{{#each selected2}}{{this}},{{/each}}
+
+<br>

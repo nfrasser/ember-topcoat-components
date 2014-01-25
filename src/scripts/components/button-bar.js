@@ -3,36 +3,77 @@
 	@submodule components
 */
 
-var defaultItemView = Ember.View.extend({
+var ButtonBarItemViewMixin = Ember.Mixin.create({
 
-		templateName: 'views/topcoat-button-bar-button-view',
-		classNames: ['topcoat-button-bar__item'],
-		componentBinding: 'parentView.component',
-		largeBinding: 'parentView.large',
-		typeBinding: 'parentView.type',
-		inputTypeBinding: 'parentView.inputType',
-		isFormTypeBinding: 'parentView.isFormType',
+	templateName: 'views/topcoat-button-bar-item-view',
+	classNames: ['topcoat-button-bar__item'],
 
-		/**
-			Send the `sendAction` event to this view's target object,
-			along with the name of the selected item
-		*/
-		click: function () {
-			this.get('component').send(
-				'sendAction',
-				this.get('content')
+	componentBinding: 'parentView.component',
+	inputTypeBinding: 'parentView.inputType',
+	isFormTypeBinding: 'parentView.isFormType'
+
+});
+
+var DefaultItemView = Ember.SelectOption.extend(ButtonBarItemViewMixin, {
+
+	tagName: 'div',
+
+	/**
+		Send the `sendAction` event to this view's target object,
+		along with the name of the selected item
+	*/
+	click: function () {
+		this.get('component').send(
+			'sendAction',
+			this.get('content')
+		);
+		return true;
+	}
+});
+
+var FormItemView = Ember.SelectOption.extend(ButtonBarItemViewMixin, {
+
+	tagName: 'label',
+
+	click: function () {
+
+		var content = this.get('content'),
+			selection = this.get('parentView.selection'),
+			selectedIndex = -1;
+
+		if (this.get('parentView.multiple')) {
+
+			selection = Em.isArray(selection) ? selection : [];
+			selectedIndex = selection.indexOf(content);
+
+			if (selectedIndex >= 0) {
+				// Already selected, untoggle and remove from selection
+				selection.splice(selectedIndex, 1);
+			} else {
+				// Add new item to selection
+				selection.push(content);
+			}
+
+			Em.run.next(
+				this,
+				'notifyPropertyChange',
+				'parentView.selection.@each'
 			);
-		}
-	}),
 
-	formItemView = defaultItemView.extend({
-		tagName: 'label'
-	});
+		} else {
+			selection = content;
+		}
+
+		this.set('parentView.selection', selection);
+	}
+});
 
 /**
 	The options for the button bar are based on the [mobile button bar
 	example](http://codepen.io/Topcoat/pen/kdKyg). Use `type="select"` or
-	`type="toggle"` for checkboxes and what not
+	`type="toggle"` for checkboxes and what not.
+
+	Selections are based on
 */
 TC.TopcoatButtonBarComponent = TC.TopcoatComponent.extend({
 
@@ -53,16 +94,6 @@ TC.TopcoatButtonBarComponent = TC.TopcoatComponent.extend({
 			this.sendAction('action', selected);
 		}
 	},
-
-	/**
-		The type of button bar this is going to be.
-		This can be one of 'select' or 'toggle'. Based on the
-		Topcoat mobile button bar: http://codepen.io/Topcoat/pen/kdKyg
-		@property	type
-		@type		String
-		@default	null
-	*/
-	type: null,
 
 	/**
 		Represents the content for which buttons will be created
@@ -88,13 +119,31 @@ TC.TopcoatButtonBarComponent = TC.TopcoatComponent.extend({
 	*/
 	large: false,
 
+	/**
+		When using type "toggle" or "select", used to specify the name of
+		this group of checkboxes or radio buttons
+		@property	name
+		@type		String
+		@default	null
+	*/
+	name: null,
+
+	selection: null,
+	value: null,
+
 	topcoatClass: 'topcoat-button-bar--container'
 
 });
 
-TC.TopcoatButtonBarView = Ember.CollectionView.extend({
+TC.TopcoatButtonBarView = Ember.Select.extend({
 
 	classNames: ['topcoat-button-bar'],
+	tagName: 'div',
+	defaultTemplate: null,
+	templateName: 'views/topcoat-button-bar-view',
+
+	componentBinding: 'parentView',
+	contentBinding: 'component.content',
 
 	/**
 		Is this instance of type 'toggle' or 'select'?
@@ -103,18 +152,23 @@ TC.TopcoatButtonBarView = Ember.CollectionView.extend({
 	*/
 	isFormType: function () {
 		return ['select', 'toggle'].indexOf(
-			this.get('type')
+			this.get('component.type')
 		) >= 0;
-	}.property('type'),
+	}.property('component.type'),
+
+	/**
+		Multiple selection?
+	*/
+	multiple: Em.computed.equal('component.type', 'toggle'),
 
 	/**
 		View class that should be used for each item
 		@property	buttonBarItemClass
 		@type		Ember.ComputerProperty|Ember.View
 	*/
-	itemViewClass: function () {
-		return this.get('isFormType') ? formItemView : defaultItemView;
-	}.property('type'),
+	optionView: function () {
+		return this.get('isFormType') ? FormItemView : DefaultItemView;
+	}.property('component.type'),
 
 	/**
 		Type for the input of selectable or toggleable button bars.
@@ -124,11 +178,11 @@ TC.TopcoatButtonBarView = Ember.CollectionView.extend({
 		@type		Ember.ComputerProperty|Str9jg
 	*/
 	inputType: function () {
-		var type = this.get('type');
+		var type = this.get('component.type');
 		return type === 'select' ? 'radio' : (
 			type === 'toggle' ? 'checkbox' : 'hidden'
 		);
-	}.property('type')
+	}.property('component.type')
 
 });
 
