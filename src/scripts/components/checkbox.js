@@ -51,10 +51,21 @@ TC.TopcoatCheckboxComponent = TC.TopcoatComponent.extend({
 	*/
 	disabled: false,
 
-});
 
-/**
-	@module ember-topcoat
-	@submodule helpers
-*/
-Ember.Handlebars.registerHelper('topcoat-checkbox', TC.TopcoatCheckboxComponent);
+	/**
+		Name of the checkbox
+		@property	name
+		@type		String
+		@default	null
+	*/
+	name: null,
+
+	/**
+		Value for the checkbox
+		@property	value
+		@type		String
+		@default	null
+	*/
+	value: null
+
+});

@@ -1,0 +1,10 @@
+<h3 class="topcoat-list__header">{{header}}</h3>
+<ul class="topcoat-list__container">
+	{{#unbound if hasLayout}}
+		{{yield}}
+	{{else}}
+		{{#each content itemViewClass="TC.TopcoatListItemView"}}
+			{{this}}
+		{{/each}}
+	{{/unbound}}
+</ul>

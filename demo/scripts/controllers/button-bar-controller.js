@@ -9,10 +9,6 @@ App.ButtonBarController = Ember.Controller.extend({
 		'two',
 		'three'
 	],
-	selected1: null,
-	selected2: ['one'],
-
-	selectedContentDidChange: function () {
-		console.log(this.get('selected2').toArray());
-	}.observes('selected2.@each')
+	selected1: 'two',
+	selected2: ['one']
 });

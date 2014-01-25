@@ -1,5 +1,5 @@
 /**
-	@module	ember-topcoat
+	@module ember-topcoat
 	@submodule components
 */
 
@@ -21,6 +21,8 @@ var DefaultItemView = Ember.SelectOption.extend(ButtonBarItemViewMixin, {
 	/**
 		Send the `sendAction` event to this view's target object,
 		along with the name of the selected item
+
+		@event	click
 	*/
 	click: function () {
 		this.get('component').send(
@@ -35,43 +37,35 @@ var FormItemView = Ember.SelectOption.extend(ButtonBarItemViewMixin, {
 
 	tagName: 'label',
 
-	click: function () {
-
-		var content = this.get('content'),
-			selection = this.get('parentView.selection'),
-			selectedIndex = -1;
-
-		if (this.get('parentView.multiple')) {
-
-			selection = Em.isArray(selection) ? selection : [];
-			selectedIndex = selection.indexOf(content);
-
-			if (selectedIndex >= 0) {
-				// Already selected, untoggle and remove from selection
-				selection.splice(selectedIndex, 1);
-			} else {
-				// Add new item to selection
-				selection.push(content);
-			}
-
-			Em.run.next(
-				this,
-				'notifyPropertyChange',
-				'parentView.selection.@each'
-			);
-
-		} else {
-			selection = content;
+	actions: {
+		/**
+			Trigger the selected content to update itself
+			@event update
+		*/
+		check: function () {
+			var $input = this.$('input'),
+				checked = $input.prop('checked');
+			$input.prop('checked', !checked);
+			this.get('parentView').trigger('change');
+			return true;
 		}
+	},
 
-		this.set('parentView.selection', selection);
-	}
+	/**
+		Check or uncheck the checkbox before it's inserted to avoid
+		content selection complications.
+		@method	updateCheckbox
+	*/
+	updateCheckbox: function () {
+		this.$('input').prop('checked', this.get('selected'));
+	}.on('willInsertElement')
+
 });
 
 /**
 	The options for the button bar are based on the [mobile button bar
-	example](http://codepen.io/Topcoat/pen/kdKyg). Use `type="select"` or
-	`type="toggle"` for checkboxes and what not.
+	example](http://codepen.io/Topcoat/pen/kdKyg). Use `type="select"`
+	for radio buttons or `type="toggle"` for checkboxes.
 
 	Selections are based on
 */
@@ -90,14 +84,13 @@ TC.TopcoatButtonBarComponent = TC.TopcoatComponent.extend({
 			@event	sendAction
 		*/
 		sendAction: function (selected) {
-			//console.log(selected);
 			this.sendAction('action', selected);
 		}
 	},
 
 	/**
 		Represents the content for which buttons will be created
-		@property	content
+		@property content
 		@type		Ember.Enumerable
 		@default	null
 	*/
@@ -113,7 +106,7 @@ TC.TopcoatButtonBarComponent = TC.TopcoatComponent.extend({
 
 	/**
 		Should this be a large button bar?
-		@property	large
+		@property large
 		@type		Boolean
 		@default	false
 	*/
@@ -122,7 +115,7 @@ TC.TopcoatButtonBarComponent = TC.TopcoatComponent.extend({
 	/**
 		When using type "toggle" or "select", used to specify the name of
 		this group of checkboxes or radio buttons
-		@property	name
+		@property name
 		@type		String
 		@default	null
 	*/
@@ -144,6 +137,8 @@ TC.TopcoatButtonBarView = Ember.Select.extend({
 
 	componentBinding: 'parentView',
 	contentBinding: 'component.content',
+
+	prompt: null,
 
 	/**
 		Is this instance of type 'toggle' or 'select'?
@@ -182,18 +177,79 @@ TC.TopcoatButtonBarView = Ember.Select.extend({
 		return type === 'select' ? 'radio' : (
 			type === 'toggle' ? 'checkbox' : 'hidden'
 		);
-	}.property('component.type')
+	}.property('component.type'),
+
+
+	// https://github.com/emberjs/ember.js/blob/v1.3.0/packages/ember-handlebars/lib/controls/select.js#L530-L563
+
+	_changeSingle: function() {
+
+		// CHANGED FROM <option>
+		var selectedIndex = (function (elements) {
+
+				for (var i = 0; i < elements.length; i++) {
+					if (elements[i].checked) {
+						return i;
+					}
+				}
+
+				return -1;
+
+			}) (this.$('input')),
+
+			content = this.get('content'),
+			prompt = this.get('prompt');
+
+		if (!content || !Em.get(content, 'length')) { return; }
+		if (prompt && selectedIndex === 0) {
+			this.set('selection', null); return;
+		}
+
+		if (prompt) { selectedIndex -= 1; }
+		this.set('selection', content.objectAt(selectedIndex));
+	},
+
+	_changeMultiple: function() {
+
+		// CHANGED FROM <option>
+		var options = this.$('input'),
+			prompt = this.get('prompt'),
+			offset = prompt ? 1 : 0,
+			content = this.get('content'),
+			selection = this.get('selection');
+
+		if (!content) { return; }
+		if (options) {
+
+			// CHANGED THE WAY THIS WORKS
+			var selectedIndexes = [];
+			options.each(function (index, option) {
+				if (option.checked) {
+					selectedIndexes.push(index - offset);
+				}
+			});
+
+			var newSelection = content.objectsAt(selectedIndexes);
+
+			if (Em.isArray(selection)) {
+				Em.EnumerableUtils.replace(selection, 0, Em.get(selection, 'length'), newSelection);
+			} else {
+				this.set('selection', newSelection);
+			}
+		}
+	},
 
 });
 
 /**
-	@class		TopcoatButtonBarButtonComponent
-	@extends	TC.TopcoatButtonComponent
-	@namepsace	TC
+	@class    TopcoatButtonBarButtonComponent
+	@extends  TC.TopcoatButtonComponent
+	@namepsace  TC
 */
 TC.TopcoatButtonBarButtonComponent = TC.TopcoatButtonComponent.extend({
 
 	/**
+		TODO: Update to a regular button when Topcoat updates
 		@property _prefix
 		@protected
 	*/
@@ -201,16 +257,22 @@ TC.TopcoatButtonBarButtonComponent = TC.TopcoatButtonComponent.extend({
 
 	/**
 		The button bar cannot be a call to action button
-		@property	_hasCta
+		@property _hasCta
 		@protected
 	*/
 	_hasCta: false,
 
 	/**
 		The button bar cannot be a call to action button
-		@property	_hasQuiet
+		@property _hasQuiet
 		@protected
 	*/
-	_hasQuiet: false
+	_hasQuiet: false,
+
+	click: function () {
+		if (this.get('parentView._actions.check')){
+			this.get('parentView').send('check');
+		}
+	}
 
 });
