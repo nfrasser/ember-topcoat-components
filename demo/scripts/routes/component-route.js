@@ -4,5 +4,6 @@ App.ComponentRoute = Ember.Route.extend({
 	},
 	afterModel: function (model) {
 		this.controllerFor('application').set('component', model);
+		document.title = model.title + ' — Topcoat Components for Ember.js';
 	}
 });

@@ -9,5 +9,6 @@ App.IndexRoute = Ember.Route.extend({
 		this.controllerFor('application').set(
 			'component', this.get('indexComponent')
 		);
+		document.title = 'Home — Topcoat Components for Ember.js';
 	}
 });
