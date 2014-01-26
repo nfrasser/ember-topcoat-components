@@ -1,4 +1,4 @@
-App.TopcoatComponentList = Ember.ArrayProxy.create({
+App.topcoatComponentList = Ember.ArrayProxy.create({
 	content: [{
 		name: 'button',
 		title: 'Button'
@@ -36,4 +36,8 @@ App.TopcoatComponentList = Ember.ArrayProxy.create({
 		name: 'textarea',
 		title: 'Textarea'
 	}]
+});
+
+App.topcoatComponentList.forEach(function (component) {
+	App[component.name.classify() + 'Route'] = App.ComponentRoute;
 });

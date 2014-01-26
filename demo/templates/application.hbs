@@ -29,7 +29,7 @@
 			</div>
 
 			<ul class="component-list__container">
-			{{#each App.TopcoatComponentList}}
+			{{#each App.topcoatComponentList}}
 				<li class="component-list__item">
 					{{link-to title name class="component-list__link"}}
 				</li>
@@ -37,7 +37,12 @@
 			</ul>
 		</div>
 		<div class="component-demo">
-			{{outlet view="componentContainer"}}
+			<header>
+				<h2>{{component.title}}</h2>
+			</header>
+			<section {{bind-attr id=component.name}} class="component">
+				{{outlet view="componentContainer"}}
+			</section>
 		</div>
 	</div>
 </div>
