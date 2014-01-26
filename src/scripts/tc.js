@@ -8,6 +8,7 @@ require('src/scripts/helpers/text-input');
 require('src/scripts/helpers/search-input');
 require('src/scripts/helpers/range');
 require('src/scripts/helpers/textarea');
+require('src/scripts/helpers/select');
 
 // Mixins
 

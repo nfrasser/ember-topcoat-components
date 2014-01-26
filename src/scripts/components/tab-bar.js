@@ -9,5 +9,5 @@
 */
 TC.TopcoatTabBarComponent = TC.TopcoatButtonBarComponent.extend({
 	type: 'select',
-	buttonType: 'tab'
+	barType: 'tab-bar'
 });

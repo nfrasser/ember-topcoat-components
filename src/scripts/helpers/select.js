@@ -3,13 +3,13 @@
 	@submodule helpers
 */
 /**
-	Basic Topcoat input
-	@method		topcoat-input
+	Basic Topcoat select
+	@method		topcoat-select
 	@for		Ember.Handlebars.helpers
 	@param		{Object} options
 */
-Em.Handlebars.helper('topcoat-input', function (options) {
-	var className = options.hash.topcoatClass || 'topcoat-input',
+Em.Handlebars.helper('topcoat-select', function (options) {
+	var className = options.hash.topcoatClass || 'topcoat-select',
 		hash = {
 			'class': className + (
 				options.hash.large ? '--large' : ''
@@ -18,6 +18,5 @@ Em.Handlebars.helper('topcoat-input', function (options) {
 			)
 		};
 	Em.merge(options.hash, hash);
-	delete options.hash.topcoatClass;
-	return Em.Handlebars.helpers.input.call(this, options);
+	return Em.Handlebars.helpers.view.call(this, Ember.Select, options);
 });

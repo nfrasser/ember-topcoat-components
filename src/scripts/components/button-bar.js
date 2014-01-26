@@ -6,11 +6,15 @@
 var ButtonBarItemViewMixin = Ember.Mixin.create({
 
 	templateName: 'views/topcoat-button-bar-item-view',
-	classNames: ['topcoat-button-bar__item'],
+	classNameBindings: ['className'],
 
 	componentBinding: 'parentView.component',
 	inputTypeBinding: 'parentView.inputType',
-	isFormTypeBinding: 'parentView.isFormType'
+	isFormTypeBinding: 'parentView.isFormType',
+
+	className: function () {
+		return 'topcoat-' + this.get('component.barType') + '__item';
+	}.property('component.barType'),
 
 });
 
@@ -70,7 +74,7 @@ var ButtonBarFormItemView = Ember.SelectOption.extend(ButtonBarItemViewMixin, {
 */
 TC.TopcoatButtonBarButtonComponent = TC.TopcoatButtonComponent.extend({
 
-	buttonType: 'button',
+	barType: 'button-bar',
 
 	/**
 		TODO: Update to a regular button when Topcoat updates
@@ -78,8 +82,8 @@ TC.TopcoatButtonBarButtonComponent = TC.TopcoatButtonComponent.extend({
 		@protected
 	*/
 	_prefix: function () {
-		return 'topcoat-' + this.get('buttonType') + '-bar__button';
-	}.property('type'),
+		return 'topcoat-' + this.get('barType') + '__button';
+	}.property('barType'),
 
 	/**
 		The button bar cannot be a call to action button
@@ -105,7 +109,11 @@ TC.TopcoatButtonBarButtonComponent = TC.TopcoatButtonComponent.extend({
 
 TC.TopcoatButtonBarView = Ember.Select.extend({
 
-	classNames: ['topcoat-button-bar'],
+	init: function () {
+		this._super();
+		this.get('classNameBindings').push('className');
+	},
+
 	tagName: 'div',
 	defaultTemplate: null,
 	templateName: 'views/topcoat-button-bar-view',
@@ -156,6 +164,10 @@ TC.TopcoatButtonBarView = Ember.Select.extend({
 		);
 	}.property('component.type'),
 
+
+	className: function () {
+		return 'topcoat-' + this.get('component.barType');
+	}.property('component'),
 
 	// Adapted from Ember.Select
 	// https://github.com/emberjs/ember.js/blob/v1.3.0/packages/ember-handlebars/lib/controls/select.js#L530-L563
@@ -291,11 +303,11 @@ TC.TopcoatButtonBarComponent = TC.TopcoatComponent.extend({
 
 	/**
 		What kind of button should be used for the button bar buttons?
-		@property	buttonType
+		@property	barType
 		@type		String
 		@defaut		'button'
 	*/
-	buttonType: 'button',
+	barType: 'button-bar',
 
 	/**
 		Used for when there is no type, this action will be called on the
@@ -352,6 +364,8 @@ TC.TopcoatButtonBarComponent = TC.TopcoatComponent.extend({
 	*/
 	formItemView: ButtonBarFormItemView,
 
-	topcoatClass: 'topcoat-button-bar--container'
+	topcoatClass: function () {
+		return 'topcoat-' + this.get('barType') + '--container';
+	}.property('barType')
 
 });
