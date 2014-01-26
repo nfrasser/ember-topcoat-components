@@ -29,7 +29,7 @@ App.ApplicationController = Ember.Controller.extend({
 	*/
 	stylesheets: Em.ArrayProxy.create({
 		content: stylesheets,
-		selected: 'topcoat-desktop-dark'
+		selected: 'topcoat-mobile-dark'
 	}),
 
 	/**
@@ -43,4 +43,5 @@ App.ApplicationController = Ember.Controller.extend({
 		);
 		this.send('updateTopcoatStyle', selected, this.get('stylesheets'));
 	}.observes('stylesheets.selected')
+
 });

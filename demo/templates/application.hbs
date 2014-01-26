@@ -1,21 +1,23 @@
 <header class="demo-nav" role="navigation">
 
-	<div class="navbar-header">
-		{{#link-to "index" class="navbar-brand"}}
-			<h1>Topcoat</h1>
-			<small>Components for Ember.js</small>
+	<div class="demo-nav__header">
+		{{#link-to "index" class="demo-nav__brand"}}
+			<h1>
+				Topcoat Components for Ember.js
+			</h1>
 		{{/link-to}}
 	</div>
 
 </header>
 
-<section>
+<div class="container">
 	<div class="row">
 		<div class="component-list">
-			<div class="clearfix">
+			<div class="center">
 				<label for="topcoat-theme-selector" class="sr-only">
-					Select a theme
+					Select a theme:
 				</label>
+				<br>
 				{{view Ember.Select
 					id="topcoat-theme-selector"
 					className="topcoat-theme-selector"
@@ -35,12 +37,12 @@
 			</ul>
 		</div>
 		<div class="component-demo">
-			{{outlet}}
+			{{outlet view="componentContainer"}}
 		</div>
 	</div>
-</section>
+</div>
 
-<footer class="text-center">
+<footer class="demo-footer">
 	<small>Made by Nick</small>
 </footer>
 

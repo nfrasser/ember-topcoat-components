@@ -7,6 +7,6 @@
   },
   "devDependencies": {
     "qunit": "1.*",
-    "bootstrap": "~3.0.3"
+    "normalize-css": "2.*"
   }
 }
