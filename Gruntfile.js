@@ -56,7 +56,7 @@ module.exports = function (grunt) {
 				tasks: ['emberTemplates:demo']
 			},
 			demoStyles: {
-				files: ['<%= config.demo %>/styles/{,*/}*.{scss,sass}'],
+				files: ['<%= config.demo %>/styles/{,*/}*.{scss,sass,css}'],
 				tasks: ['compass:demo']
 			},
 			demoScripts: {
@@ -74,7 +74,7 @@ module.exports = function (grunt) {
 				files: [
 					'.tmp/scripts/*.js',
 					'.tmp/*.html',
-					'{.tmp,<%= config.app %>}/styles/{,*/}*.css',
+					'.tmp/styles/{,*/}*.css',
 					'<%= config.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
 				]
 			}
