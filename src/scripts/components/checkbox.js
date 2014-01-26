@@ -34,7 +34,6 @@ TC.TopcoatCheckboxComponent = TC.TopcoatComponent.extend({
 	*/
 	topcoatClass: 'topcoat-checkbox',
 
-
 	/**
 		Label for this checkbox
 		@property	label
