@@ -3,13 +3,13 @@
 	@submodule helpers
 */
 /**
-	Basic Topcoat input
-	@method		topcoat-input
+	Basic Topcoat textarea
+	@method		topcoat-search
 	@for		Ember.Handlebars.helpers
 	@param		{Object} options
 */
-Em.Handlebars.registerHelper('topcoat-input', function (options) {
-	var className = options.hash.topcoatClass || 'topcoat-input',
+Em.Handlebars.registerHelper('topcoat-textarea', function (options) {
+	var className = 'topcoat-textarea',
 		hash = {
 			'class': className + (
 				options.hash.large ? '--large' : ''
@@ -18,6 +18,5 @@ Em.Handlebars.registerHelper('topcoat-input', function (options) {
 			)
 		};
 	Em.merge(options.hash, hash);
-	delete options.hash.topcoatClass;
-	return Em.Handlebars.helpers.input.call(this, options);
+	return Em.Handlebars.helpers.textarea.call(this, options);
 });
