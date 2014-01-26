@@ -1,5 +1,6 @@
 /**
-	@module ember-topcoat-components
+	@module ember-topcoat
+	@submodule components
 	@main
 */
 /**
@@ -20,3 +21,5 @@ TC.TopcoatComponent = Ember.Component.extend({
 	*/
 	topcoatClass: 'topcoat'
 });
+
+Em.TEMPLATES['components/topcoat-tab-bar'] = Em.TEMPLATES['components/topcoat-button-bar'];

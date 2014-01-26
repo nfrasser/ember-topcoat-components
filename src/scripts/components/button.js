@@ -29,15 +29,15 @@ TC.TopcoatButtonComponent = TC.TopcoatComponent.extend({
 		var classArray = [this.get('_prefix')],
 			type = this.get('type');
 
-		if (this.get('large')) {
+		if (this.get('_hasLarge') && this.get('large')) {
 			classArray.push('large');
 		}
 
 		if (type) {
 			classArray.push(type);
-		} else if (this.get('cta') && this.get('_hasCta')) {
+		} else if (this.get('_hasCta') && this.get('cta')) {
 			classArray.push('cta');
-		} else if (this.get('quiet') && this.get('_hasQuiet')) {
+		} else if (this.get('_hasQuiet') && this.get('quiet')) {
 			classArray.push('quiet');
 		}
 
@@ -111,6 +111,13 @@ TC.TopcoatButtonComponent = TC.TopcoatComponent.extend({
 	*/
 	_hasQuiet: true,
 
-});
+	/**
+		Can this button be a Large button?
+		@property	_hasLarge
+		@protected
+		@type		Boolean
+		@default	true
+	*/
+	_hasLarge: true
 
-Ember.Handlebars.registerHelper('topcoat-button', TC.TopcoatButtonComponent);
+});

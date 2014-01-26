@@ -14,7 +14,7 @@ var ButtonBarItemViewMixin = Ember.Mixin.create({
 
 });
 
-var DefaultItemView = Ember.SelectOption.extend(ButtonBarItemViewMixin, {
+var ButtonBarDefaultItemView = Ember.SelectOption.extend(ButtonBarItemViewMixin, {
 
 	tagName: 'div',
 
@@ -33,7 +33,7 @@ var DefaultItemView = Ember.SelectOption.extend(ButtonBarItemViewMixin, {
 	}
 });
 
-var FormItemView = Ember.SelectOption.extend(ButtonBarItemViewMixin, {
+var ButtonBarFormItemView = Ember.SelectOption.extend(ButtonBarItemViewMixin, {
 
 	tagName: 'label',
 
@@ -62,69 +62,44 @@ var FormItemView = Ember.SelectOption.extend(ButtonBarItemViewMixin, {
 
 });
 
+
 /**
-	The options for the button bar are based on the [mobile button bar
-	example](http://codepen.io/Topcoat/pen/kdKyg). Use `type="select"`
-	for radio buttons or `type="toggle"` for checkboxes.
-
-	Selections are based on
+	@class    TopcoatButtonBarButtonComponent
+	@extends  TC.TopcoatButtonComponent
+	@namepsace  TC
 */
-TC.TopcoatButtonBarComponent = TC.TopcoatComponent.extend({
+TC.TopcoatButtonBarButtonComponent = TC.TopcoatButtonComponent.extend({
 
-	actions: {
+	buttonType: 'button',
 
-		/**
-			Sends the `action` action to the current target object with
-			all the given parameters. This is called whenever any of the
-			button bar buttons are selected. If this instance is of type
-			`'select'` or `'toggle'`, the corresponding selection will
-			also be made for the given `content` property. More docs on
-			this coming soon.
+	/**
+		TODO: Update to a regular button when Topcoat updates
+		@property _prefix
+		@protected
+	*/
+	_prefix: function () {
+		return 'topcoat-' + this.get('buttonType') + '-bar__button';
+	}.property('type'),
 
-			@event	sendAction
-		*/
-		sendAction: function (selected) {
-			this.sendAction('action', selected);
+	/**
+		The button bar cannot be a call to action button
+		@property _hasCta
+		@protected
+	*/
+	_hasCta: false,
+
+	/**
+		The button bar cannot be a call to action button
+		@property _hasQuiet
+		@protected
+	*/
+	_hasQuiet: false,
+
+	click: function () {
+		if (this.get('parentView._actions.check')){
+			this.get('parentView').send('check');
 		}
-	},
-
-	/**
-		Represents the content for which buttons will be created
-		@property content
-		@type		Ember.Enumerable
-		@default	null
-	*/
-	content: null,
-
-	/**
-		Used for when there is no type, this action will be called on the
-		current context whenever the buttons for the given content are
-		selected.
-
-	*/
-	action: null,
-
-	/**
-		Should this be a large button bar?
-		@property large
-		@type		Boolean
-		@default	false
-	*/
-	large: false,
-
-	/**
-		When using type "toggle" or "select", used to specify the name of
-		this group of checkboxes or radio buttons
-		@property name
-		@type		String
-		@default	null
-	*/
-	name: null,
-
-	selection: null,
-	value: null,
-
-	topcoatClass: 'topcoat-button-bar--container'
+	}
 
 });
 
@@ -162,7 +137,9 @@ TC.TopcoatButtonBarView = Ember.Select.extend({
 		@type		Ember.ComputerProperty|Ember.View
 	*/
 	optionView: function () {
-		return this.get('isFormType') ? FormItemView : DefaultItemView;
+		return this.get('parentView').get(
+			this.get('isFormType') ? 'formItemView' : 'defaultItemView'
+		);
 	}.property('component.type'),
 
 	/**
@@ -180,6 +157,7 @@ TC.TopcoatButtonBarView = Ember.Select.extend({
 	}.property('component.type'),
 
 
+	// Adapted from Ember.Select
 	// https://github.com/emberjs/ember.js/blob/v1.3.0/packages/ember-handlebars/lib/controls/select.js#L530-L563
 
 	_changeSingle: function() {
@@ -208,7 +186,6 @@ TC.TopcoatButtonBarView = Ember.Select.extend({
 		if (prompt) { selectedIndex -= 1; }
 		this.set('selection', content.objectAt(selectedIndex));
 	},
-
 	_changeMultiple: function() {
 
 		// CHANGED FROM <option>
@@ -242,37 +219,139 @@ TC.TopcoatButtonBarView = Ember.Select.extend({
 });
 
 /**
-	@class    TopcoatButtonBarButtonComponent
-	@extends  TC.TopcoatButtonComponent
-	@namepsace  TC
+	The options for the button bar are based on the [mobile button bar
+	example](http://codepen.io/Topcoat/pen/kdKyg). Use `type="select"`
+	for radio buttons or `type="toggle"` for checkboxes.
+
+	The API for this component is based on that of [`Ember.Select`]
+	(http://emberjs.com/api/classes/Ember.Select.html).
+
+	Check out the `type` property for how the two types work
+
+	@class		TopcoatButtonBarComponent
+	@extends	TC.TopcoatComponent
+	@namespace	TC
 */
-TC.TopcoatButtonBarButtonComponent = TC.TopcoatButtonComponent.extend({
+TC.TopcoatButtonBarComponent = TC.TopcoatComponent.extend({
 
-	/**
-		TODO: Update to a regular button when Topcoat updates
-		@property _prefix
-		@protected
-	*/
-	_prefix: 'topcoat-button-bar__button',
+	actions: {
 
-	/**
-		The button bar cannot be a call to action button
-		@property _hasCta
-		@protected
-	*/
-	_hasCta: false,
+		/**
+			Sends the `action` action to the current target object with
+			all the given parameters. This is called whenever any of the
+			button bar buttons are selected. If this instance is of type
+			`'select'` or `'toggle'`, the corresponding selection will
+			also be made for the given `content` property. More docs on
+			this coming soon.
 
-	/**
-		The button bar cannot be a call to action button
-		@property _hasQuiet
-		@protected
-	*/
-	_hasQuiet: false,
-
-	click: function () {
-		if (this.get('parentView._actions.check')){
-			this.get('parentView').send('check');
+			@event	sendAction
+		*/
+		sendAction: function (selected) {
+			this.sendAction('action', selected);
 		}
-	}
+	},
+
+	/**
+		Represents the content for which buttons will be created
+		@property content
+		@type		Ember.Enumerable
+		@default	null
+	*/
+	content: null,
+
+	/**
+		By default the button bar displays plain old buttons that can be
+		bound to an action from the context of the template where this
+		component is being rendered. There are two additional types that
+		alter the behaviour of the button bar: 'select' and 'toggle'.
+
+		### `type="select"`
+
+		Buttons behave like radio buttons. The value of the clicked button
+		is bound to the given `selection` property. Clicking on a button
+		will deselect all other buttons in the group and select only the
+		clicked one.
+
+		### `type="toggle"`
+
+		Buttons behave like checkboxes. The values for any buttons that
+		are clicked and marked as `active` will be added to the
+		`selection` array. Buttons that are deselected will be removed
+		from the array.
+
+		The template actually renders the checkboxes and radio buttons
+		for these buttons, and checks them off accordingly, so the button
+		group can in fact be used as a regular checkbox or radio group.
+
+		@property	type
+		@type		String
+		@default	null
+	*/
+	type: null,
+
+	/**
+		What kind of button should be used for the button bar buttons?
+		@property	buttonType
+		@type		String
+		@defaut		'button'
+	*/
+	buttonType: 'button',
+
+	/**
+		Used for when there is no type, this action will be called on the
+		current context whenever the buttons for the given content are
+		selected.
+
+	*/
+	action: null,
+
+	/**
+		Should this be a large button bar?
+		@property large
+		@type		Boolean
+		@default	false
+	*/
+	large: false,
+
+	/**
+		When using type "toggle" or "select", used to specify the name of
+		this group of checkboxes or radio buttons
+		@property name
+		@type		String
+		@default	null
+	*/
+	name: null,
+
+	/**
+		Item or items in the content that are selected
+		@property	selection
+		@type		String|Array
+		@defaut		null
+	*/
+	selection: null,
+
+	/**
+		Alias for `selection`
+		@property	value
+		@type		Ember.ComputerProperty
+		@default	null
+	*/
+	value: Em.computed.alias('selection'),
+
+
+	/**
+		Default view class that should be used for each item in the tab
+		bar. Generally should not be changed outside of this plugin.
+		@property	defaultItemView
+		@type		Class
+	*/
+	defaultItemView: ButtonBarDefaultItemView,
+
+	/**
+		Class that should be used for each item, used when
+	*/
+	formItemView: ButtonBarFormItemView,
+
+	topcoatClass: 'topcoat-button-bar--container'
 
 });
