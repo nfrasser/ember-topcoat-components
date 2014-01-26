@@ -8,7 +8,7 @@ require('src/scripts/helpers/text-input');
 require('src/scripts/helpers/search-input');
 require('src/scripts/helpers/range');
 require('src/scripts/helpers/textarea');
-require('src/scripts/helpers/select');
+//require('src/scripts/helpers/select');
 
 // Mixins
 
@@ -17,6 +17,7 @@ require('src/scripts/components/component');
 require('src/scripts/components/button');
 require('src/scripts/components/icon-button');
 require('src/scripts/components/button-bar');
+//require('src/scripts/components/button-list');
 require('src/scripts/components/tab-bar');
 require('src/scripts/components/checkbox');
 require('src/scripts/components/radio-button');
