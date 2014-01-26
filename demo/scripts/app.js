@@ -9,7 +9,8 @@ require('demo/scripts/controllers/application-controller');
 require('demo/scripts/controllers/button-bar-controller');
 
 // Views
-require('views/application-view');
+require('demo/scripts/views/prettify-view');
+require('demo/scripts/views/application-view');
 
 // Controllers
 require('demo/scripts/routes/application-route');
