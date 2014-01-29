@@ -7,10 +7,15 @@ App.PrettifyView = Ember.View.extend({
 
 	classNames: ['prettyprint'],
 	classNameBindings: ['langClass', 'linenumsClass'],
+	attributeBindings: ['data-lang', 'data-linenums'],
+
 	tagName: 'pre',
 
 	lang: null,
-	lineNums: 0,
+	linenums: 0,
+
+	'data-lang': Em.computed.alias('lang'),
+	'data-linenums': Em.computed.alias('linenums'),
 
 	langClass: function () {
 		var lang = this.get('lang');

@@ -8,6 +8,10 @@ require('demo/scripts/views/component-container-view');
 require('demo/scripts/views/prettify-view');
 require('demo/scripts/views/application-view');
 
+// Components
+TC.inject(App);
+require('demo/scripts/components/show-code-component');
+
 // Controllers
 require('demo/scripts/controllers/application-controller');
 require('demo/scripts/controllers/button-bar-controller');

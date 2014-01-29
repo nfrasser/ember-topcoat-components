@@ -45,6 +45,10 @@ TC.TopcoatButtonComponent = TC.TopcoatComponent.extend({
 
 	}.property('large', 'quiet', 'cta', 'type'),
 
+	click: function() {
+		this.sendAction();
+	},
+
 	/**
 		Should the button be disabled?
 	*/

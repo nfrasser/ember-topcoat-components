@@ -9,6 +9,12 @@ $min-sm-width: 768px;
 $min-md-width: 992px;
 $min-lg-width: 1200px;
 
+$link-color: #428bca;
+$link-hover-color: $link-color;
+$link-hover-color-light: darken($link-color, 15%) !default;
+$link-hover-color-dark: lighten($link-color, 15%) !default;
+
+
 @import "../vendor/normalize-css/normalize.css";
 
 @mixin clearfix() {
@@ -44,7 +50,23 @@ $min-lg-width: 1200px;
 
 html, body {
 	font-size: 100%;
-    margin: 0;
+		margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+}
+
+a {
+
+	color: $link-color;
+	text-decoration: none;
+
+	&:hover,
+	&:focus {
+		color: $link-hover-color;
+		text-decoration: underline;
+	}
+
 }
 
 small {
@@ -54,7 +76,10 @@ small {
 
 pre {
 	display: block;
+	overflow: hidden;
+	overflow-x: auto;
 	margin: 0 0 10px;
+	padding: 10px;
 	font-size: 13px;
 	line-height: 1.428571429;
 	color: #333;
@@ -78,11 +103,19 @@ pre {
 .topcoat-desktop-dark,
 .topcoat-mobile-dark {
 	color: $color-fg-dark;
+	a:hover,
+	a:focus {
+		color: $link-hover-color-dark;
+	}
 }
 
 .topcoat-desktop-light,
 .topcoat-mobile-light {
 	color: $color-fg-light;
+	a:hover,
+	a:focus {
+		color: $link-hover-color-light;
+	}
 }
 
 .demo {

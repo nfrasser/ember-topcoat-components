@@ -1,1 +1,105 @@
-Hello button!!!
+<h3>Basic buttons</h3>
+{{#topcoat-button }}Button{{/topcoat-button}}
+{{#topcoat-button disabled=true}}Button{{/topcoat-button}}
+
+<p>{{show-code show=showBasicCode}}</p>
+
+{{#if showBasicCode}}
+{{#prettify lang="hbs"}}
+&#123;&#123;#topcoat-button&#125;&#125;Button&#123;&#123;/topcoat-button&#125;&#125;
+&#123;&#123;#topcoat-button disabled=true&#125;&#125;Button&#123;&#123;/topcoat-button&#125;&#125;
+{{/prettify}}
+{{/if}}
+
+
+<h3>Large Buttons</h3>
+{{#topcoat-button large=true}}Large Button{{/topcoat-button}}
+{{#topcoat-button large=true disabled=true}}Large Button{{/topcoat-button}}
+
+<p>{{show-code show=showLargeCode}}</p>
+
+{{#if showLargeCode}}
+{{#prettify lang="hbs"}}
+&#123;&#123;#topcoat-button large=true&#125;&#125;Large Button&#123;&#123;/topcoat-button&#125;&#125;
+&#123;&#123;#topcoat-button large=true disabled=true&#125;&#125;Large Button&#123;&#123;/topcoat-button&#125;&#125;
+{{/prettify}}
+{{/if}}
+
+<h3>Quiet Buttons</h3>
+{{#topcoat-button quiet=true}}Quiet Button{{/topcoat-button}}
+{{#topcoat-button quiet=true disabled=true}}Quiet Button{{/topcoat-button}}<br>
+{{#topcoat-button quiet=true large=true}}Quiet Button{{/topcoat-button}}
+{{#topcoat-button quiet=true large=true disabled=true}}Quiet Button{{/topcoat-button}}
+
+<p>{{show-code show=showQuietCode}}</p>
+
+{{#if showQuietCode}}
+{{#prettify lang="hbs"}}
+&#123;&#123;#topcoat-button quiet=true&#125;&#125;Quiet Button&#123;&#123;/topcoat-button&#125;&#125;
+&#123;&#123;#topcoat-button quiet=true disabled=true&#125;&#125;Quiet Button&#123;&#123;/topcoat-button&#125;&#125;<br>
+&#123;&#123;#topcoat-button quiet=true large=true&#125;&#125;Quiet Button&#123;&#123;/topcoat-button&#125;&#125;
+&#123;&#123;#topcoat-button quiet=true large=true disabled=true&#125;&#125;Quiet Button&#123;&#123;/topcoat-button&#125;&#125;
+{{/prettify}}
+{{/if}}
+
+
+<h3>Call To Action Buttons</h3>
+{{#topcoat-button cta=true}}Quiet Button{{/topcoat-button}}
+{{#topcoat-button cta=true disabled=true}}Quiet Button{{/topcoat-button}}<br>
+{{#topcoat-button cta=true large=true}}Quiet Button{{/topcoat-button}}
+{{#topcoat-button cta=true large=true disabled=true}}Quiet Button{{/topcoat-button}}
+
+<p>{{show-code show=showCtaCode}}</p>
+
+{{#if showCtaCode}}
+{{#prettify lang="hbs"}}
+&#123;&#123;#topcoat-button cta=true&#125;&#125;Quiet Button&#123;&#123;/topcoat-button&#125;&#125;
+&#123;&#123;#topcoat-button cta=true disabled=true&#125;&#125;Quiet Button&#123;&#123;/topcoat-button&#125;&#125;<br>
+&#123;&#123;#topcoat-button cta=true large=true&#125;&#125;Quiet Button&#123;&#123;/topcoat-button&#125;&#125;
+&#123;&#123;#topcoat-button cta=true large=true disabled=true&#125;&#125;Quiet Button&#123;&#123;/topcoat-button&#125;&#125;
+{{/prettify}}
+{{/if}}
+
+<h3>Programmatic Button Formatting</h3>
+
+<p>
+	Buttons can be reformatted dynamically without having to worry about the correct Topcoat class name and formatting:
+</p>
+
+<p>
+	{{#topcoat-button large=isLarge quiet=isQuiet cta=isCta disabled=isDisabled}}
+		My Button
+	{{/topcoat-button}}
+</p>
+
+{{topcoat-checkbox checked=isDisabled label="Disabled"}}&nbsp;
+{{topcoat-checkbox checked=isLarge label="Large"}}&nbsp;
+{{topcoat-checkbox checked=isQuiet label="Quiet"}}&nbsp;
+{{topcoat-checkbox checked=isCta label="Call To Action"}}&nbsp;
+
+<p>{{show-code show=showProgrammaticCode}}</p>
+
+{{#if showProgrammaticCode}}
+{{#prettify lang="hbs"}}
+&#123;&#123;#topcoat-button large=isLarge quiet=isQuiet cta=isCta disabled=isDisabled&#125;&#125;
+  My Button
+&#123;&#123;/topcoat-button&#125;&#125;
+&lt;br&gt;
+&lt;label&gt;
+  &#123;&#123;input checked=isDisabled&#125;&#125;
+  Disabled
+&lt;/label&gt;
+&lt;label&gt;
+  &#123;&#123;input checked=isLarge&#125;&#125;
+  Large
+&lt;/label&gt;
+&lt;label&gt;
+  &#123;&#123;input checked=isQuiet&#125;&#125;
+  Quiet
+&lt;/label&gt;
+&lt;label&gt;
+  &#123;&#123;input checked=isCta&#125;&#125;
+  Call To Action
+&lt;/label&gt;
+{{/prettify}}
+{{/if}}

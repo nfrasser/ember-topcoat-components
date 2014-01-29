@@ -1,4 +1,27 @@
-window.TC = Ember.Namespace.create();
+window.TC = Ember.Namespace.create({
+
+	inject: function (App) {
+
+		var namespaces = App ? [App] : Em.Application.NAMESPACES,
+			componentMatch = /^Topcoat.*Component$/,
+			componentClasses = {};
+
+		// Find all the Topcat classes
+		for (var prop in this) {
+			if (componentMatch.test(prop)) {
+				componentClasses[prop] = this[prop];
+			}
+		}
+
+		// Add the classes to each namespace
+		namespaces.forEach(function (namespace) {
+			if (namespace !== this && Em.Application.detect(Em.get(namespace, 'constructor'))) {
+				Em.setProperties(namespace, componentClasses);
+			}
+		});
+	}
+
+});
 
 /* Order and include as required. */
 
@@ -24,5 +47,3 @@ require('src/scripts/components/radio-button');
 require('src/scripts/components/switch');
 require('src/scripts/components/list');
 require('src/scripts/components/navigation-bar');
-
-require('src/scripts/inject');
