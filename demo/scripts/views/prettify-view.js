@@ -45,15 +45,23 @@ App.PrettifyView = Ember.View.extend({
 	},
 
 	apply: function () {
+		var lang = this.get('lang');
 		this.$().html(
 			prettyPrintOne(
 				this.$().html(),
-				this.get('lang'),
+				this.constructor.langMap[lang] || lang,
 				this.get('linenums')
 			)
 		);
 	}
 
+});
+
+App.PrettifyView.reopenClass({
+	langMap: {
+		'hbs': 'html',
+		'handlebars': 'html'
+	}
 });
 
 Em.Handlebars.helper('prettify', App.PrettifyView);

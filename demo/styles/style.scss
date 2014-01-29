@@ -90,6 +90,21 @@ pre {
 	border-radius: 4px;
 }
 
+code {
+	width: auto;
+	height: auto;
+	display: inline;
+	padding-bottom: 2px;
+	padding-left: 4px;
+	padding-right: 4px;
+	padding-top: 2px;
+	font-size: 13px;
+	white-space: nowrap;
+	color: #C7254E;
+	background-color: #F9F2F4;
+	border-radius: 4px;
+}
+
 .container,
 .row {
 	@include box-sizing(border-box);

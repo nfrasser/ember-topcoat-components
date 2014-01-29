@@ -6,8 +6,12 @@
 
 {{#if showBasicCode}}
 {{#prettify lang="hbs"}}
-&#123;&#123;#topcoat-button&#125;&#125;Button&#123;&#123;/topcoat-button&#125;&#125;
-&#123;&#123;#topcoat-button disabled=true&#125;&#125;Button&#123;&#123;/topcoat-button&#125;&#125;
+&#123;&#123;#topcoat-button&#125;&#125;
+  Button
+&#123;&#123;/topcoat-button&#125;&#125;
+&#123;&#123;#topcoat-button disabled=true&#125;&#125;
+  Button
+&#123;&#123;/topcoat-button&#125;&#125;
 {{/prettify}}
 {{/if}}
 
@@ -20,8 +24,12 @@
 
 {{#if showLargeCode}}
 {{#prettify lang="hbs"}}
-&#123;&#123;#topcoat-button large=true&#125;&#125;Large Button&#123;&#123;/topcoat-button&#125;&#125;
-&#123;&#123;#topcoat-button large=true disabled=true&#125;&#125;Large Button&#123;&#123;/topcoat-button&#125;&#125;
+&#123;&#123;#topcoat-button large=true&#125;&#125;
+  Large Button
+&#123;&#123;/topcoat-button&#125;&#125;
+&#123;&#123;#topcoat-button large=true disabled=true&#125;&#125;
+  Large Button
+&#123;&#123;/topcoat-button&#125;&#125;
 {{/prettify}}
 {{/if}}
 
@@ -35,36 +43,75 @@
 
 {{#if showQuietCode}}
 {{#prettify lang="hbs"}}
-&#123;&#123;#topcoat-button quiet=true&#125;&#125;Quiet Button&#123;&#123;/topcoat-button&#125;&#125;
-&#123;&#123;#topcoat-button quiet=true disabled=true&#125;&#125;Quiet Button&#123;&#123;/topcoat-button&#125;&#125;<br>
-&#123;&#123;#topcoat-button quiet=true large=true&#125;&#125;Quiet Button&#123;&#123;/topcoat-button&#125;&#125;
-&#123;&#123;#topcoat-button quiet=true large=true disabled=true&#125;&#125;Quiet Button&#123;&#123;/topcoat-button&#125;&#125;
+&#123;&#123;#topcoat-button quiet=true&#125;&#125;
+  Quiet Button
+&#123;&#123;/topcoat-button&#125;&#125;
+&#123;&#123;#topcoat-button quiet=true disabled=true&#125;&#125;
+  Quiet Button
+&#123;&#123;/topcoat-button&#125;&#125;<br>
+&#123;&#123;#topcoat-button quiet=true large=true&#125;&#125;
+  Quiet Button
+&#123;&#123;/topcoat-button&#125;&#125;
+&#123;&#123;#topcoat-button quiet=true large=true disabled=true&#125;&#125;
+  Quiet Button
+&#123;&#123;/topcoat-button&#125;&#125;
 {{/prettify}}
 {{/if}}
 
 
 <h3>Call To Action Buttons</h3>
-{{#topcoat-button cta=true}}Quiet Button{{/topcoat-button}}
-{{#topcoat-button cta=true disabled=true}}Quiet Button{{/topcoat-button}}<br>
-{{#topcoat-button cta=true large=true}}Quiet Button{{/topcoat-button}}
-{{#topcoat-button cta=true large=true disabled=true}}Quiet Button{{/topcoat-button}}
+{{#topcoat-button cta=true}}CTA Button{{/topcoat-button}}
+{{#topcoat-button cta=true disabled=true}}CTA Button{{/topcoat-button}}<br>
+{{#topcoat-button cta=true large=true}}CTA Button{{/topcoat-button}}
+{{#topcoat-button cta=true large=true disabled=true}}CTA Button{{/topcoat-button}}
 
 <p>{{show-code show=showCtaCode}}</p>
 
 {{#if showCtaCode}}
 {{#prettify lang="hbs"}}
-&#123;&#123;#topcoat-button cta=true&#125;&#125;Quiet Button&#123;&#123;/topcoat-button&#125;&#125;
-&#123;&#123;#topcoat-button cta=true disabled=true&#125;&#125;Quiet Button&#123;&#123;/topcoat-button&#125;&#125;<br>
-&#123;&#123;#topcoat-button cta=true large=true&#125;&#125;Quiet Button&#123;&#123;/topcoat-button&#125;&#125;
-&#123;&#123;#topcoat-button cta=true large=true disabled=true&#125;&#125;Quiet Button&#123;&#123;/topcoat-button&#125;&#125;
+&#123;&#123;#topcoat-button cta=true&#125;&#125;
+  CTA Button
+&#123;&#123;/topcoat-button&#125;&#125;
+&#123;&#123;#topcoat-button cta=true disabled=true&#125;&#125;
+  CTA Button
+&#123;&#123;/topcoat-button&#125;&#125;<br>
+&#123;&#123;#topcoat-button cta=true large=true&#125;&#125;
+  CTA Button
+&#123;&#123;/topcoat-button&#125;&#125;
+&#123;&#123;#topcoat-button cta=true large=true disabled=true&#125;&#125;
+  CTA Button
+&#123;&#123;/topcoat-button&#125;&#125;
 {{/prettify}}
 {{/if}}
 
-<h3>Programmatic Button Formatting</h3>
-
+<h3>Actions</h3>
 <p>
-	Buttons can be reformatted dynamically without having to worry about the correct Topcoat class name and formatting:
+	Click the button to fire off a sample action.<br>
+	Currently only click actions without arguments are supported.
 </p>
+{{#topcoat-button action="sampleAction"}}Send an Action{{/topcoat-button}}
+
+<p>{{show-code show=showActionCode}}</p>
+
+{{#if showActionCode}}
+{{#prettify lang="js"}}
+App.ApplicationRoute = Ember.Route.extend({
+  actions: {
+    sampleAction: function () {
+      alert('You sent a sample action!');
+    }
+  }
+});
+{{/prettify}}
+{{#prettify lang="hbs"}}
+&#123;&#123;#topcoat-button action="sampleAction"&#125;&#125;
+  Send an action
+&#123;&#123;/topcoat-button&#125;&#125;
+{{/prettify}}
+{{/if}}
+
+
+<h3>Programmatic Button Formatting</h3>
 
 <p>
 	{{#topcoat-button large=isLarge quiet=isQuiet cta=isCta disabled=isDisabled}}
@@ -103,3 +150,28 @@
 &lt;/label&gt;
 {{/prettify}}
 {{/if}}
+
+<h3>Extending the Button</h3>
+
+<p>Define your new button component by extending or reopening <code>TC.TopcoatButtonComponent</code>:</p>
+
+{{#prettify lang="js"}}
+App.MyButtonComponent = TC.TopcoatButtonComponent.extend({
+  ...
+});
+{{/prettify}}
+
+<p>Template usage:</p>
+{{#prettify lang="hbs"}}
+&#123;&#123;#my-button ...&#125;&#125;My new button&#123;&#123;/my-button&#125;&#125;
+{{/prettify}}
+
+<p>
+	See also:
+	<a href="http://emberjs.com/guides/components/">
+		Ember.js Components guide
+	</a>
+</p>
+
+
+

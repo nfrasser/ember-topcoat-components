@@ -16,6 +16,10 @@ App.ApplicationRoute = Ember.Route.extend({
 			$stylesheet.attr('href', selected.url);
 			$body.removeClass(options.getEach('name').join(' '));
 			$body.addClass(selected.name);
+		},
+
+		sampleAction: function () {
+			window.alert('You sent a sample action!');
 		}
 	}
 });
