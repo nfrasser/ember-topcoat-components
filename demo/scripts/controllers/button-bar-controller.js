@@ -10,17 +10,38 @@ App.ButtonBarController = Ember.Controller.extend({
 		'three'
 	],
 
-	items2: [
-		'ones',
-		'twos',
-		'threes'
-	],
+	items2: function () {
+		var first = {
+				name: 'First',
+				number: 1
+			},
+			second = {
+				name: 'Second',
+				number: 2
+			},
+			third = {
+				name: 'Third',
+				number: 3
+			};
 
-	selectedItem: 'ones',
-	selectedItems: ['ones'],
+		this.set('selectedNumber', second);
+		return [first, second, third];
+	}.property(),
+
+	selectedItem: 'one',
+	selectedItems: ['one'],
+	selectedNumber: null,
 
 	selectedItemsDisplay: function () {
-		return "['" + this.get('selectedItems').join("', '") + "']";
+		return this.get('selectedItems').join(', ');
+	}.property('selectedItems.@each'),
+
+	selectedItemsArrayDisplay: function () {
+		var items = this.get('selectedItems');
+		if (!items || !Em.isArray(items) || items.length === 0) {
+			return '[]';
+		}
+		return "['" + items.join("', '") + "']";
 	}.property('selectedItems.@each')
 
 });

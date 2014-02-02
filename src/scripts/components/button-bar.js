@@ -356,6 +356,9 @@ TC.TopcoatButtonBarComponent = TC.TopcoatComponent.extend({
 	*/
 	value: Em.computed.alias('selection'),
 
+	optionLabelPath: 'content',
+
+	optionValuePath: 'content',
 
 	/**
 		Default view class that should be used for each item in the tab

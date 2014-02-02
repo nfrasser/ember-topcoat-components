@@ -18,8 +18,8 @@ App.ApplicationController = Ember.Controller.extend({
 });
 {{/prettify}}
 {{#prettify lang="hbs" linenums="1"}}
-	&#123;&#123;topcoat-button-bar content=items&#125;&#125;
-	&#123;&#123;topcoat-button-bar content=items large=true&#125;&#125;
+&#123;&#123;topcoat-button-bar content=items&#125;&#125;
+&#123;&#123;topcoat-button-bar content=items large=true&#125;&#125;
 {{/prettify}}
 {{/if}}
 
@@ -46,7 +46,7 @@ App.ApplicationController = Ember.Controller.extend({
 });
 {{/prettify}}
 {{#prettify lang="hbs" linenums="1"}}
-	&#123;&#123;topcoat-button-bar content=items action="alert"&#125;&#125;
+&#123;&#123;topcoat-button-bar content=items action="alert"&#125;&#125;
 {{/prettify}}
 {{/if}}
 
@@ -72,7 +72,7 @@ App.ApplicationController = Ember.Controller.extend({
 
 <h4>Select Button Bar</h4>
 
-{{topcoat-button-bar content=items2 type="select" selection=selectedItem}}&nbsp;
+{{topcoat-button-bar content=items type="select" value=selectedItem}}&nbsp;
 Selected: <strong>{{selectedItem}}</strong>
 
 <p>{{show-code show=showSelectCode}}</p>
@@ -85,6 +85,77 @@ App.ApplicationController = Ember.Controller.extend({
 });
 {{/prettify}}
 {{#prettify lang="hbs" linenums="1"}}
-	&#123;&#123;topcoat-button-bar content=items selection=selectedItem&#125;&#125;
+&#123;&#123;topcoat-button-bar type="select" content=items value=selectedItem&#125;&#125;
+Selected: &#123;&#123;selectedItem&#125;&#125;
 {{/prettify}}
 {{/if}}
+
+<h4>Toggle Button Bar</h4>
+
+{{topcoat-button-bar content=items type="toggle" value=selectedItems}}&nbsp;
+Selected: <strong>{{selectedItemsDisplay}}</strong>
+
+<p>{{show-code show=showToggleCode}}</p>
+
+{{#if showToggleCode}}
+{{#prettify lang="js" linenums="1"}}
+App.ApplicationController = Ember.Controller.extend({
+  items: ['one', 'two', 'three'],
+  selectedItems: {{selectedItemsArrayDisplay}}
+});
+{{/prettify}}
+{{#prettify lang="hbs" linenums="1"}}
+&#123;&#123;topcoat-button-bar type="toggle" content=items value=selectedItems&#125;&#125;
+Selected: &#123;&#123;selectedItems&#125;&#125;
+{{/prettify}}
+{{/if}}
+
+<p>
+	The Select and Toggle buttons bars have the same API as
+	<a href="http://emberjs.com/api/classes/Ember.Select.html">
+		<code>Ember.Select</code>
+	</a>. That's because <code>Ember.Select</code> is used internally
+	to manage the selections. This means you can specify
+	<code>optionValuePath</code> and <code>optionLabelPath</code>
+	for content where each element is an object.
+<p>
+
+{{topcoat-button-bar type="select"
+	content=items2
+	value=selectedNumber
+	optionValuePath="content.number"
+	optionLabelPath="content.name"
+}}&nbsp;
+Selected: {{selectedNumber.number}}</strong>
+
+<p>{{show-code show=showOptionCode}}</p>
+
+{{#if showOptionCode}}
+{{#prettify lang="js" linenums="1"}}
+App.ApplicationController = Ember.Controller.extend({
+  first: {name: 'First', number: 1},
+  second: {name: 'Second', number: 2},
+  third: {name: 'Third', number: 3},
+  items: function () {
+  	return [
+  	  this.get('first'),
+  	  this.get('second'),
+  	  this.get('third')
+  	];
+  }.property('first', 'second', 'third'),
+
+  // Current value: {{#if selectedNumber}}&#123;name: '{{selectedNumber.name}}', number: {{selectedNumber.number}}&#125;{{/if}}
+  selectedItem: Em.computed.defaultTo('second')
+});
+{{/prettify}}
+{{#prettify lang="hbs" linenums="1"}}
+&#123;&#123;topcoat-button-bar type="toggle"
+  content=items
+  value=selectedItems
+  optionValuePath="content.number"
+  optionLabelPath="content.name"
+&#125;&#125;
+Selected: &#123;&#123;selectedItems&#125;&#125;
+{{/prettify}}
+{{/if}}
+
