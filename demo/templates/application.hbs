@@ -3,7 +3,8 @@
 	<div class="demo-nav__header">
 		{{#link-to "index" class="demo-nav__brand"}}
 			<h1>
-				Topcoat Components for Ember.js
+				Topcoat Components
+				<small>for Ember.js</small>
 			</h1>
 		{{/link-to}}
 	</div>
@@ -38,7 +39,7 @@
 		</div>
 		<div class="component-demo">
 			<header id="component-header">
-				{{scroll-title title=component.title}}
+				{{scroll-title title=component.title class="component-title" tagName="h2"}}
 			</header>
 			<section {{bind-attr id=component.name}} class="component">
 				{{outlet view="componentContainer"}}

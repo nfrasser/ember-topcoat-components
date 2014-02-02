@@ -23,7 +23,6 @@ App.ButtonBarController = Ember.Controller.extend({
 				name: 'Third',
 				number: 3
 			};
-
 		this.set('selectedNumber', second);
 		return [first, second, third];
 	}.property(),

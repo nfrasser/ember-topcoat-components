@@ -46,7 +46,7 @@ TC.TopcoatButtonComponent = TC.TopcoatComponent.extend({
 	}.property('large', 'quiet', 'cta', 'type'),
 
 	click: function() {
-		this.sendAction();
+		this.sendAction('action', this.get('targetObject'));
 	},
 
 	/**

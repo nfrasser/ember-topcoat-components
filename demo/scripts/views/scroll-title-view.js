@@ -1,6 +1,6 @@
 App.ScrollTitleView = Ember.View.extend({
 
-	tagName: 'h1',
+	tagName: 'span',
 	title: null,
 	templateName: 'views/scroll-title-view',
 

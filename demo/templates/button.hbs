@@ -86,8 +86,8 @@
 
 <h3>Actions</h3>
 <p>
-	Click the button to fire off a sample action.<br>
-	Currently only click actions without arguments are supported.
+	Define the <code>action</code> parameter as an action in the current
+	context.
 </p>
 {{#topcoat-button action="sampleAction"}}Send an Action{{/topcoat-button}}
 
@@ -110,13 +110,18 @@ App.ApplicationRoute = Ember.Route.extend({
 {{/prettify}}
 {{/if}}
 
+<p>
+	You can override the context for the action by redefining the
+	<code>targetObject</code> parameter (e.g.,
+	<code>targetObject=view</code>).
+</p>
 
 <h3>Programmatic Button Formatting</h3>
 
 <p>
-	{{#topcoat-button large=isLarge quiet=isQuiet cta=isCta disabled=isDisabled}}
-		My Button
-	{{/topcoat-button}}
+{{#topcoat-button large=isLarge quiet=isQuiet cta=isCta disabled=isDisabled}}
+	My Button
+{{/topcoat-button}}
 </p>
 
 {{topcoat-checkbox checked=isDisabled label="Disabled"}}&nbsp;
@@ -153,7 +158,7 @@ App.ApplicationRoute = Ember.Route.extend({
 
 <h3>Extending the Button</h3>
 
-<p>Define your new button component by extending or reopening <code>TC.TopcoatButtonComponent</code>:</p>
+<p>Define your new button component by extending or reopening <code>TC.TopcoatButtonComponent</code>.</p>
 
 {{#prettify lang="js" linenums=1}}
 App.MyButtonComponent = TC.TopcoatButtonComponent.extend({
@@ -165,13 +170,3 @@ App.MyButtonComponent = TC.TopcoatButtonComponent.extend({
 {{#prettify lang="hbs" linenums=1}}
 &#123;&#123;#my-button ...&#125;&#125;My new button&#123;&#123;/my-button&#125;&#125;
 {{/prettify}}
-
-<p>
-	See also:
-	<a href="http://emberjs.com/guides/components/">
-		Ember.js Components guide
-	</a>
-</p>
-
-
-

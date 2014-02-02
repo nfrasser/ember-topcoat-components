@@ -1,2 +1,59 @@
-{{topcoat-checkbox name="test-box-1"}}
-{{topcoat-checkbox name="test-box-2" disabled=true}}
+<h3>Basic Usage</h3>
+
+<p>
+	The API for the checkbox is the same as for
+	<code>&#123;&#123;input type="checkbox"&#125;&#125;</code>.
+</p>
+
+{{topcoat-checkbox label="Regular checkbox" checked=isRegularChecked}}<br><br>
+{{topcoat-checkbox label="Disabled checkbox" checked=true disabled=true}}
+
+<p>{{show-code show=showBasicCode}}</p>
+
+{{#if showBasicCode}}
+{{#prettify lang="hbs" linenums="1"}}
+&#123;&#123;topcoat-checkbox label="Regular checkbox"{{#if isRegularChecked}} checked=true{{/if}}&#125;&#125;
+&#123;&#123;topcoat-checkbox label="Disabled checkbox" checked=true disabled=true&#125;&#125;
+{{/prettify}}
+{{/if}}
+
+<p>
+	You can also use the checkbox in block form. The layout will be the
+	label.
+</p>
+
+{{#topcoat-checkbox checked=isBlockChecked}}
+	This <em>is</em> a checkbox
+{{/topcoat-checkbox}}
+
+<p>{{show-code show=showBlockCode}}</p>
+
+{{#if showBlockCode}}
+{{#prettify lang="hbs" linenums="1"}}
+&#123;&#123;#topcoat-checkbox{{#if isBlockChecked}} checked=true{{/if}}&#125;&#125;
+  This &lt;em&gt;is&lt;/em&gt; a checkbox
+&#123;&#123;/topcoat-checkbox&#125;&#125;
+{{/prettify}}
+{{/if}}
+
+<h3>Extending the Checkbox</h3>
+
+<p>
+	Define your new checkbox component by extending or reopening
+	<code>TC.TopcoatCheckboxComponent</code>. Be sure to define a template.
+</p>
+
+{{#prettify lang="js" linenums=1}}
+// Define your own template or use the default:
+Ember.TEMPLATES['components/my-checkbox']
+  = Ember.TEMPLATES['components/topcoat-checkbox'];
+
+App.MyCheckboxComponent = TC.TopcoatCheckboxComponent.extend({
+  ...
+});
+{{/prettify}}
+
+<p>Template usage:</p>
+{{#prettify lang="hbs" linenums=1}}
+&#123;&#123;my-checkbox ...&#125;&#125;
+{{/prettify}}

@@ -103,8 +103,26 @@ TC.TopcoatButtonBarButtonComponent = TC.TopcoatButtonComponent.extend({
 	*/
 	_hasQuiet: false,
 
+	/**
+		Quick check for whether chrome is the current browser
+		@property	_isChrome
+		@protected
+	*/
+	_isChrome: /Chrome/.test(navigator.userAgent),
+
 	click: function () {
-		if (this.get('parentView._actions.check')){
+		if (
+			this.get('_isChrome') &&
+			this.get('parentView._actions.check')
+		) {
+			/*
+				There seems to be a bug in Chrome (that could be more like
+				a bug with all the other browsers). The checkbox is
+				overlayed on the button at the top left corner and doesn't
+				cover its full width. That means that clicking the wrong
+				place (the button instead of the checkbox) won't toggle
+				the checkbox.
+			*/
 			this.get('parentView').send('check');
 		}
 	}
