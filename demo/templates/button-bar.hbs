@@ -1,16 +1,90 @@
+<h3>Basic Button Bar</h3>
 
+<p>
+	Use the <code>&#123;&#123;topcoat-button-bar&#125;&#125;</code>
+	component with an array for the <code>content</code> parameter to
+	generate a button bar.
+</p>
+
+{{topcoat-button-bar content=items}}<br>
+{{topcoat-button-bar content=items large=true}}<br>
+
+<p>{{show-code show=showBasicCode}}</p>
+
+{{#if showBasicCode}}
+{{#prettify lang="js" linenums="1"}}
+App.ApplicationController = Ember.Controller.extend({
+  items: ['one', 'two', 'three']
+});
+{{/prettify}}
+{{#prettify lang="hbs" linenums="1"}}
+	&#123;&#123;topcoat-button-bar content=items&#125;&#125;
+	&#123;&#123;topcoat-button-bar content=items large=true&#125;&#125;
+{{/prettify}}
+{{/if}}
+
+<p>
+	The button bar accepts an <code>action</code> parameter. The action
+	will be called on the current controller when the button is
+	clicked/tapped with the value for that button.
+</p>
+
+<strong>Hit one:</strong>
 {{topcoat-button-bar content=items action="alert"}}<br>
 
-{{topcoat-button-bar content=items type="select" selection=selected1 name="firstSelected"}}
-{{selected1}}
-<br>
+<p>{{show-code show=showBasicActionCode}}</p>
 
-{{topcoat-button-bar content=items type="toggle" selection=selected2 name="secondSelected"}}
-{{#each selected2}}{{this}}{{/each}}
-<br>
+{{#if showBasicActionCode}}
+{{#prettify lang="js" linenums="1"}}
+App.ApplicationController = Ember.Controller.extend({
+  items: ['one', 'two', 'three'],
+  actions: {
+    alert: function (val) {
+      alert(val);
+    }
+  }
+});
+{{/prettify}}
+{{#prettify lang="hbs" linenums="1"}}
+	&#123;&#123;topcoat-button-bar content=items action="alert"&#125;&#125;
+{{/prettify}}
+{{/if}}
 
-<hr>
+<p>
+	Override the component's <code>targetObject</code> property to change
+	the context for the action.
+</p>
 
-{{topcoat-tab-bar content=items selection=selected1 name="firstSelected"}}
-{{topcoat-button-list content=items selection=selected2 type="toggle" name="firstSelected"}}
-<br>
+<h3>Select and Toggle Button Bars</h3>
+
+<p>
+	These are based on the
+	<a href="http://codepen.io/Topcoat/pen/kdKyg">
+		mobile button bar
+	</a> on the <a href="http://topcoat.io/topcoat/#button-bar">
+		Topcoat website
+	</a>.
+	Define the button bar with <code>type="select"</code> for radio button
+	behaviour, or <code>type="toggle"</code> for checkbox behaviour. The
+	selected item(s) will be bound to the component's <code>selection</code>
+	property.
+</p>
+
+<h4>Select Button Bar</h4>
+
+{{topcoat-button-bar content=items2 type="select" selection=selectedItem}}&nbsp;
+Selected: <strong>{{selectedItem}}</strong>
+
+<p>{{show-code show=showSelectCode}}</p>
+
+{{#if showSelectCode}}
+{{#prettify lang="js" linenums="1"}}
+App.ApplicationController = Ember.Controller.extend({
+  items: ['one', 'two', 'three'],
+  selectedItem: '{{selectedItem}}'
+});
+{{/prettify}}
+{{#prettify lang="hbs" linenums="1"}}
+	&#123;&#123;topcoat-button-bar content=items selection=selectedItem&#125;&#125;
+{{/prettify}}
+{{/if}}

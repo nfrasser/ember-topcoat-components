@@ -37,8 +37,8 @@
 			</ul>
 		</div>
 		<div class="component-demo">
-			<header>
-				<h2>{{component.title}}</h2>
+			<header id="component-header">
+				{{scroll-title title=component.title}}
 			</header>
 			<section {{bind-attr id=component.name}} class="component">
 				{{outlet view="componentContainer"}}

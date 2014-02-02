@@ -61,7 +61,11 @@ var ButtonBarFormItemView = Ember.SelectOption.extend(ButtonBarItemViewMixin, {
 		@method	updateCheckbox
 	*/
 	updateCheckbox: function () {
-		this.$('input').prop('checked', this.get('selected'));
+		if (this.get('selected')) {
+			this.one('didInsertElement', this, function () {
+				this.send('check');
+			});
+		}
 	}.on('willInsertElement')
 
 });
@@ -327,12 +331,14 @@ TC.TopcoatButtonBarComponent = TC.TopcoatComponent.extend({
 
 	/**
 		When using type "toggle" or "select", used to specify the name of
-		this group of checkboxes or radio buttons
+		this group of checkboxes or radio buttons. Defaults to this
+		element's ID.
+
 		@property name
-		@type		String
+		@type		Ember.ComputedProperty|String
 		@default	null
 	*/
-	name: null,
+	name: Em.computed.defaultTo('elementId'),
 
 	/**
 		Item or items in the content that are selected

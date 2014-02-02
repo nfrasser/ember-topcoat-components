@@ -5,7 +5,7 @@
 <p>{{show-code show=showBasicCode}}</p>
 
 {{#if showBasicCode}}
-{{#prettify lang="hbs"}}
+{{#prettify lang="hbs" linenums=1}}
 &#123;&#123;#topcoat-button&#125;&#125;
   Button
 &#123;&#123;/topcoat-button&#125;&#125;
@@ -23,7 +23,7 @@
 <p>{{show-code show=showLargeCode}}</p>
 
 {{#if showLargeCode}}
-{{#prettify lang="hbs"}}
+{{#prettify lang="hbs" linenums=1}}
 &#123;&#123;#topcoat-button large=true&#125;&#125;
   Large Button
 &#123;&#123;/topcoat-button&#125;&#125;
@@ -42,7 +42,7 @@
 <p>{{show-code show=showQuietCode}}</p>
 
 {{#if showQuietCode}}
-{{#prettify lang="hbs"}}
+{{#prettify lang="hbs" linenums=1}}
 &#123;&#123;#topcoat-button quiet=true&#125;&#125;
   Quiet Button
 &#123;&#123;/topcoat-button&#125;&#125;
@@ -68,7 +68,7 @@
 <p>{{show-code show=showCtaCode}}</p>
 
 {{#if showCtaCode}}
-{{#prettify lang="hbs"}}
+{{#prettify lang="hbs" linenums=1}}
 &#123;&#123;#topcoat-button cta=true&#125;&#125;
   CTA Button
 &#123;&#123;/topcoat-button&#125;&#125;
@@ -94,7 +94,7 @@
 <p>{{show-code show=showActionCode}}</p>
 
 {{#if showActionCode}}
-{{#prettify lang="js"}}
+{{#prettify lang="js" linenums=1}}
 App.ApplicationRoute = Ember.Route.extend({
   actions: {
     sampleAction: function () {
@@ -103,7 +103,7 @@ App.ApplicationRoute = Ember.Route.extend({
   }
 });
 {{/prettify}}
-{{#prettify lang="hbs"}}
+{{#prettify lang="hbs" linenums=1}}
 &#123;&#123;#topcoat-button action="sampleAction"&#125;&#125;
   Send an action
 &#123;&#123;/topcoat-button&#125;&#125;
@@ -127,25 +127,25 @@ App.ApplicationRoute = Ember.Route.extend({
 <p>{{show-code show=showProgrammaticCode}}</p>
 
 {{#if showProgrammaticCode}}
-{{#prettify lang="hbs"}}
+{{#prettify lang="hbs" linenums=1}}
 &#123;&#123;#topcoat-button large=isLarge quiet=isQuiet cta=isCta disabled=isDisabled&#125;&#125;
   My Button
 &#123;&#123;/topcoat-button&#125;&#125;
 &lt;br&gt;
 &lt;label&gt;
-  &#123;&#123;input checked=isDisabled&#125;&#125;
+  &#123;&#123;input type="checkbox" checked=isDisabled&#125;&#125;
   Disabled
 &lt;/label&gt;
 &lt;label&gt;
-  &#123;&#123;input checked=isLarge&#125;&#125;
+  &#123;&#123;input type="checkbox" checked=isLarge&#125;&#125;
   Large
 &lt;/label&gt;
 &lt;label&gt;
-  &#123;&#123;input checked=isQuiet&#125;&#125;
+  &#123;&#123;input type="checkbox" checked=isQuiet&#125;&#125;
   Quiet
 &lt;/label&gt;
 &lt;label&gt;
-  &#123;&#123;input checked=isCta&#125;&#125;
+  &#123;&#123;input type="checkbox" checked=isCta&#125;&#125;
   Call To Action
 &lt;/label&gt;
 {{/prettify}}
@@ -155,14 +155,14 @@ App.ApplicationRoute = Ember.Route.extend({
 
 <p>Define your new button component by extending or reopening <code>TC.TopcoatButtonComponent</code>:</p>
 
-{{#prettify lang="js"}}
+{{#prettify lang="js" linenums=1}}
 App.MyButtonComponent = TC.TopcoatButtonComponent.extend({
   ...
 });
 {{/prettify}}
 
 <p>Template usage:</p>
-{{#prettify lang="hbs"}}
+{{#prettify lang="hbs" linenums=1}}
 &#123;&#123;#my-button ...&#125;&#125;My new button&#123;&#123;/my-button&#125;&#125;
 {{/prettify}}
 

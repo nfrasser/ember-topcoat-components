@@ -7,6 +7,6 @@
   },
   "devDependencies": {
     "qunit": "1.*",
-    "normalize-css": "2.*"
+    "normalize-css": "3.*"
   }
 }

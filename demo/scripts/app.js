@@ -16,11 +16,14 @@ require('demo/scripts/components/show-code-component');
 require('demo/scripts/controllers/application-controller');
 require('demo/scripts/controllers/button-bar-controller');
 
+// Views
+require('demo/scripts/views/scroll-title-view');
 
 // Routes
 require('demo/scripts/routes/application-route');
 require('demo/scripts/routes/index-route');
 require('demo/scripts/routes/component-route');
+//require('demo/scripts/routes/button-bar-route');
 
 require('demo/scripts/objects/topcoat-component-list');
 

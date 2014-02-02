@@ -9,6 +9,18 @@ App.ButtonBarController = Ember.Controller.extend({
 		'two',
 		'three'
 	],
-	selected1: 'two',
-	selected2: ['one']
+
+	items2: [
+		'ones',
+		'twos',
+		'threes'
+	],
+
+	selectedItem: 'ones',
+	selectedItems: ['ones'],
+
+	selectedItemsDisplay: function () {
+		return "['" + this.get('selectedItems').join("', '") + "']";
+	}.property('selectedItems.@each')
+
 });
