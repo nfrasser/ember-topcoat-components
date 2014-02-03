@@ -1,4 +1,4 @@
-/* global test, ok, module */
+/* global test, ok, module, andThen, ok, find */
 
 module('Integration Tests - Main Test');
 
@@ -26,7 +26,7 @@ test('Basic button bar', function () {
 	buttonBar.appendView();
 
 	andThen(function () {
-		ok(find('#' + button.elementId));
+		ok(find('#' + buttonBar.elementId));
 
 	});
 });
