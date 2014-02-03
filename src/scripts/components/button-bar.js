@@ -164,7 +164,7 @@ TC.TopcoatButtonBarView = Ember.Select.extend({
 	/**
 		View class that should be used for each item
 		@property	buttonBarItemClass
-		@type		Ember.ComputerProperty|Ember.View
+		@type		Ember.ComputedProperty|Ember.View
 	*/
 	optionView: function () {
 		return this.get('parentView').get(

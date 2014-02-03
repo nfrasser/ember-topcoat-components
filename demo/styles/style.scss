@@ -282,5 +282,23 @@ code {
 	}
 }
 
+.topcoat-mobile-dark,
+.topcoat-mobile-light {
+	.topcoat-list__remove-item {
+		display: inline-block;
+		float: right;
+		line-height: 0.75;
+		color: inherit;
+		opacity: 0.8;
+		font-size: 2rem;
+		text-decoration: none;
+		&:hover, &:active, &:focus {
+			text-decoration: none;
+			opacity: 1;
+		}
+
+	}
+}
+
 @import "prettify";
 

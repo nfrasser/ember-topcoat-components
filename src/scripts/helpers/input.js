@@ -14,7 +14,7 @@ Em.Handlebars.helper('topcoat-input', function (options) {
 			'class': className + (
 				options.hash.large ? '--large' : ''
 			) + (
-				options['class'] ? (' ' + options['class']) : ''
+				options.hash['class'] ? (' ' + options.hash['class']) : ''
 			)
 		};
 	Em.merge(options.hash, hash);

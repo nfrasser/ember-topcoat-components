@@ -3,11 +3,49 @@
 	@submodule components
 */
 
-TC.TopcoatListItem = Ember.View.extend({
+/**
+	A view you can use for the block version of the Topcoat list
+	@class		TC.TopcoatListItemView
+	@extends	TC.TopcoatView
+	@namespace	TC
+*/
+TC.TopcoatListItemView = TC.TopcoatView.extend({
 	tagName: 'li',
-	classNames: ['topcoat-list__item'],
-	hasLayoutBinding: 'parentView.hasLayout'
+	classNames: ['topcoat-list__item']
 });
+
+/**
+	The collection view used to render list item content
+	@class		TopcoatListView
+	@extends	Ember.CollectionView
+	@namespace	TC
+*/
+TC.TopcoatListView = Ember.CollectionView.extend({
+
+	tagName: 'ul',
+	classNames: ['topcoat-list__container'],
+	itemLabelPathBinding: 'parentView.itemLabelPath',
+
+	itemViewClass: TC.TopcoatListItemView.extend({
+
+		templateName: 'views/topcoat-list-item-view',
+
+		value: function () {
+			var content = this.get('content'),
+				itemLabelPath = this.get('itemLabelPath');
+			this.set('_content', content);
+			return content && itemLabelPath ?
+				Em.get(content, itemLabelPath) :
+				content;
+		}.property('content', 'itemLabelPath'),
+
+		itemLabelPathBinding: 'parentView.itemLabelPath'
+
+	}),
+});
+
+
+Ember.Handlebars.helper('topcoat-list-item', TC.TopcoatListItemView);
 
 /**
 	To Topcoat list can be used in either block or inline form.
@@ -65,17 +103,10 @@ TC.TopcoatListComponent = TC.TopcoatComponent.extend({
 	header: null,
 
 	/**
-		View class that should be used for each list item
-		@property	listItemViewClass
-	*/
-	listItemViewClass: TC.TopcoatListItem,
 
-	/**
-		Does this component instance have a layout? That is, is it being
-		used in block form rather than inline?
-		@property	hasLayout
-		@type		Ember.ComputedProperty|Boolean
 	*/
-	hasLayout: Em.computed.notEmpty('layout')
+	itemLabelPath: '',
+
+	hasContent: Em.computed.gt('content.length', 0)
 
 });

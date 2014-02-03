@@ -11,3 +11,6 @@ TC.TopcoatTabBarComponent = TC.TopcoatButtonBarComponent.extend({
 	type: 'select',
 	barType: 'tab-bar'
 });
+
+Em.TEMPLATES['components/topcoat-tab-bar'] =
+	Em.TEMPLATES['components/topcoat-button-bar'];

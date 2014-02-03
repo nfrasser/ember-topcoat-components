@@ -35,6 +35,9 @@ require('src/scripts/helpers/textarea');
 
 // Mixins
 
+// Views
+require('src/scripts/views/view');
+
 // Components
 require('src/scripts/components/component');
 require('src/scripts/components/button');
@@ -47,3 +50,4 @@ require('src/scripts/components/radio-button');
 require('src/scripts/components/switch');
 require('src/scripts/components/list');
 require('src/scripts/components/navigation-bar');
+require('src/scripts/components/notification');

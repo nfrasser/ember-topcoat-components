@@ -16,7 +16,10 @@ TC.TopcoatButtonComponent = TC.TopcoatComponent.extend({
 	*/
 	tagName: 'button',
 
-	attributeBindings: ['disabled'],
+	attributeBindings: [
+		'type',
+		'disabled'
+	],
 
 	/**
 		The button's class, based on the 'large','quiet, 'cta', and 'type'
@@ -27,14 +30,14 @@ TC.TopcoatButtonComponent = TC.TopcoatComponent.extend({
 	*/
 	topcoatClass: function () {
 		var classArray = [this.get('_prefix')],
-			type = this.get('type');
+			format = this.get('format');
 
 		if (this.get('_hasLarge') && this.get('large')) {
 			classArray.push('large');
 		}
 
-		if (type) {
-			classArray.push(type);
+		if (format) {
+			classArray.push(format);
 		} else if (this.get('_hasCta') && this.get('cta')) {
 			classArray.push('cta');
 		} else if (this.get('_hasQuiet') && this.get('quiet')) {
@@ -46,8 +49,21 @@ TC.TopcoatButtonComponent = TC.TopcoatComponent.extend({
 	}.property('large', 'quiet', 'cta', 'type'),
 
 	click: function() {
-		this.sendAction('action', this.get('targetObject'));
+		var action = this.get('action'),
+			param = this.get('param');
+		if (action) {
+			this.get('targetObject').send(this.get('action'), param);
+		}
 	},
+
+	/**
+		Type attribute for this button
+		@property	type
+		@type		String
+		@default	'button'
+	*/
+	type: 'button',
+
 
 	/**
 		Should the button be disabled?
@@ -85,7 +101,7 @@ TC.TopcoatButtonComponent = TC.TopcoatComponent.extend({
 		@type		String
 		@default	null
 	*/
-	type: null,
+	format: null,
 
 
 	/**

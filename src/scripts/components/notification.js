@@ -19,6 +19,6 @@ TC.TopcoatNotificationComponent = TC.TopcoatComponent.extend({
 		@type		Number|String
 		@default	0
 	*/
-	content: 0
+	content: null
 
 });

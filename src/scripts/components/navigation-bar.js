@@ -16,9 +16,14 @@ TC.TopcoatNavigationBarComponent = TC.TopcoatComponent.extend({
 	@extends	TC.TopcoatComponent
 	@namespace	TC
 */
-TC.TopcoatNavigationBarItemComponent = TC.TopcoatComponent.extend({
-	topcoatClass: 'topcoat-navigation-bar__item'
+TC.TopcoatNavigationBarItemView = TC.TopcoatView.extend({
+	classNames: ['topcoat-navigation-bar__item']
 });
+
+Ember.Handlebars.helper(
+	'topcoat-navigation-bar-item',
+	TC.TopcoatNavigationBarItemView
+);
 
 /**
 	@class		TopcoatNavigationBarTitleComponent

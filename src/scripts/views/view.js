@@ -1,15 +1,9 @@
 /**
 	@module ember-topcoat
-	@submodule components
+	@submodule views
 	@main
 */
-/**
-	Basic Topcoat component
-	@class		Component
-	@extend		Ember.Component
-	@namespace	TC
-*/
-TC.TopcoatComponent = Ember.Component.extend({
+TC.TopcoatView = Ember.View.extend({
 
 	classNameBindings: ['topcoatClass'],
 
@@ -21,4 +15,3 @@ TC.TopcoatComponent = Ember.Component.extend({
 	*/
 	topcoatClass: 'topcoat'
 });
-

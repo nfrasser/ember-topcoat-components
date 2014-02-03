@@ -1,5 +1,130 @@
-{{#topcoat-list header="My Awesome List"}}
-	{{#each App.topcoatComponentList itemViewClass="TC.TopcoatListItem"}}
-		<strong>Title:</strong> {{title}}<br>
+<p>
+	<strong>Note: </strong>
+	The list is only available for Topcoat's mobile themes.
+</p>
+
+<h3>Basic Usage</h3>
+
+<p>
+	Use the Topcoat list by setting the <code>content</code> property
+	to an array of strings.
+</p>
+
+{{topcoat-list content=items header="Example list number one"}}
+
+<p>{{show-code show=showBasicCode}}</p>
+
+{{#if showBasicCode}}
+{{#prettify lang="js" linenums="1"}}
+App.ApplicationController = Ember.Controller.extend({
+  items: [
+    'First list item',
+    'Second list item',
+    'Third list item',
+    'Fourth list item',
+    'Fifth list item'
+  ]
+});
+{{/prettify}}
+{{#prettify lang="hbs" linenums="1"}}
+&#123;&#123;topcoat-list content=items header="Example list number one"&#125;&#125;
+{{/prettify}}
+{{/if}}
+
+<p>
+	Specify an <code>itemLabelPath</code> if your content is an array of
+	objects.
+</p>
+
+{{topcoat-list content=objects itemLabelPath="label" header="Example list number two"}}
+
+<p>{{show-code show=showItemLabelCode}}</p>
+
+{{#if showItemLabelCode}}
+{{#prettify lang="js" linenums="1"}}
+App.ApplicationController = Ember.Controller.extend({
+  items: [
+    {theId: 1, theLabel: 'First list object'},
+    {theId: 2, theLabel: 'Second list object'},
+    {theId: 3, theLabel: 'Third list object'},
+    {theId: 4, theLabel: 'Fourth list object'},
+    {theId: 5, theLabel: 'Fifth list object'}
+   ]
+});
+{{/prettify}}
+{{#prettify lang="hbs" linenums="1"}}
+&#123;&#123;topcoat-list content=items itemLabelPath="theLabel" header="Example list number two"&#125;&#125;
+{{/prettify}}
+{{/if}}
+
+<h3>Block Usage</h3>
+
+<p>
+	You can treat the list component as a <code>&lt;ul&gt;</code> tag and use
+	<code>&#123;&#123;view TC.TopcoatListItemView&#125;&#125;</code> (or
+	<code>&#123;&#123;topcoat-list-item&#125;&#125;</code>) for
+	each list item.
+</p>
+
+{{#topcoat-list header="Block list example"}}
+	{{#each item in groupItems itemViewClass="TC.TopcoatListItemView"}}
+		{{item}}
+		<a href="#" {{action "removeItem" item}} class="topcoat-list__remove-item" role="button">
+			&times;
+		</a>
+	{{else}}
+		{{#topcoat-list-item class="center"}}
+			<em>No items here yet.</em>
+		{{/topcoat-list-item}}
 	{{/each}}
 {{/topcoat-list}}
+
+<br>
+<form {{action "addItem" on="submit"}}>
+	{{topcoat-text-input class="two-thirds" value=newItem placeholder="Add an item..."}}
+	{{#topcoat-button type="submit" class="quarter"}}Add{{/topcoat-button}}
+</form>
+
+<p>{{show-code show=showBlockCode}}</p>
+
+{{#if showBlockCode}}
+{{#prettify lang="js" linenums="1"}}
+App.ApplicationController = Ember.Controller.extend({
+  items: Em.ArrayProxy.create({content: []}),
+  newItem: '',
+  actions: {
+    addItem: function () {
+      var item = this.get('newItem');
+      if (item) {
+        this.get('items').pushObject(item);
+        this.set('newItem', '');
+      }
+    },
+    removeItem: function (item) {
+      this.get('items').removeObject(item);
+    }
+  }
+});
+{{/prettify}}
+{{#prettify lang="hbs" linenums="1"}}
+&#123;&#123;#topcoat-list header="Block list example"&#125;&#125;
+  &#123;&#123;#each item in items itemViewClass="TC.TopcoatListItemView"&#125;&#125;
+    &#123;&#123;item&#125;&#125;
+    &lt;a href="#" class="remove" &#123;&#123;action "removeItem" item&#125;&#125; role="button"&gt;&times;&lt;/a&gt;
+  &#123;&#123;else&#125;&#125;
+    &#123;&#123;#topcoat-list-item class="center"&#125;&#125;
+      &lt;em&gt;No items here yet.&lt;/em&gt;
+    &#123;&#123;/topcoat-list-item&#125;&#125;
+  &#123;&#123;/each&#125;&#125;
+&#123;&#123;/topcoat-list&#125;&#125;
+
+&lt;form &#123;&#123;action "addItem" on="submit"&#125;&#125;&gt;
+  &#123;&#123;topcoat-text-input value=newItem placeholder="Add an item..."&#125;&#125;
+  &#123;&#123;#topcoat-button type="submit"&#125;&#125;Add&#123;&#123;/topcoat-button&#125;&#125;
+&lt;/form&gt;
+{{/prettify}}
+{{/if}}
+
+
+
+

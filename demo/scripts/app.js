@@ -15,6 +15,7 @@ require('demo/scripts/components/show-code-component');
 // Controllers
 require('demo/scripts/controllers/application-controller');
 require('demo/scripts/controllers/button-bar-controller');
+require('demo/scripts/controllers/list-controller');
 
 // Views
 require('demo/scripts/views/scroll-title-view');
