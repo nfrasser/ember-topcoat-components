@@ -9,7 +9,11 @@
 	@param		{Object} options
 */
 Em.Handlebars.helper('topcoat-input', function (options) {
-	var className = options.hash.topcoatClass || 'topcoat-input',
+	var className = options.hash.topcoatClass || [
+			'topcoat',
+			options.hash.type || 'text',
+			'input'
+		].join('-'),
 		hash = {
 			'class': className + (
 				options.hash.large ? '--large' : ''

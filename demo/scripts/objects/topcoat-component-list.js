@@ -33,6 +33,9 @@ App.topcoatComponentList = Ember.ArrayProxy.create({
 		name: 'text-input',
 		title: 'Text Input'
 	}, {
+		name: 'search-input',
+		title: 'Search Input'
+	}, {
 		name: 'textarea',
 		title: 'Textarea'
 	}]
