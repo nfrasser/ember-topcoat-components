@@ -1,0 +1,20 @@
+<h3>Basic Usage</h3>
+
+<p>
+	Treat the switch as
+	<code>&#123;&#123;input type="checkbox"&#125;&#125;</code>.
+</p>
+
+{{topcoat-switch checked=false}}&nbsp;
+{{topcoat-switch checked=true}}&nbsp;
+{{topcoat-switch checked=false disabled=true}}&nbsp;
+
+<p>{{show-code show=showBasicCode}}</p>
+
+{{#if showBasicCode}}
+{{#prettify lang="hbs" linenums="1"}}
+&#123;&#123;topcoat-switch checked=false&#125;&#125;
+&#123;&#123;topcoat-switch checked=true&#125;&#125;
+&#123;&#123;topcoat-switch checked=false disabled=true&#125;&#125;
+{{/prettify}}
+{{/if}}

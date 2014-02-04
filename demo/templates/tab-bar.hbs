@@ -1,0 +1,24 @@
+<p>
+	The tab bar is an extension of
+	<code>&#123;&#123;topcoat-button-bar type="select"&#125;&#125;</code>.
+</p>
+
+<h3>Basic Usage</h3>
+
+{{topcoat-tab-bar content=items value=selectedItem}}&nbsp;
+<p class="lead">Selected tab: <strong>{{selectedItem}}</strong></p>
+
+<p>{{show-code show=showBasicCode}}</p>
+
+{{#if showBasicCode}}
+{{#prettify lang="js" linenums="1"}}
+App.ApplicationController = Ember.Controller.extend({
+  items: ['one', 'two', 'three'],
+  selectedItem: '{{selectedItem}}'
+});
+{{/prettify}}
+{{#prettify lang="hbs" linenums="1"}}
+&#123;&#123;topcoat-tab-bar content=items value=selectedItem&#125;&#125;
+Selected tab: &#123;&#123;selectedItem&#125;&#125;
+{{/prettify}}
+{{/if}}
