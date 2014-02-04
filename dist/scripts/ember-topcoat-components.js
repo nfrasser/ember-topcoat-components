@@ -1,5 +1,5 @@
 /**
- *  ember-topcoat-components v0.0.0
+ *  ember-topcoat-components v0.9.0
  *  A collection of Ember Components for Adobe's Topcoat CSS framework
  *  https://github.com/nfrasser/ember-topcoat-components
  *  Made by Nick Frasser <nfrasser@gmail.com>
@@ -349,7 +349,7 @@ Em.TEMPLATES["components/topcoat-button-bar-button"] = Ember.Handlebars.template
     });
 }(), function() {
     Em.Handlebars.helper("topcoat-input", function(a) {
-        var b = a.hash.topcoatClass || "topcoat-input", c = {
+        var b = a.hash.topcoatClass || [ "topcoat", a.hash.type || "text", "input" ].join("-"), c = {
             "class": b + (a.hash.large ? "--large" : "") + (a.hash["class"] ? " " + a.hash["class"] : "")
         };
         return Em.merge(a.hash, c), delete a.hash.topcoatClass, Em.Handlebars.helpers.input.call(this, a);
