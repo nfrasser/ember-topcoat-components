@@ -28,7 +28,7 @@ TC.TopcoatListView = Ember.CollectionView.extend({
 
 	itemViewClass: TC.TopcoatListItemView.extend({
 
-		templateName: 'views/topcoat-list-item-view',
+		templateName: 'views/topcoat-list-item',
 
 		value: function () {
 			var content = this.get('content'),

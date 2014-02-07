@@ -5,7 +5,7 @@
 
 var ButtonBarItemViewMixin = Ember.Mixin.create({
 
-	templateName: 'views/topcoat-button-bar-item-view',
+	templateName: 'views/topcoat-button-bar-item',
 	classNameBindings: ['className'],
 
 	componentBinding: 'parentView.component',
@@ -138,7 +138,7 @@ TC.TopcoatButtonBarView = Ember.Select.extend({
 
 	tagName: 'div',
 	defaultTemplate: null,
-	templateName: 'views/topcoat-button-bar-view',
+	templateName: 'views/topcoat-button-bar',
 
 	componentBinding: 'parentView',
 	contentBinding: 'component.content',
