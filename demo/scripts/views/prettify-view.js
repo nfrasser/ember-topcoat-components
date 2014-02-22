@@ -2,7 +2,6 @@
 // Requires Google Code prettify
 // https://code.google.com/p/google-code-prettify/
 
-/* global prettyPrintOne */
 App.PrettifyView = Ember.View.extend({
 
 	classNames: ['prettyprint'],
@@ -27,37 +26,80 @@ App.PrettifyView = Ember.View.extend({
 		return linenums ? 'linenums:' + linenums : null;
 	}.property('linenums'),
 
-	didInsertElement: function () {
-		var view = this;
-		if (window.prettyPrintOne) {
-			this.apply();
-		} else {
-			Em.$.getScript(
-				'//cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.js'
-			).then(function () {
-				Em.$.getScript(
-					'//cdnjs.cloudflare.com/ajax/libs/prettify/r298/lang-css.min.js'
-				).then(function () {
-					view.apply();
-				});
-			});
-		}
-	},
-
 	apply: function () {
-		var lang = this.get('lang');
-		this.$().html(
-			prettyPrintOne(
-				this.$().html(),
-				this.constructor.langMap[lang] || lang,
-				this.get('linenums')
-			)
-		);
+		var view = this,
+			viewClass = this.get('constructor'),
+			lang = this.get('lang');
+
+		this.getPrettify().then(function (prettify) {
+			var $view = view.$();
+			$view.html(
+				prettify(
+					$view.html(),
+					Em.getWithDefault(
+						viewClass,
+						'langMap.' + lang,
+						lang
+					),
+					view.get('linenums')
+				)
+			);
+		});
+
+	}.on('didInsertElement'),
+
+	/**
+		Returns a promise that resolves with the window's `prettyPrintOne`
+		method.
+
+		@method	getPrettify
+		@return	{Ember.RSVP} promise
+	*/
+	getPrettify: function () {
+
+		// Get the static promise property
+		var viewClass = this.get('constructor'),
+			promise = Em.get(viewClass, 'prettifyPromise');
+
+		if (!promise) {
+
+			if (typeof window.prettyPrintOne === 'function') {
+
+				// Prettyprint has already been retrieved, just resolve
+
+				promise = new Em.RSVP.Promise(function (resolve) {
+					resolve(window.prettyPrintOne);
+				});
+
+			} else {
+
+				// Get prettify and all its required syntax packages
+
+				promise = Em.RSVP.all([
+					Em.$.getScript(
+						'//cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.js'
+					),
+					Em.$.getScript(
+						'//cdnjs.cloudflare.com/ajax/libs/prettify/r298/lang-css.min.js'
+					)
+				]).then(function () {
+					Em.set(viewClass, 'prettifyPromise', null);
+					return window.prettyPrintOne || Em.RSVP.reject(
+						'Prettify could not be retrieved'
+					);
+				});
+
+				Em.set(viewClass, 'prettifyPromise', promise);
+			}
+		}
+
+		return promise;
 	}
 
 });
 
 App.PrettifyView.reopenClass({
+	prettifyPromise: null,
 	langMap: {
 		'hbs': 'html',
 		'handlebars': 'html'
