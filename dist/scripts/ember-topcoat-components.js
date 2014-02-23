@@ -55,22 +55,19 @@ Em.TEMPLATES["components/topcoat-button-bar-button"] = Ember.Handlebars.template
             type: "checkbox",
             checked: "checked",
             name: "name",
-            disabled: "disabled",
-            value: "value"
+            disabled: "disabled"
         },
         hashTypes: {
             type: "STRING",
             checked: "ID",
             name: "ID",
-            disabled: "ID",
-            value: "ID"
+            disabled: "ID"
         },
         hashContexts: {
             type: b,
             checked: b,
             name: b,
-            disabled: b,
-            value: b
+            disabled: b
         },
         contexts: [],
         types: [],
@@ -225,31 +222,28 @@ Em.TEMPLATES["components/topcoat-button-bar-button"] = Ember.Handlebars.template
             "class": "topcoat-switch__input",
             checked: "checked",
             name: "name",
-            disabled: "disabled",
-            value: "value"
+            disabled: "disabled"
         },
         hashTypes: {
             type: "STRING",
             "class": "STRING",
             checked: "ID",
             name: "ID",
-            disabled: "ID",
-            value: "ID"
+            disabled: "ID"
         },
         hashContexts: {
             type: b,
             "class": b,
             checked: b,
             name: b,
-            disabled: b,
-            value: b
+            disabled: b
         },
         contexts: [],
         types: [],
         data: e
     }, f ? f.call(b, g) : i.call(b, "input", g)))), e.buffer.push('\n<div class="topcoat-switch__toggle"></div>\n'), 
     h;
-}), Em.TEMPLATES["views/topcoat-button-bar-item-view"] = Ember.Handlebars.template(function(a, b, c, d, e) {
+}), Em.TEMPLATES["views/topcoat-button-bar-item"] = Ember.Handlebars.template(function(a, b, c, d, e) {
     function f(a, b) {
         var d, e, f = "";
         return b.buffer.push("\n "), b.buffer.push(l((d = c.input || a && a.input, e = {
@@ -307,7 +301,7 @@ Em.TEMPLATES["components/topcoat-button-bar-button"] = Ember.Handlebars.template
         data: e
     }, h ? h.call(b, i) : k.call(b, "topcoat-button-bar-button", i)))), e.buffer.push("\n"), 
     j;
-}), Em.TEMPLATES["views/topcoat-button-bar-view"] = Ember.Handlebars.template(function(a, b, c, d, e) {
+}), Em.TEMPLATES["views/topcoat-button-bar"] = Ember.Handlebars.template(function(a, b, c, d, e) {
     this.compilerInfo = [ 4, ">= 1.0.0" ], c = this.merge(c, Ember.Handlebars.helpers), 
     e = e || {};
     var f = this.escapeExpression;
@@ -325,7 +319,7 @@ Em.TEMPLATES["components/topcoat-button-bar-button"] = Ember.Handlebars.template
         types: [ "ID" ],
         data: e
     })));
-}), Em.TEMPLATES["views/topcoat-list-item-view"] = Ember.Handlebars.template(function(a, b, c, d, e) {
+}), Em.TEMPLATES["views/topcoat-list-item"] = Ember.Handlebars.template(function(a, b, c, d, e) {
     this.compilerInfo = [ 4, ">= 1.0.0" ], c = this.merge(c, Ember.Handlebars.helpers), 
     e = e || {};
     var f, g = "";
@@ -340,11 +334,11 @@ Em.TEMPLATES["components/topcoat-button-bar-button"] = Ember.Handlebars.template
 }), function() {
     window.TC = Ember.Namespace.create({
         inject: function(a) {
-            var b = a ? [ a ] : Em.Application.NAMESPACES, c = /^Topcoat.*Component$/, d = {};
-            for (var e in this) c.test(e) && (d[e] = this[e]);
+            var b = a ? Em.isArray(a) ? a : [ a ] : Em.Application.NAMESPACES, c = {};
+            for (var d in this) /^Topcoat.*Component$/.test(d) && (c[d] = this[d]);
             b.forEach(function(a) {
-                a !== this && Em.Application.detect(Em.get(a, "constructor")) && Em.setProperties(a, d);
-            });
+                a !== this && Em.Application.detect(Em.get(a, "constructor")) && Em.setProperties(a, c);
+            }, this);
         }
     });
 }(), function() {
@@ -415,7 +409,7 @@ Em.TEMPLATES["components/topcoat-button-bar-button"] = Ember.Handlebars.template
     });
 }(), function() {
     var a = Ember.Mixin.create({
-        templateName: "views/topcoat-button-bar-item-view",
+        templateName: "views/topcoat-button-bar-item",
         classNameBindings: [ "className" ],
         componentBinding: "parentView.component",
         inputTypeBinding: "parentView.inputType",
@@ -459,7 +453,7 @@ Em.TEMPLATES["components/topcoat-button-bar-button"] = Ember.Handlebars.template
         },
         tagName: "div",
         defaultTemplate: null,
-        templateName: "views/topcoat-button-bar-view",
+        templateName: "views/topcoat-button-bar",
         componentBinding: "parentView",
         contentBinding: "component.content",
         prompt: null,
@@ -548,13 +542,13 @@ Em.TEMPLATES["components/topcoat-button-bar-button"] = Ember.Handlebars.template
 }(), function() {
     TC.TopcoatListItemView = TC.TopcoatView.extend({
         tagName: "li",
-        classNames: [ "topcoat-list__item" ]
+        topcoatClass: "topcoat-list__item"
     }), TC.TopcoatListView = Ember.CollectionView.extend({
         tagName: "ul",
         classNames: [ "topcoat-list__container" ],
         itemLabelPathBinding: "parentView.itemLabelPath",
         itemViewClass: TC.TopcoatListItemView.extend({
-            templateName: "views/topcoat-list-item-view",
+            templateName: "views/topcoat-list-item",
             value: function() {
                 var a = this.get("content"), b = this.get("itemLabelPath");
                 return this.set("_content", a), a && b ? Em.get(a, b) : a;
