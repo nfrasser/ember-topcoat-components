@@ -1,4 +1,4 @@
-App.ButtonBarController = Ember.Controller.extend({
+App.ButtonBarController = App.ComponentController.extend({
 	actions: {
 		alert: function (item) {
 			window.alert(item);

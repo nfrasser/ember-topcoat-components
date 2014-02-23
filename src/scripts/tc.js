@@ -2,13 +2,14 @@ window.TC = Ember.Namespace.create({
 
 	inject: function (App) {
 
-		var namespaces = App ? [App] : Em.Application.NAMESPACES,
-			componentMatch = /^Topcoat.*Component$/,
+		var namespaces = App ? (
+				Em.isArray(App) ? App : [App]
+			) : Em.Application.NAMESPACES,
 			componentClasses = {};
 
 		// Find all the Topcat classes
 		for (var prop in this) {
-			if (componentMatch.test(prop)) {
+			if (/^Topcoat.*Component$/.test(prop)) {
 				componentClasses[prop] = this[prop];
 			}
 		}
@@ -18,7 +19,7 @@ window.TC = Ember.Namespace.create({
 			if (namespace !== this && Em.Application.detect(Em.get(namespace, 'constructor'))) {
 				Em.setProperties(namespace, componentClasses);
 			}
-		});
+		}, this);
 	}
 
 });

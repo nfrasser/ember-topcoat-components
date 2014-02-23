@@ -1,4 +1,4 @@
-App.TabBarController = Ember.Controller.extend({
+App.TabBarController = App.ComponentController.extend({
 	items: [
 		'one',
 		'two',

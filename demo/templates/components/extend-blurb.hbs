@@ -1,0 +1,22 @@
+<p>
+	Define your own <code>{{unbound name}}</code> component by extending or reopening
+	<code>TC.Topcoat{{unbound className}}Component</code>.
+	{{#unbound if includeTemplate}}
+		<br>Be sure to define a template.
+	{{/unbound}}
+</p>
+
+{{#prettify lang="js" linenums=1}}{{#unbound if includeTemplate}}
+// Define your own template or use the default:
+Ember.TEMPLATES['components/my-{{unbound name}}']
+  = Ember.TEMPLATES['components/topcoat-{{unbound name}}'];
+
+{{/unbound}}App.My{{unbound className}}Component = TC.Topcoat{{unbound className}}Component.extend({
+  ...
+});
+{{/prettify}}
+
+<p>Template usage:</p>
+{{#prettify lang="hbs" linenums=1}}
+&#123;&#123;my-{{unbound name}} ...&#125;&#125;
+{{/prettify}}

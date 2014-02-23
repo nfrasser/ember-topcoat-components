@@ -1,0 +1,33 @@
+<p>
+{{#topcoat-button large=isLarge quiet=isQuiet cta=isCta disabled=isDisabled}}
+	My Button
+{{/topcoat-button}}
+</p>
+
+{{topcoat-checkbox checked=isDisabled label="Disabled"}}&nbsp;
+{{topcoat-checkbox checked=isLarge label="Large"}}&nbsp;
+{{topcoat-checkbox checked=isQuiet label="Quiet"}}&nbsp;
+{{topcoat-checkbox checked=isCta label="Call To Action"}}&nbsp;
+
+{{#show-code lang="hbs"}}
+&#123;&#123;#topcoat-button large=isLarge quiet=isQuiet cta=isCta disabled=isDisabled&#125;&#125;
+  My Button
+&#123;&#123;/topcoat-button&#125;&#125;
+&lt;br&gt;
+&lt;label&gt;
+  &#123;&#123;input type="checkbox" checked=isDisabled&#125;&#125;
+  Disabled
+&lt;/label&gt;
+&lt;label&gt;
+  &#123;&#123;input type="checkbox" checked=isLarge&#125;&#125;
+  Large
+&lt;/label&gt;
+&lt;label&gt;
+  &#123;&#123;input type="checkbox" checked=isQuiet&#125;&#125;
+  Quiet
+&lt;/label&gt;
+&lt;label&gt;
+  &#123;&#123;input type="checkbox" checked=isCta&#125;&#125;
+  Call To Action
+&lt;/label&gt;
+{{/show-code}}

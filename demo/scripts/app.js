@@ -1,7 +1,9 @@
 
 var App = window.App = Ember.Application.create();
 
-//require('demo/scripts/bootstrap');
+
+// Helpers
+require('demo/scripts/helpers/brackets');
 
 // Views
 require('demo/scripts/views/component-container-view');
@@ -10,15 +12,21 @@ require('demo/scripts/views/application-view');
 
 // Components
 TC.inject(App);
+require('demo/scripts/components/toggle-text-component');
+require('demo/scripts/components/toggle-code-component');
 require('demo/scripts/components/show-code-component');
+require('demo/scripts/components/extend-blurb-component');
 
 // Controllers
 require('demo/scripts/controllers/application-controller');
+require('demo/scripts/controllers/component-controller');
 require('demo/scripts/controllers/button-bar-controller');
 require('demo/scripts/controllers/tab-bar-controller');
 require('demo/scripts/controllers/list-controller');
 
 // Views
+require('demo/scripts/views/view');
+require('demo/scripts/views/list-item-view');
 require('demo/scripts/views/scroll-title-view');
 
 // Routes

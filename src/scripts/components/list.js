@@ -11,7 +11,7 @@
 */
 TC.TopcoatListItemView = TC.TopcoatView.extend({
 	tagName: 'li',
-	classNames: ['topcoat-list__item']
+	topcoatClass: 'topcoat-list__item'
 });
 
 /**

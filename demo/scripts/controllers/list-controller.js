@@ -1,4 +1,4 @@
-App.ListController = Ember.Controller.extend({
+App.ListController = App.ComponentController.extend({
 
 	actions: {
 		addItem: function () {

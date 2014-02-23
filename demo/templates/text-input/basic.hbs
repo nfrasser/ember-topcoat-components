@@ -1,5 +1,3 @@
-<h3>Basic Usage</h3>
-
 {{topcoat-text-input placeholder="text"}}<br><br>
 {{topcoat-text-input placeholder="text" disabled=true}}<br><br>
 {{topcoat-text-input placeholder="text" value="fail" pattern="not fail"}}<br><br>
@@ -7,15 +5,11 @@
 {{topcoat-text-input large=true placeholder="text" disabled=true}}<br><br>
 {{topcoat-text-input large=true placeholder="text" value="fail" pattern="not fail"}}<br><br>
 
-<p>{{show-code show=showBasicCode}}</p>
-
-{{#if showBasicCode}}
-{{#prettify lang="hbs" linenums="1"}}
+{{#show-code lang="hbs"}}
 &#123;&#123;topcoat-text-input placeholder="text"&#125;&#125;
 &#123;&#123;topcoat-text-input placeholder="text" disabled=true&#125;&#125;
 &#123;&#123;topcoat-text-input placeholder="text" value="fail" pattern="not fail"&#125;&#125;
 &#123;&#123;topcoat-text-input large=true placeholder="text"&#125;&#125;
 &#123;&#123;topcoat-text-input large=true placeholder="text" disabled=true&#125;&#125;
 &#123;&#123;topcoat-text-input large=true placeholder="text" value="fail" pattern="not fail"&#125;&#125;
-{{/prettify}}
-{{/if}}
+{{/show-code}}

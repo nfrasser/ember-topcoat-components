@@ -1,0 +1,33 @@
+<p>
+	Define the <code>action</code> parameter as an action in the current
+	context. Optionally pass in a <code>param</code> to your action.
+</p>
+
+{{#topcoat-button action="showMessage" param="Hello World!"}}
+	Send a message
+{{/topcoat-button}}
+
+{{toggle-code show=showActionCode}}
+
+{{#if showActionCode}}
+{{#prettify lang="js" linenums=1}}
+App.ApplicationRoute = Ember.Route.extend({
+  actions: {
+    showMessage: function (message) {
+      alert('You sent the following message: "' + message + '"');
+    }
+  }
+});
+{{/prettify}}
+{{#prettify lang="hbs" linenums=1}}
+&#123;&#123;#topcoat-button action="showMessage" param="Hello World!"&#125;&#125;
+  Send a message
+&#123;&#123;/topcoat-button&#125;&#125;
+{{/prettify}}
+{{/if}}
+
+<p>
+	You can override the context for the action by redefining the
+	<code>targetObject</code> parameter (e.g.,
+	<code>targetObject=view</code>).
+</p>

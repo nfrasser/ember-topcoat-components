@@ -1,5 +1,3 @@
-<h3>Basic Usage</h3>
-
 {{#topcoat-navigation-bar }}
 	{{#topcoat-navigation-bar-item class="third center"}}
 		{{#topcoat-navigation-bar-title }}
@@ -18,10 +16,7 @@
 	{{/topcoat-navigation-bar-item}}
 {{/topcoat-navigation-bar}}
 
-<p>{{show-code show=showBasicCode}}</p>
-
-{{#if showBasicCode}}
-{{#prettify lang="hbs" linenums="1"}}
+{{#show-code lang="hbs"}}
 &#123;&#123;#topcoat-navigation-bar&#125;&#125;
   &#123;&#123;#topcoat-navigation-bar-item class="third center"&#125;&#125;
     &#123;&#123;#topcoat-navigation-bar-title&#125;&#125;
@@ -39,5 +34,4 @@
     &#123;&#123;/topcoat-navigation-bar-title&#125;&#125;
   &#123;&#123;/topcoat-navigation-bar-item&#125;&#125;
 &#123;&#123;/topcoat-navigation-bar&#125;&#125;
-{{/prettify}}
-{{/if}}
+{{/show-code}}

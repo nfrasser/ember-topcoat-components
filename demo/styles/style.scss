@@ -102,6 +102,10 @@ small {
 	font-size: 65%;
 }
 
+pre, code {
+	 font-family: "Source Code Pro", Monaco, "Courier New", monospace
+}
+
 pre {
 	display: block;
 	overflow: hidden;
@@ -254,6 +258,15 @@ code {
 		opacity: 1;
 	}
 
+}
+
+.jump-list {
+	list-style-type: none;
+	padding-left: 0;
+}
+
+.show-code {
+	padding-bottom: 1px;
 }
 
 .button-bar-fix {

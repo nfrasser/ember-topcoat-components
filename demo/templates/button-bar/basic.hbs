@@ -1,0 +1,54 @@
+<p>
+	Use the <code>&#123;&#123;topcoat-button-bar&#125;&#125;</code>
+	component with an array for the <code>content</code> parameter to
+	generate a button bar.
+</p>
+
+{{topcoat-button-bar content=items}}<br>
+{{topcoat-button-bar content=items large=true}}<br>
+
+{{toggle-code show=showBasicCode}}
+
+{{#if showBasicCode}}
+{{#prettify lang="js" linenums="1"}}
+App.ApplicationController = Ember.Controller.extend({
+  items: ['one', 'two', 'three']
+});
+{{/prettify}}
+{{#prettify lang="hbs" linenums="1"}}
+&#123;&#123;topcoat-button-bar content=items&#125;&#125;
+&#123;&#123;topcoat-button-bar content=items large=true&#125;&#125;
+{{/prettify}}
+{{/if}}
+
+<p>
+	The button bar accepts an <code>action</code> parameter. The action
+	will be called on the current controller when the button is
+	clicked/tapped with the value for that button.
+</p>
+
+<p class="lead">Hit one:</p>
+{{topcoat-button-bar content=items action="alert"}}<br>
+
+{{toggle-code show=showBasicActionCode}}
+
+{{#if showBasicActionCode}}
+{{#prettify lang="js" linenums="1"}}
+App.ApplicationController = Ember.Controller.extend({
+  items: ['one', 'two', 'three'],
+  actions: {
+    alert: function (val) {
+      alert(val);
+    }
+  }
+});
+{{/prettify}}
+{{#prettify lang="hbs" linenums="1"}}
+&#123;&#123;topcoat-button-bar content=items action="alert"&#125;&#125;
+{{/prettify}}
+{{/if}}
+
+<p>
+	Override the component's <code>targetObject</code> property to change
+	the context for the action.
+</p>

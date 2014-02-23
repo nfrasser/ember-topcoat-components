@@ -1,17 +1,11 @@
-<h3>Basic Usage</h3>
-
 {{topcoat-textarea placeholder="text"}}<br><br>
 {{topcoat-textarea placeholder="text" disabled=true}}<br><br>
 {{topcoat-textarea large=true placeholder="text"}}<br><br>
 {{topcoat-textarea large=true placeholder="text" disabled=true}}<br><br>
 
-<p>{{show-code show=showBasicCode}}</p>
-
-{{#if showBasicCode}}
-{{#prettify lang="hbs" linenums="1"}}
+{{#show-code lang="hbs"}}
 &#123;&#123;topcoat-textarea placeholder="text"&#125;&#125;
 &#123;&#123;topcoat-textarea placeholder="text" disabled=true&#125;&#125;
 &#123;&#123;topcoat-textarea large=true placeholder="text"&#125;&#125;
 &#123;&#123;topcoat-textarea large=true placeholder="text" disabled=true&#125;&#125;
-{{/prettify}}
-{{/if}}
+{{/show-code}}

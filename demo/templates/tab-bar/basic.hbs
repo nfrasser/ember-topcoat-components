@@ -1,0 +1,17 @@
+{{topcoat-tab-bar content=items value=selectedItem}}&nbsp;
+<p class="lead">Selected tab: <strong>{{selectedItem}}</strong></p>
+
+{{toggle-code show=showBasicCode}}
+
+{{#if showBasicCode}}
+{{#prettify lang="js" linenums="1"}}
+App.ApplicationController = Ember.Controller.extend({
+  items: ['one', 'two', 'three'],
+  selectedItem: '{{selectedItem}}'
+});
+{{/prettify}}
+{{#prettify lang="hbs" linenums="1"}}
+&#123;&#123;topcoat-tab-bar content=items value=selectedItem&#125;&#125;
+Selected tab: &#123;&#123;selectedItem&#125;&#125;
+{{/prettify}}
+{{/if}}

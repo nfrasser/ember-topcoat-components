@@ -6,10 +6,5 @@ App.ComponentContainerView = Ember.ContainerView.extend({
 		toggleProperty: function (name) {
 			this.toggleProperty(name);
 		}
-	},
-
-	layoutDidChange: function () {
-		Em.run.scheduleOnce('afterRender', this, 'scrollTo', '#component-header');
-	}.observes('templateName')
-
+	}
 });

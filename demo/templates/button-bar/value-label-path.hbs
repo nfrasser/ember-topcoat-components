@@ -1,0 +1,59 @@
+<p>
+	The select and toggle buttons bars have the same API as
+	<a href="http://emberjs.com/api/classes/Ember.Select.html">
+		<code>Ember.Select</code>
+	</a>. That's because <code>Ember.Select</code> is used internally
+	to manage the selections. This means you can specify
+	<code>optionValuePath</code> and <code>optionLabelPath</code>
+	for content where each element is an object.
+<p>
+
+{{topcoat-button-bar type="select"
+	content=items2
+	value=selectedNumber
+	optionValuePath="content.number"
+	optionLabelPath="content.name"
+}}&nbsp;
+<p class="lead">Selected: {{selectedNumber.number}}</strong></p>
+
+{{toggle-code show=showOptionCode}}
+
+{{#if showOptionCode}}
+{{#prettify lang="js" linenums="1"}}
+App.ApplicationController = Ember.Controller.extend({
+  first: {name: 'First', number: 1},
+  second: {name: 'Second', number: 2},
+  third: {name: 'Third', number: 3},
+
+  items: function () {
+    return [
+      this.get('first'),
+      this.get('second'),
+      this.get('third')
+    ];
+  }.property(),
+
+  // Current value: {{#if selectedNumber}}&#123;name: '{{selectedNumber.name}}', number: {{selectedNumber.number}}&#125;{{/if}}
+  selectedItem: function () {
+    return this.get('second');
+  }.property()
+});
+{{/prettify}}
+{{#prettify lang="hbs" linenums="1"}}
+&#123;&#123;topcoat-button-bar type="toggle"
+  content=items
+  value=selectedItem
+  optionValuePath="content.number"
+  optionLabelPath="content.name"
+&#125;&#125;
+Selected: &#123;&#123;selectedItem&#125;&#125;
+{{/prettify}}
+{{/if}}
+
+<p>
+	<strong>Heads Up!</strong>
+	Selected buttons will only appear as active when using
+	<strong>Ember.js v.1.4.0-beta.1</strong> and later. This is due
+	to metamorph tags from the unoptimized <code>&#123;&#123;unbound if&#125;&#125;</code>
+	helper. See <a href="https://github.com/emberjs/ember.js/pull/3881">ember/ember.js#3881</a>.
+</p>

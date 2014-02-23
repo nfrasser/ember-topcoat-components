@@ -18,8 +18,16 @@ App.ApplicationRoute = Ember.Route.extend({
 			$body.addClass(selected.name);
 		},
 
-		sampleAction: function () {
-			window.alert('You sent a sample action!');
+		showMessage: function (message) {
+			window.alert('You sent the following message: "' + message + '"');
+		},
+
+		scrollTo: function (element) {
+			var applicationView = this.get('container').lookup('view:application');
+			if (applicationView) {
+				return applicationView.scrollTo(element);
+			}
 		}
+
 	}
 });

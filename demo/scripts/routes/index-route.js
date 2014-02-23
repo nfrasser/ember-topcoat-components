@@ -1,7 +1,7 @@
 App.IndexRoute = Ember.Route.extend({
 
 	indexComponent: {
-		title: 'Welcome to Ember Topcoat Components!',
+		title: '',
 		name: 'index',
 	},
 

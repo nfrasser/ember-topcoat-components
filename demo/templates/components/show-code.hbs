@@ -1,5 +1,4 @@
+{{toggle-code show=show}}
 {{#if show}}
-	Hide code
-{{else}}
-	Show code
+	{{#prettify lang=lang linenums=linenums}}{{yield}}{{/prettify}}
 {{/if}}

@@ -1,0 +1,18 @@
+{{topcoat-button-bar content=items type="select" value=selectedItem}}&nbsp;
+<p class="lead">Selected: <strong>{{selectedItem}}</strong></p>
+
+{{toggle-code show=showSelectCode}}
+
+{{#if showSelectCode}}
+{{#prettify lang="js" linenums="1"}}
+App.ApplicationController = Ember.Controller.extend({
+  items: ['one', 'two', 'three'],
+  selectedItem: '{{selectedItem}}'
+});
+{{/prettify}}
+{{#prettify lang="hbs" linenums="1"}}
+&#123;&#123;topcoat-button-bar type="select" content=items value=selectedItem&#125;&#125;
+Selected: &#123;&#123;selectedItem&#125;&#125;
+{{/prettify}}
+{{/if}}
+

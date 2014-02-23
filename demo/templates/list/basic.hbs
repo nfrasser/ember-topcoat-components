@@ -1,0 +1,52 @@
+
+<p>
+	Use the Topcoat list by setting the <code>content</code> property
+	to an array of strings.
+</p>
+
+{{topcoat-list content=items header="Example list number one"}}
+
+{{toggle-code show=showBasicCode}}
+
+{{#if showBasicCode}}
+{{#prettify lang="js" linenums="1"}}
+App.ApplicationController = Ember.Controller.extend({
+  items: [
+    'First list item',
+    'Second list item',
+    'Third list item',
+    'Fourth list item',
+    'Fifth list item'
+  ]
+});
+{{/prettify}}
+{{#prettify lang="hbs" linenums="1"}}
+&#123;&#123;topcoat-list content=items header="Example list number one"&#125;&#125;
+{{/prettify}}
+{{/if}}
+
+<p>
+	Specify an <code>itemLabelPath</code> if your content is an array of
+	objects.
+</p>
+
+{{topcoat-list content=objects itemLabelPath="label" header="Example list number two"}}
+
+{{toggle-code show=showItemLabelCode}}
+
+{{#if showItemLabelCode}}
+{{#prettify lang="js" linenums="1"}}
+App.ApplicationController = Ember.Controller.extend({
+  items: [
+    {theId: 1, theLabel: 'First list object'},
+    {theId: 2, theLabel: 'Second list object'},
+    {theId: 3, theLabel: 'Third list object'},
+    {theId: 4, theLabel: 'Fourth list object'},
+    {theId: 5, theLabel: 'Fifth list object'}
+   ]
+});
+{{/prettify}}
+{{#prettify lang="hbs" linenums="1"}}
+&#123;&#123;topcoat-list content=items itemLabelPath="theLabel" header="Example list number two"&#125;&#125;
+{{/prettify}}
+{{/if}}

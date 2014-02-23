@@ -1,5 +1,3 @@
-<h3>Basic Usage</h3>
-
 <p>
 	Available in both inline and block form.
 </p>
@@ -8,12 +6,8 @@
 {{topcoat-notification content="two"}}
 {{#topcoat-notification }}3{{/topcoat-notification}}
 
-<p>{{show-code show=showBasicCode}}</p>
-
-{{#if showBasicCode}}
-{{#prettify lang="hbs" linenums="1"}}
+{{#show-code lang="hbs"}}
 &#123;&#123;topcoat-notification content=1&#125;&#125;
 &#123;&#123;topcoat-notification content="two"&#125;&#125;
 &#123;&#123;#topcoat-notification&#125;&#125;3&#123;&#123;/topcoat-notification&#125;&#125;
-{{/prettify}}
-{{/if}}
+{{/show-code}}

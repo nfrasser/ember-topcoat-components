@@ -75,14 +75,14 @@ App.PrettifyView = Ember.View.extend({
 
 				// Get prettify and all its required syntax packages
 
-				promise = Em.RSVP.all([
+				promise = Em.$.when(
 					Em.$.getScript(
 						'//cdnjs.cloudflare.com/ajax/libs/prettify/r298/prettify.min.js'
 					),
 					Em.$.getScript(
 						'//cdnjs.cloudflare.com/ajax/libs/prettify/r298/lang-css.min.js'
 					)
-				]).then(function () {
+				).then(function () {
 					Em.set(viewClass, 'prettifyPromise', null);
 					return window.prettyPrintOne || Em.RSVP.reject(
 						'Prettify could not be retrieved'

@@ -1,4 +1,3 @@
-<h3>Basic Usage</h3>
 
 <p>
 	The API for the radio buttom is the same as for
@@ -9,15 +8,11 @@
 {{topcoat-radio-button name="example-radio-1" label="Disabled" disabled=true}}<br><br>
 {{topcoat-radio-button name="example-radio-1" leftLabel="Left label"}}<br><br>
 
-<p>{{show-code show=showBasicCode}}</p>
-
-{{#if showBasicCode}}
-{{#prettify lang="hbs" linenums="1"}}
+{{#show-code lang="hbs"}}
 &#123;&#123;topcoat-radio-button name="example-radio-1" label="Regular"&#125;&#125;
 &#123;&#123;topcoat-radio-button name="example-radio-1" label="Disabled" disabled=true&#125;&#125;
 &#123;&#123;topcoat-radio-button name="example-radio-1" leftLabel="Left label"&#125;&#125;
-{{/prettify}}
-{{/if}}
+{{/show-code}}
 
 <p>
 	You can also use the radio button in block form. The layout will be the
@@ -28,31 +23,8 @@
 	This <em>is</em> a radio button
 {{/topcoat-radio-button}}
 
-<p>{{show-code show=showBlockCode}}</p>
-
-{{#if showBlockCode}}
-{{#prettify lang="hbs" linenums="1"}}
+{{#show-code lang="hbs"}}
 &#123;&#123;#topcoat-radio-button name="example-radio-2"&#125;&#125;
   This &lt;em&gt;is&lt;/em&gt; a radio button
 &#123;&#123;/topcoat-radio-button&#125;&#125;
-{{/prettify}}
-{{/if}}
-
-<h3>Extending the Radio button</h3>
-
-<p>Define your new radio-button component by extending or reopening <code>TC.TopcoatCheckboxComponent</code>. Be sure to define a template.</p>
-
-{{#prettify lang="js" linenums=1}}
-// Define your own template or use the default:
-Ember.TEMPLATES['components/my-radio-button']
-  = Ember.TEMPLATES['components/topcoat-radio-button'];
-
-App.MyRadioButtonComponent = TC.TopcoatRadioButtonComponent.extend({
-  ...
-});
-{{/prettify}}
-
-<p>Template usage:</p>
-{{#prettify lang="hbs" linenums=1}}
-&#123;&#123;my-radio-button ...&#125;&#125;
-{{/prettify}}
+{{/show-code}}

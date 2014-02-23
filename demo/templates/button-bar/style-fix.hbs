@@ -1,0 +1,31 @@
+<div class="button-bar-fix">
+	{{topcoat-button-bar content=items}}<br>
+</div>
+
+<p>
+	Unfortunately Ember's Metamorph HTML syntax breaks the button bar's
+	style. This plugin does not provide the required CSS fix, but you can
+	add it to your own styles if you require it:
+</p>
+
+{{#prettify lang="css" linenums="1"}}
+.topcoat-button-bar > .topcoat-button-bar__item:first-of-type {
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+
+.topcoat-button-bar > .topcoat-button-bar__item:last-of-type {
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+.topcoat-button-bar__item:first-of-type > .topcoat-button-bar__button,
+.topcoat-button-bar__item:first-of-type > .topcoat-button-bar__button--large {
+  border-right: none;
+}
+
+.topcoat-button-bar__item:last-of-type > .topcoat-button-bar__button,
+.topcoat-button-bar__item:last-of-type > .topcoat-button-bar__button--large {
+  border-left: none;
+}
+{{/prettify}}
