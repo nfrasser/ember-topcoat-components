@@ -48,8 +48,15 @@ var ButtonBarFormItemView = Ember.SelectOption.extend(ButtonBarItemViewMixin, {
 		*/
 		check: function () {
 			var $input = this.$('input'),
-				checked = $input.prop('checked');
-			$input.prop('checked', !checked);
+				checked = $input.prop('checked'),
+				selector = this.get('parentView');
+
+			if (selector.get('multiple')) {
+				$input.prop('checked', !checked);
+			} else if (!checked) {
+				$input.prop('checked', true);
+			}
+
 			this.get('parentView').trigger('change');
 			return true;
 		}
