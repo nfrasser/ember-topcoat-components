@@ -328,12 +328,22 @@ code {
 }
 
 .demo-footer {
-  padding: 15px;
+  padding: 20px 5px;
   margin-top: 15px;
-  line-height: 40px;
   text-align: center;
   color: #464646;
   background-color: #f8f8f8;
+}
+
+.demo-footer__separator {
+  display: block;
+  height: 1px;
+  color: transparent;
+  @media (min-width: $min-sm-width) {
+    display: inline;
+    height: auto;
+    color: inherit;
+  }
 }
 
 .topcoat-mobile-dark,
