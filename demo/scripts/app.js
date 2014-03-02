@@ -38,7 +38,7 @@ require('demo/scripts/routes/component-route');
 require('demo/scripts/objects/topcoat-component-list');
 
 App.Router.map(function () {
-	App.topcoatComponentList.forEach(function (component) {
-		this.route(component.name);
-	}, this);
+  App.topcoatComponentList.forEach(function (component) {
+    this.route(component.name);
+  }, this);
 });

@@ -1,55 +1,55 @@
 <header class="demo-nav" role="navigation">
 
-	<div class="demo-nav__header">
-		{{#link-to "index" class="demo-nav__brand"}}
-			<h1>
-				Topcoat Components
-				<small>for Ember.js</small>
-			</h1>
-		{{/link-to}}
-	</div>
+  <div class="demo-nav__header">
+    {{#link-to "index" class="demo-nav__brand"}}
+      <h1>
+        Topcoat Components
+        <small>for Ember.js</small>
+      </h1>
+    {{/link-to}}
+  </div>
 
 </header>
 
 <div class="container">
-	<div class="row">
-		<div class="component-list">
-			<div class="center">
-				<label for="topcoat-theme-selector" class="sr-only">
-					Select a theme:
-				</label>
-				<br>
-				{{view Ember.Select
-					id="topcoat-theme-selector"
-					className="topcoat-theme-selector"
-					content=stylesheets
-					value=stylesheets.selected
-					optionLabelPath="content.title"
-					optionValuePath="content.name"
-				}}
-			</div>
-			<br>
+  <div class="row">
+    <div class="component-list">
+      <div class="center">
+        <label for="topcoat-theme-selector" class="sr-only">
+          Select a theme:
+        </label>
+        <br>
+        {{view Ember.Select
+          id="topcoat-theme-selector"
+          className="topcoat-theme-selector"
+          content=stylesheets
+          value=stylesheets.selected
+          optionLabelPath="content.title"
+          optionValuePath="content.name"
+        }}
+      </div>
+      <br>
 
-			<ul class="component-list__container">
-			{{#each App.topcoatComponentList}}
-				<li class="component-list__item">
-					{{link-to title name class="component-list__link"}}
-				</li>
-			{{/each}}
-			</ul>
-		</div>
-		<div class="component-demo">
-			<header id="component-header">
-				{{scroll-title title=component.title class="component-title" tagName="h2"}}
-			</header>
-			<section {{bind-attr id=component.name}} class="component">
-				{{outlet view="componentContainer"}}
-			</section>
-		</div>
-	</div>
+      <ul class="component-list__container">
+      {{#each App.topcoatComponentList}}
+        <li class="component-list__item">
+          {{link-to title name class="component-list__link"}}
+        </li>
+      {{/each}}
+      </ul>
+    </div>
+    <div class="component-demo">
+      <header id="component-header">
+        {{scroll-title title=component.title class="component-title" tagName="h2"}}
+      </header>
+      <section {{bind-attr id=component.name}} class="component">
+        {{outlet view="componentContainer"}}
+      </section>
+    </div>
+  </div>
 </div>
 
 <footer class="demo-footer">
-	<small>Made by Nick</small>
+  <small>Made by Nick</small>
 </footer>
 

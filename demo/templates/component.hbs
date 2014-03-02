@@ -1,27 +1,27 @@
 <div class="lead">
-	<ul class="jump-list">
-		{{#each content.sections itemViewClass="App.ListItemView"}}
-			<a {{action "scrollTo" headingSelector}} href="#">
-				{{unbound title}}
-			</a>
-		{{/each}}
-		{{#unbound if content.showExtending}}
-		<li>
-			<a {{action "scrollTo" "#extending-component"}} href="#">
-				Extending the {{unbound content.title}}
-			</a>
-		</li>
-		{{/unbound}}
-	</ul>
+  <ul class="jump-list">
+    {{#each content.sections itemViewClass="App.ListItemView"}}
+      <a {{action "scrollTo" headingSelector}} href="#">
+        {{unbound title}}
+      </a>
+    {{/each}}
+    {{#unbound if content.showExtending}}
+    <li>
+      <a {{action "scrollTo" "#extending-component"}} href="#">
+        Extending the {{unbound content.title}}
+      </a>
+    </li>
+    {{/unbound}}
+  </ul>
 </div>
 
 {{#each section in content.sections}}
 
-	<h3 id="{{unbound section.headingId}}">{{unbound section.title}}</h3>
-	{{partial section.templateName}}
+  <h3 id="{{unbound section.headingId}}">{{unbound section.title}}</h3>
+  {{partial section.templateName}}
 {{/each}}
 
 {{#unbound if content.showExtending}}
-	<h3 id="extending-component">Extending the {{unbound content.title}}</h3>
-	{{extend-blurb name=content.name includeTemplate=content.includeExtendTemplate}}
+  <h3 id="extending-component">Extending the {{unbound content.title}}</h3>
+  {{extend-blurb name=content.name includeTemplate=content.includeExtendTemplate}}
 {{/unbound}}

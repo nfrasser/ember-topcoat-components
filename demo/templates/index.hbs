@@ -1,22 +1,22 @@
 <p class="lead">
 
-	Use these components for your <a href="http://emberjs.com/"
-	target="_blank">Ember.js</a> JavaScript project that uses Adobe's <a
-	href="http://topcoat.io/" target="_blank">Topcoat</a> CSS framework. This
-	plugin is 100% free, open-sourced, and hosted on <a
-	href="https://github.com/nfrasser/ember-topcoat-components"
-	target="_blank">GitHub</a>.
+  Use these components for your <a href="http://emberjs.com/"
+  target="_blank">Ember.js</a> JavaScript project that uses Adobe's <a
+  href="http://topcoat.io/" target="_blank">Topcoat</a> CSS framework. This
+  plugin is 100% free, open-sourced, and hosted on <a
+  href="https://github.com/nfrasser/ember-topcoat-components"
+  target="_blank">GitHub</a>.
 
 </p>
 
 <div class="center">
-	<object type="image/svg+xml" data="images/logo.svg" width="300" height="300" class="svg-content"></object>
-	<p>
-		<strong>Download</strong>:
-		<a href="https://raw.github.com/nfrasser/ember-topcoat-components/master/dist/scripts/ember-topcoat-components.min.js" download="ember-topcoat-components.min.js">Minified</a>
-		&nbsp;·&nbsp;
-		<a href="https://raw.github.com/nfrasser/ember-topcoat-components/master/dist/scripts/ember-topcoat-components.js" download="ember-topcoat-components.js">Source</a>
-	</p>
+  <object type="image/svg+xml" data="images/logo.svg" width="300" height="300" class="svg-content"></object>
+  <p>
+    <strong>Download</strong>:
+    <a href="https://raw.github.com/nfrasser/ember-topcoat-components/master/dist/scripts/ember-topcoat-components.min.js" download="ember-topcoat-components.min.js">Minified</a>
+    &nbsp;·&nbsp;
+    <a href="https://raw.github.com/nfrasser/ember-topcoat-components/master/dist/scripts/ember-topcoat-components.js" download="ember-topcoat-components.js">Source</a>
+  </p>
 </div>
 
 
@@ -24,8 +24,8 @@
 
 <p>
 
-	Download the source from above or add to your project via <a
-	href="http://bower.io/">Bower</a>:
+  Download the source from above or add to your project via <a
+  href="http://bower.io/">Bower</a>:
 
 </p>
 
@@ -35,7 +35,7 @@ bower install ember-topcoat-components --save
 
 
 <p>
-	Then include it in in your HTML following the jQuery, Handlebars, and Ember:
+  Then include it in in your HTML following the jQuery, Handlebars, and Ember:
 </p>
 
 {{#prettify lang="html" linenums=1}}
@@ -53,10 +53,10 @@ bower install ember-topcoat-components --save
 
 <p>
 
-	You will now have access to the components within the <code>TC</code> Ember
-	namespace. Before you can use these in your templates, you have to inject
-	them into your app's scope. Quickly do this with the provided
-	<code>TC.inject()</code> function:
+  You will now have access to the components within the <code>TC</code> Ember
+  namespace. Before you can use these in your templates, you have to inject
+  them into your app's scope. Quickly do this with the provided
+  <code>TC.inject()</code> function:
 
 </p>
 
@@ -80,9 +80,9 @@ App.Router.map(function () {
 <h2>Components</h2>
 
 <div class="lead">
-	<ul>
-		{{#each App.topcoatComponentList itemViewClass="App.ListItemView"}}
-			{{link-to title name}}
-		{{/each}}
-	</ul>
+  <ul>
+    {{#each App.topcoatComponentList itemViewClass="App.ListItemView"}}
+      {{link-to title name}}
+    {{/each}}
+  </ul>
 </div>

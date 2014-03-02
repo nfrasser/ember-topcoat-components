@@ -1,10 +1,10 @@
 App.ComponentContainerView = Ember.ContainerView.extend({
-	tagName: 'article',
-	classNames: ['component'],
+  tagName: 'article',
+  classNames: ['component'],
 
-	actions: {
-		toggleProperty: function (name) {
-			this.toggleProperty(name);
-		}
-	}
+  actions: {
+    toggleProperty: function (name) {
+      this.toggleProperty(name);
+    }
+  }
 });

@@ -1,9 +1,9 @@
 <h3 class="topcoat-list__header">{{header}}</h3>
 {{#if hasContent}}
-	{{view TC.TopcoatListView content=content itemLabelPath=itemLabelPath}}
+  {{view TC.TopcoatListView content=content itemLabelPath=itemLabelPath}}
 {{else}}
-	<ul class="topcoat-list__container">
-		{{yield}}
-	</ul>
+  <ul class="topcoat-list__container">
+    {{yield}}
+  </ul>
 {{/if}}
 

@@ -17,7 +17,7 @@ var mountFolder = function (connect, dir) {
 module.exports = function (grunt) {
 
 	// show elapsed time at the end
-	require('time-grunt')(grunt);
+require('time-grunt')(grunt);
 	// load all grunt tasks
 	require('load-grunt-tasks')(grunt);
 
@@ -481,7 +481,7 @@ module.exports = function (grunt) {
 
 	grunt.registerTask('test', [
 		'clean:main',
-		'replace:app',
+		'replace',
 		'concurrent:test',
 		'neuter:app',
 		'connect:test',
