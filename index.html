@@ -1,18 +1,138 @@
 <!doctype html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
 
-    <title>Topcoat Components for Ember.js</title>
-    <link rel="icon" href="favicon.ico">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" id="topcoat-stylesheet" href="vendor/topcoat/css/topcoat-mobile-dark.min.css">
+  <title>Topcoat Components for Ember.js</title>
 
-    <link rel="stylesheet" href="styles/3b6857a7.main.css"/>
+  <meta name="description=" content="Use these components for your Ember.js
+  JavaScript project that uses Adobe's Topcoat CSS framework. This plugin is
+  100% free, open-sourced, and hosted on GitHub.">
+
+  <link rel="icon" href="favicon.ico">
+
+  <link rel="stylesheet" id="topcoat-stylesheet" href="vendor/topcoat/css/topcoat-mobile-dark.min.css">
+
+  <link rel="stylesheet" href="styles/3b6857a7.main.css"/>
 
 </head>
 <body class="topcoat-mobile-dark">
+
+  <noscript>
+
+    <header role="navigation">
+      <h1>
+        <a href="#">Topcoat Components <small>for Ember.js</small></a>
+      </h1>
+
+    </header>
+
+    <section>
+
+      <p class="lead">
+
+        Use these components for your <a href="http://emberjs.com/" target="_blank">Ember.js</a> JavaScript project that uses Adobe's <a href="http://topcoat.io/" target="_blank">Topcoat</a> CSS framework. This
+        plugin is 100% free, open-sourced, and hosted on <a href="https://github.com/nfrasser/ember-topcoat-components">GitHub</a>.
+
+      </p>
+
+      <h2>Components</h2>
+      <ul role="navigation">
+        <li><a href="#/button">Button</a></li>
+        <li><a href="#/button-bar">Button Bar</a></li>
+        <li><a href="#/checkbox">Checkbox</a></li>
+        <li><a href="#/radio-button">Radio Button</a></li>
+        <li><a href="#/list">List</a></li>
+        <li><a href="#/navigation-bar">Navigation Bar</a></li>
+        <li><a href="#/notification">Notification</a></li>
+        <li><a href="#/range">Range</a></li>
+        <li><a href="#/switch">Switch</a></li>
+        <li><a href="#/tab-bar">Tab Bar</a></li>
+        <li><a href="#/text-input">Text Input</a></li>
+        <li><a href="#/search-input">Search Input</a></li>
+        <li><a href="#/textarea">Textarea</a></li>
+      </ul>
+
+      <div>
+        <object type="image/svg+xml" data="images/logo.svg" width="300" height="300" class="svg-content" aria-label="Site logo"></object>
+        <p>
+          <strong>Download</strong>:
+          <a href="https://raw.github.com/nfrasser/ember-topcoat-components/master/dist/scripts/ember-topcoat-components.min.js" download="ember-topcoat-components.min.js">Minified</a>
+          &nbsp;·&nbsp;
+          <a href="https://raw.github.com/nfrasser/ember-topcoat-components/master/dist/scripts/ember-topcoat-components.js" download="ember-topcoat-components.js">Source</a>
+        </p>
+      </div>
+
+
+      <h2>Getting Started</h2>
+
+      <p>
+
+        Download the source from above or add to your project via <a href="http://bower.io/">Bower</a>:
+
+      </p>
+
+      <pre>
+  bower install ember-topcoat-components --save
+      </pre>
+
+      <p>
+        Then include it in your HTML following jQuery, Handlebars, and Ember:
+      </p>
+
+      <pre>
+  &lt;!-- Frameworks --&gt;
+  &lt;script src="scripts/jquery.js"&gt;&lt;/script&gt;
+  &lt;script src="scripts/handlebars.js"&gt;&lt;/script&gt;
+  &lt;script src="scripts/ember.js"&gt;&lt;/script&gt;
+
+  &lt;!-- Components and other plugins --&gt;
+  &lt;script src="scripts/ember-topcoat-components.js"&gt;&lt;/script&gt;
+
+  &lt;!-- Your Ember App --&gt;
+  &lt;script src="scripts/app.js"&gt;&lt;/script&gt;
+      </pre>
+
+      <p>
+
+        You will now have access to the components within the <code>TC</code> Ember
+        namespace. Before you can use these in your templates, you have to inject
+        them into your app's scope. Quickly do this with the provided
+        <code>TC.inject()</code> function:
+
+      </p>
+
+      <pre>
+  // app.js
+  var App = Ember.Application.create();
+
+  // Define controllers, views, etc.
+  // ...
+
+  // Components
+  TC.inject(App);
+
+  // ...
+
+  App.Router.map(function () {
+    // ...
+  });
+      </pre>
+
+      <p>Please enable JavaScript to view a demo
+    </p></section>
+
+    <footer>
+      <small>
+        Copyright 2014 Nick Frasser ·
+        <a href="https://github.com/nfrasser/ember-topcoat-components/blob/master/LICENSE">License</a> ·
+        <a href="https://github.com/nfrasser/ember-topcoat-components">Project Home</a>
+      </small>
+    </footer>
+
+  </noscript>
 
   <script>
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -25,9 +145,9 @@
 
   <script src="scripts/2dfb8fc9.vendor.js"></script>
 
-  <script src="scripts/4d8e61a5.components.js"></script>
+  <script src="scripts/c12ab0b9.components.js"></script>
 
-  <script src="scripts/8cbc06b1.demo.js"></script>
+  <script src="scripts/5725ada2.demo.js"></script>
 
 
 </body>
