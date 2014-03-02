@@ -201,7 +201,10 @@ module.exports = function (grunt) {
 			},
 			dist: {
 				options: {
-					sourcemap: false
+					environment: 'production',
+					//sourcemap: false,
+					debugInfo: false
+
 				}
 			},
 			demo: {
