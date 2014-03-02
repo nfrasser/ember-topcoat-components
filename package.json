@@ -32,7 +32,8 @@
     "time-grunt": "0.2.x",
     "grunt-replace": "0.5.x",
     "jshint-stylish": "0.1.x",
-    "grunt-neuter": "0.6.x"
+    "grunt-neuter": "0.6.x",
+    "grunt-gh-pages": "^0.9.1"
   },
   "engines": {
     "node": ">=0.8.0"

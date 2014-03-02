@@ -142,11 +142,18 @@ module.exports = function (grunt) {
 				files: [{
 					dot: true,
 					src: [
-						'!<%= config.demo %>/.git*'
+						'.tmp/**'
 					]
 				}]
 			},
-			server: '.tmp/demo'
+			publish: {
+				files: [{
+					dot: true,
+					src: [
+						'.grunt/**'
+					]
+				}]
+			}
 		},
 
 		symlink: {
@@ -423,7 +430,15 @@ module.exports = function (grunt) {
 				src: '<%= config.demo %>/scripts/app.js',
 				dest: '.tmp/scripts/demo-scripts.js'
 			}
+		},
+
+		'gh-pages': {
+			options: {
+				base: '.tmp/dist'
+			},
+			src: ['**']
 		}
+
 	});
 
 	// Currently only the targets 'demo' and 'test' are supported
@@ -477,6 +492,13 @@ module.exports = function (grunt) {
 		'copy',
 		'rev',
 		'usemin'
+	]);
+
+	grunt.registerTask('publish', [
+		'clean:main',
+		'build',
+		'gh-pages',
+		'clean:publish'
 	]);
 
 	grunt.registerTask('default', [
