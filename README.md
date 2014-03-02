@@ -1,6 +1,5 @@
-Topcoat Components <small>for Ember.js</small>
+# Topcoat Components <sub><sup>for Ember.js</sup></sub>
 [![Node Dependencies](https://david-dm.org/nfrasser/ember-topcoat-components/dev-status.png)](https://david-dm.org/nfrasser/ember-topcoat-components/#info=devDependencies)
-========================
 
 Use these components for your [Ember.js](http://emberjs.com) JavaScript project
 that uses Adobe's [Topcoat](http://topcoat.io/) CSS framework.
@@ -114,10 +113,13 @@ often:
 
 * `test` - Run the complete test suite with QUnit and Phantom.js
 * `build` - Compile source code and the demo site
+* `server:demo` - Begin watching files for changes and launch the demo site at [localhost:9000](http://localhost:9000/)
+* `server:test` - Begin watching files for changes and launch the QUnit test site at [localhost:9001](http://localhost:9001/)
+* `build` - Compile source code and the demo site
 * `publish` - Publish the demo and documentation to GitHub pages
 * `default` - JSHint, test, and build
 
-### License
+## License
 
 MIT
 
