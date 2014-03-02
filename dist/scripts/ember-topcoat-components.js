@@ -426,8 +426,9 @@ Em.TEMPLATES["components/topcoat-button-bar-button"] = Ember.Handlebars.template
         tagName: "label",
         actions: {
             check: function() {
-                var a = this.$("input"), b = a.prop("checked");
-                return a.prop("checked", !b), this.get("parentView").trigger("change"), !0;
+                var a = this.$("input"), b = a.prop("checked"), c = this.get("parentView");
+                return c.get("multiple") ? a.prop("checked", !b) : b || a.prop("checked", !0), this.get("parentView").trigger("change"), 
+                !0;
             }
         },
         updateCheckbox: function() {
