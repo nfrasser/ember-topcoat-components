@@ -1,17 +1,19 @@
-<ul class="jump-list">
-	{{#each content.sections itemViewClass="App.ListItemView"}}
-		<a {{action "scrollTo" headingSelector}} href="#">
-			{{unbound title}}
-		</a>
-	{{/each}}
-	{{#unbound if content.showExtending}}
-	<li>
-		<a {{action "scrollTo" "#extending-component"}} href="#">
-			Extending the {{unbound content.title}}
-		</a>
-	</li>
-	{{/unbound}}
-</ul>
+<div class="lead">
+	<ul class="jump-list">
+		{{#each content.sections itemViewClass="App.ListItemView"}}
+			<a {{action "scrollTo" headingSelector}} href="#">
+				{{unbound title}}
+			</a>
+		{{/each}}
+		{{#unbound if content.showExtending}}
+		<li>
+			<a {{action "scrollTo" "#extending-component"}} href="#">
+				Extending the {{unbound content.title}}
+			</a>
+		</li>
+		{{/unbound}}
+	</ul>
+</div>
 
 {{#each section in content.sections}}
 

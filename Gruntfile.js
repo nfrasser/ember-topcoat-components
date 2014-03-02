@@ -197,8 +197,7 @@ module.exports = function (grunt) {
 				httpGeneratedImagesPath: '/images/generated',
 				httpFontsPath: '/styles/fonts',
 				relativeAssets: false,
-				sourcemap: true,
-				require: 'bootstrap-sass'
+				//sourcemap: true
 			},
 			dist: {
 				options: {
