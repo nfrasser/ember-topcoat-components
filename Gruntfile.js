@@ -409,12 +409,22 @@ require('time-grunt')(grunt);
 
     emberTemplates: {
       options: {
+
         templateName: function (sourceFile) {
+
           // Get rid of '{subfolder}/templates/' at the beginning
           return sourceFile.replace(/[^\.]*\/templates\//, '');
         },
+
         templateRegistration: function (name, contents) {
+
           contents = contents.replace(/[\t]+/g, ' ');
+
+          if (/^components\//.test(name)) {
+            // Can get rid of even more space for components
+            contents = contents.replace(/([\x20]|\\n)+/g, ' ');
+          }
+
           return 'Em.TEMPLATES[\'' + name + '\'] = ' + contents + ';';
         },
       },
