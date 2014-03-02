@@ -377,6 +377,14 @@ module.exports = function (grunt) {
 						'images/{,*/}*.{webp,gif}',
 						'styles/fonts/*'
 					]
+				}, {
+					expand: true,
+					cwd: 'vendor',
+					dest: '<%= config.site %>/vendor',
+					src: [
+						'topcoat/css/*.min.css',
+						'topcoat/font/*.otf'
+					]
 				}]
 			}
 		},
@@ -449,7 +457,7 @@ module.exports = function (grunt) {
 		target = target || 'demo';
 
 		tasks.push(
-			'clean:server',
+			'clean:main',
 			'replace:demo',
 			'concurrent:' + target,
 			'neuter:app'
@@ -471,7 +479,7 @@ module.exports = function (grunt) {
 	});
 
 	grunt.registerTask('test', [
-		'clean:server',
+		'clean:main',
 		'replace:app',
 		'concurrent:test',
 		'neuter:app',
