@@ -1,19 +1,19 @@
 var stylesheets = [{
 	name: 'topcoat-desktop-dark',
 	title: 'Topcoat Desktop Dark',
-	url: 'vendor/topcoat/css/topcoat-desktop-dark.css'
+	url: 'vendor/topcoat/css/topcoat-desktop-dark.min.css'
 }, {
 	name: 'topcoat-desktop-light',
 	title: 'Topcoat Desktop Light',
-	url: 'vendor/topcoat/css/topcoat-desktop-light.css'
+	url: 'vendor/topcoat/css/topcoat-desktop-light.min.css'
 }, {
 	name: 'topcoat-mobile-dark',
 	title: 'Topcoat Mobile Dark',
-	url: 'vendor/topcoat/css/topcoat-mobile-dark.css'
+	url: 'vendor/topcoat/css/topcoat-mobile-dark.min.css'
 }, {
 	name: 'topcoat-mobile-light',
 	title: 'Topcoat Mobile Light',
-	url: 'vendor/topcoat/css/topcoat-mobile-light.css'
+	url: 'vendor/topcoat/css/topcoat-mobile-light.min.css'
 }];
 
 /**

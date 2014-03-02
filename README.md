@@ -2,7 +2,8 @@
 [![Node Dependencies](https://david-dm.org/nfrasser/ember-topcoat-components/dev-status.png)](https://david-dm.org/nfrasser/ember-topcoat-components/#info=devDependencies)
 
 Use these components for your [Ember.js](http://emberjs.com) JavaScript project
-that uses Adobe's [Topcoat](http://topcoat.io/) CSS framework.
+that uses Adobe's [Topcoat](http://topcoat.io/) CSS framework. Inspired by
+[ember-addons/bootstrap-for-ember](https://github.com/ember-addons/bootstrap-for-ember)
 
 **Download**
 
