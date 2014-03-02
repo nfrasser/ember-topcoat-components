@@ -372,7 +372,7 @@ require('time-grunt')(grunt);
           cwd: '<%= config.demo %>',
           dest: '<%= config.site %>',
           src: [
-            '*.{ico,txt}',
+            '*.{ico,txt,png}',
             '.htaccess',
             'images/{,*/}*.{webp,gif}',
             'styles/fonts/*'
