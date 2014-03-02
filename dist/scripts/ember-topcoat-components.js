@@ -1,8 +1,8 @@
 /**
- *  ember-topcoat-components v0.9.0
+ *  ember-topcoat-components 1.0.0
  *  A collection of Ember Components for Adobe's Topcoat CSS framework
  *  https://github.com/nfrasser/ember-topcoat-components
- *  Made by Nick Frasser <nfrasser@gmail.com>
+ *  Nick Frasser (@nfrasser)
  */
 Em.TEMPLATES["components/topcoat-button-bar-button"] = Ember.Handlebars.template(function(a, b, c, d, e) {
     this.compilerInfo = [ 4, ">= 1.0.0" ], c = this.merge(c, Ember.Handlebars.helpers), 

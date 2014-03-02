@@ -35,10 +35,10 @@ require('time-grunt')(grunt);
     config: appConfig,
     banner: [
       '/**',
-      ' *  <%= pkg.title || pkg.name %> v<%= pkg.version %>',
+      ' *  <%= pkg.title || pkg.name %> <%= pkg.version %>',
       ' *  <%= pkg.description %>',
       ' *  <%= pkg.homepage %>',
-      ' *  Made by <%= pkg.author %>',
+      ' *  <%= pkg.author %>',
       ' */\n'
     ].join('\n'),
 
