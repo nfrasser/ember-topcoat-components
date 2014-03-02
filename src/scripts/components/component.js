@@ -19,6 +19,6 @@ TC.TopcoatComponent = Ember.Component.extend({
     @type String
     @default 'topcoat'
   */
-  topcoatClass: 'topcoat'
+  topcoatClass: 'topcoat-component'
 });
 

@@ -18,7 +18,8 @@ TC.TopcoatButtonComponent = TC.TopcoatComponent.extend({
 
   attributeBindings: [
     'type',
-    'disabled'
+    'disabled',
+    'href'
   ],
 
   /**

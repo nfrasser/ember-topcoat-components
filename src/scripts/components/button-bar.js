@@ -396,10 +396,6 @@ TC.TopcoatButtonBarComponent = TC.TopcoatComponent.extend({
   /**
     Class that should be used for each item, used when
   */
-  formItemView: ButtonBarFormItemView,
-
-  topcoatClass: function () {
-    return 'topcoat-' + this.get('barType') + '--container';
-  }.property('barType')
+  formItemView: ButtonBarFormItemView
 
 });

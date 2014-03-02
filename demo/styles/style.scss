@@ -176,6 +176,7 @@ code {
 #topcoat-theme-selector {
   @include clearfix();
 }
+
 .demo-nav {
   min-height: 50px;
   margin-bottom: 20px;
@@ -188,11 +189,14 @@ code {
 
 .demo-nav__header {
   text-align: center;
-  @media (min-width: $min-sm-width) {
+/*   @media (min-width: $min-sm-width) {
     text-align: left;
   }
+ */
 }
+
 .demo-nav__brand {
+  // float: left;
   color: inherit;
   text-decoration: none;
   &:hover,
@@ -203,6 +207,22 @@ code {
     opacity: 1;
   }
 }
+
+/*
+.demo-nav__fork {
+  font-size: 22px;
+  line-height: 3.75rem;
+  padding: 0 30px;
+  &:hover, &:active, &:visited {
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  @media (min-width: $min-sm-width) {
+    float: right;
+    display: block;
+  }
+} */
 
 .component-list {
   @include column(25%);

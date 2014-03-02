@@ -13,5 +13,5 @@ TC.TopcoatView = Ember.View.extend({
     @type String
     @default 'topcoat'
   */
-  topcoatClass: 'topcoat'
+  topcoatClass: 'topcoat-view'
 });
