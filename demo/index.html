@@ -16,12 +16,22 @@
 </head>
 <body class="topcoat-mobile-dark">
 
+  <script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+    ga('create', 'UA-48508082-1', 'nfrasser.github.io');
+    ga('send', 'pageview');
+  </script>
+
   <!-- build:js scripts/vendor.js -->
   <script src="vendor/google-code-prettify/src/prettify.js"></script>
   <script src="vendor/google-code-prettify/src/lang-css.js"></script>
   <script src="vendor/jquery/jquery.js"></script>
   <script src="vendor/handlebars/handlebars.runtime.js"></script>
   <script src="@@ember"></script>
+  <script src="vendor/ember-google-analytics/ember-google-analytics.js"></script>
   <!-- endbuild -->
 
   <!-- build:js(.tmp) scripts/components.js -->
@@ -33,6 +43,7 @@
   <script src="scripts/demo-templates.js"></script>
   <script src="scripts/demo-scripts.js"></script>
   <!-- endbuild -->
+
 
 </body>
 </html>

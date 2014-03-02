@@ -9,6 +9,7 @@
   "devDependencies": {
     "qunit": "1.*",
     "normalize-css": "3.*",
-    "google-code-prettify": "1.0.*"
+    "google-code-prettify": "1.0.*",
+    "ember-google-analytics": "https://github.com/ryanto/ember-google-analytics.git"
   }
 }
