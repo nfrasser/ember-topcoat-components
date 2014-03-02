@@ -383,7 +383,8 @@ module.exports = function (grunt) {
 					dest: '<%= config.site %>/vendor',
 					src: [
 						'topcoat/css/*.min.css',
-						'topcoat/font/*.otf'
+						'topcoat/font/*.otf',
+						'topcoat/img/*.svg'
 					]
 				}]
 			}
