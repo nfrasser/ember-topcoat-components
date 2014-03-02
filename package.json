@@ -5,6 +5,7 @@
   "author": "Nick Frasser <nfrasser@gmail.com>",
   "homepage": "https://github.com/nfrasser/ember-topcoat-components",
   "repository": "https://github.com/nfrasser/ember-topcoat-components.git",
+  "license": "MIT",
   "dependencies": {},
   "devDependencies": {
     "grunt": "0.4.x",
