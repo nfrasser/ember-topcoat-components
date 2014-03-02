@@ -1,3 +1,5 @@
+// Remove noscript tags
+Em.$('noscript').remove();
 
 var App = window.App = Ember.Application.create();
 
