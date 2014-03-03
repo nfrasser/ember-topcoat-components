@@ -38,7 +38,7 @@ Download the source from above or add to your project via Bower:
 bower install ember-topcoat-components --save
 ```
 
-Then include it in in your HTML following the jQuery, Handlebars, and Ember:
+Then include it in your HTML following jQuery, Handlebars, and Ember:
 
 ```html
 <!-- Frameworks -->
