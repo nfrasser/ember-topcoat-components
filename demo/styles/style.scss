@@ -141,6 +141,42 @@ code {
   }
 }
 
+select {
+  overflow: hidden;
+  @include box-sizing(border-box);
+  padding: 3px 20px 4px 8px;
+  -webkit-appearance: none;
+  -moz-appearance: button;
+  width: 100%;
+  font-size: 14px;
+  border: none;
+  background: #595B5B;
+  background-image: none;
+  border-top: 2px solid #666767;
+  color: #FFF;
+  box-shadow: 0 0 0 1px #303233;
+  text-shadow: 0 -1px 0 #000;
+  border-radius: 3px;
+  .topcoat-desktop-light &, .topcoat-mobile-light & {
+    box-shadow: 0 0 0 1px #949696;
+    background: #DDE1E1;
+    border-top: 1px solid #FFF;
+    color: #454545;
+    text-shadow: 0 -1px 0 #FFF;
+  }
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  border: 0;
+}
+
 .container,
 .row {
   @include box-sizing(border-box);

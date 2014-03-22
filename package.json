@@ -25,7 +25,7 @@
     "grunt-rev": "0.1.x",
     "grunt-usemin": "2.0.x",
     "grunt-open": "0.2.x",
-    "grunt-svgmin": "0.3.x",
+    "grunt-svgmin": "0.4.x",
     "grunt-concurrent": "0.4.x",
     "load-grunt-tasks": "0.4.x",
     "connect-livereload": "0.3.x",
