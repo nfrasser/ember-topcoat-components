@@ -122,5 +122,5 @@ often:
 
 ## License
 
-MIT
+[MIT](https://github.com/nfrasser/ember-topcoat-components/blob/master/LICENSE)
 
