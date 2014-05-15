@@ -12,23 +12,23 @@ that uses Adobe's [Topcoat](http://topcoat.io/) CSS framework. Inspired by
 
 ## Demo and Examples
 
-[View the demo](http://nfrasser.github.io/ember-topcoat-components/)
+[View the demo](http://nfrasser.com/ember-topcoat-components/)
 
 ## Available Components
 
-* [Button](http://nfrasser.github.io/ember-topcoat-components/#/button)
-* [Button Bar](http://nfrasser.github.io/ember-topcoat-components/#/button-bar)
-* [Checkbox](http://nfrasser.github.io/ember-topcoat-components/#/checkbox)
-* [Radio Button](http://nfrasser.github.io/ember-topcoat-components/#/radio-button)
-* [List](http://nfrasser.github.io/ember-topcoat-components/#/list)
-* [Navigation Bar](http://nfrasser.github.io/ember-topcoat-components/#/navigation)
-* [Notification](http://nfrasser.github.io/ember-topcoat-components/#/notification)
-* [Range](http://nfrasser.github.io/ember-topcoat-components/#/range)
-* [Switch](http://nfrasser.github.io/ember-topcoat-components/#/switch)
-* [Tab Bar](http://nfrasser.github.io/ember-topcoat-components/#/tab-bar)
-* [Text Input](http://nfrasser.github.io/ember-topcoat-components/#/text-input)
-* [Search Input](http://nfrasser.github.io/ember-topcoat-components/#/search-input)
-* [Textarea](http://nfrasser.github.io/ember-topcoat-components/#/textarea)
+* [Button](http://nfrasser.com/ember-topcoat-components/#/button)
+* [Button Bar](http://nfrasser.com/ember-topcoat-components/#/button-bar)
+* [Checkbox](http://nfrasser.com/ember-topcoat-components/#/checkbox)
+* [Radio Button](http://nfrasser.com/ember-topcoat-components/#/radio-button)
+* [List](http://nfrasser.com/ember-topcoat-components/#/list)
+* [Navigation Bar](http://nfrasser.com/ember-topcoat-components/#/navigation)
+* [Notification](http://nfrasser.com/ember-topcoat-components/#/notification)
+* [Range](http://nfrasser.com/ember-topcoat-components/#/range)
+* [Switch](http://nfrasser.com/ember-topcoat-components/#/switch)
+* [Tab Bar](http://nfrasser.com/ember-topcoat-components/#/tab-bar)
+* [Text Input](http://nfrasser.com/ember-topcoat-components/#/text-input)
+* [Search Input](http://nfrasser.com/ember-topcoat-components/#/search-input)
+* [Textarea](http://nfrasser.com/ember-topcoat-components/#/textarea)
 
 ## Getting Started
 
