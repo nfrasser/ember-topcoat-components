@@ -20,7 +20,8 @@ module.exports = {
           lrSnippet,
           mountFolder(connect, '.tmp'),
           mountFolder(connect, '.'),
-          mountFolder(connect, config.paths.demo)
+          mountFolder(connect, config.paths.demo),
+          mountFolder(connect, 'vendor')
         ];
       }
     }

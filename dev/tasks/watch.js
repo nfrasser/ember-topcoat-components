@@ -1,37 +1,37 @@
 module.exports = {
   templates: {
-    files: '<%= config.app %>/templates/**/*.hbs',
+    files: '<%= config.paths.app %>/templates/**/*.hbs',
     tasks: ['emberTemplates:app']
   },
   scripts: {
-    files: ['<%= config.app %>/scripts/{,*/}*.js'],
+    files: ['<%= config.paths.app %>/scripts/{,*/}*.js'],
     tasks: ['neuter:app']
   },
   demoTemplates: {
-    files: '<%= config.demo %>/templates/**/*.hbs',
+    files: '<%= config.paths.demo %>/templates/**/*.hbs',
     tasks: ['emberTemplates:demo']
   },
   demoStyles: {
-    files: ['<%= config.demo %>/styles/{,*/}*.{scss,sass,css}'],
-    tasks: ['compass:demo']
+    files: ['<%= config.paths.demo %>/styles/{,*/}*.{scss,sass,css}'],
+    tasks: ['sass:demo']
   },
   demoScripts: {
-    files: ['<%= config.demo %>/scripts/{,*/}*.js'],
+    files: ['<%= config.paths.demo %>/scripts/{,*/}*.js'],
     tasks: ['neuter:demo']
   },
   demoReplace: {
-    files: ['<%= config.demo %>/*.html'],
+    files: ['<%= config.paths.demo %>/*.html'],
     tasks: ['replace:demo']
   },
   livereload: {
     options: {
-      livereload: require('../config').livereload
+      livereload: require('../config').ports.livereload
     },
     files: [
       '.tmp/scripts/*.js',
       '.tmp/*.html',
       '.tmp/styles/{,*/}*.css',
-      '<%= config.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
+      '<%= config.paths.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
     ]
   }
 };
