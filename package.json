@@ -1,6 +1,6 @@
 {
   "name": "ember-topcoat-components",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A collection of Ember Components for Adobe's Topcoat CSS framework",
   "author": "Nick Frasser (@nfrasser)",
   "homepage": "https://github.com/nfrasser/ember-topcoat-components",

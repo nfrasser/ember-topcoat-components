@@ -1,5 +1,5 @@
 /**
- *  ember-topcoat-components 1.0.0
+ *  ember-topcoat-components 1.0.1
  *  A collection of Ember Components for Adobe's Topcoat CSS framework
  *  https://github.com/nfrasser/ember-topcoat-components
  *  Nick Frasser (@nfrasser)

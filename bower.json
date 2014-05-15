@@ -1,11 +1,20 @@
 {
   "name": "ember-topcoat-components",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": "MIT",
+  "main": "dist/scripts/ember-topcoat-components.js",
   "dependencies": {
     "ember": ">=1.0.0",
     "topcoat": ">=0.7.0"
   },
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "vendor",
+    "test",
+    "tests"
+  ],
   "devDependencies": {
     "qunit": "1.*",
     "normalize-css": "3.*",
