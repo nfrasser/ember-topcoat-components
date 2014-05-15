@@ -112,11 +112,10 @@ automated unit tests. Run a task from the terminal using `grunt <taskName>` To
 view all availiable tasks, run `grunt --help`. Here are tasks you'll use most
 often:
 
-* `test` - Run the complete test suite with QUnit and Phantom.js
 * `build` - Compile source code and the demo site
+* `test` - Run the complete test suite with QUnit and Phantom.js
 * `server:demo` - Begin watching files for changes and launch the demo site at [localhost:9000](http://localhost:9000/)
 * `server:test` - Begin watching files for changes and launch the QUnit test site at [localhost:9001](http://localhost:9001/)
-* `build` - Compile source code and the demo site
 * `publish` - Publish the demo and documentation to GitHub pages
 * `default` - JSHint, test, and build
 

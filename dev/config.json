@@ -1,0 +1,12 @@
+{
+  "paths": {
+    "app": "src",
+    "demo": "demo",
+    "docs": "docs",
+    "dist": "dist",
+    "site": ".tmp/dist"
+  },
+  "ports": {
+    "livereload": 35729
+  }
+}
